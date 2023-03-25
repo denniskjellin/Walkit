@@ -64,10 +64,10 @@
           >{{ successMsg }}</span
         >
         <p class="mt-3 text-xs">Do you have an account yet?</p>
-        <nuxt-link
+        <NuxtLink
           class="w-fit text-sm text-[#aac8e4] hover:text-[#42b883]"
           to="/login"
-          >Login</nuxt-link
+          >Login</NuxtLink
         >
       </form>
     </section>
