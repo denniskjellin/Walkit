@@ -58,6 +58,11 @@
           v-if="errorMsg"
           >{{ errorMsg }}</span
         >
+        <span
+          class="bg-opacity-50 absolute right-8 top-8 rounded-lg bg-[#242424] p-8 px-4 py-2 text-green-500"
+          v-if="successMsg"
+          >{{ successMsg }}</span
+        >
         <p class="mt-3 text-xs">Do you have an account yet?</p>
         <nuxt-link
           class="w-fit text-sm text-[#aac8e4] hover:text-[#42b883]"
@@ -74,6 +79,7 @@ const email = ref("");
 const password = ref("");
 const confirmPassword = ref("");
 const errorMsg = ref("");
+const successMsg = ref("");
 const { auth } = useSupabaseAuthClient();
 
 const userRegister = async () => {
@@ -99,6 +105,11 @@ const userRegister = async () => {
     errorMsg.value = error.message;
     setTimeout(() => {
       errorMsg.value = "";
+    }, 3000);
+  } finally {
+    successMsg.value = "You have successfully registered!";
+    setTimeout(() => {
+      successMsg.value = "";
     }, 3000);
   }
 };
