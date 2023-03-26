@@ -1,79 +1,87 @@
+<!-- pages/register.vue -->
 <template>
-  <main>
-    <section
-      class="container mx-auto flex flex-wrap items-center justify-center px-5 py-24 text-gray-400"
+  <!-- Register form -->
+  <div
+    class="min-h-screen flex items-center justify-center bg-gradient-to-r from-primaforest-300 via-primaforest-500 to-primaforest-700 px-4 sm:px-6 lg:px-8"
+  >
+    <div
+      class="bg-primapebble-300 w-full max-w-md rounded-lg shadow-lg overflow-hidden"
     >
-      <form
-        @submit.prevent="userRegister"
-        class="bg-opacity-50 mt-10 flex w-full flex-col rounded-lg bg-[#242424] p-8 md:mt-0 md:w-1/2 lg:w-2/6"
-      >
-        <h2 class="mb-5 text-lg font-medium text-[#aac8e4]">Register</h2>
-        <div class="relative mb-4">
-          <label for="email" class="text-sm leading-7 text-gray-400"
-            >Email</label
-          >
-          <input
-            v-model="email"
-            type="email"
-            id="email"
-            name="email"
-            class="bg-opacity-20 w-full rounded border border-gray-600 bg-transparent py-1 px-3 text-base leading-8 text-gray-100 outline-none transition-colors duration-200 ease-in-out focus:border-[#42d392] focus:bg-transparent focus:ring-2 focus:ring-transparent"
-            required
-          />
+      <div class="px-6 py-8">
+        <div class="flex justify-center items-center">
+          <h1 class="mb-5"><LogoDetailComp /></h1>
+          <!-- Svg logo component -->
         </div>
-        <div class="relative mb-4">
-          <label for="password" class="text-sm leading-7 text-gray-400"
-            >Password</label
+        <!-- form with function useRegister -->
+        <form @submit.prevent="userRegister">
+          <div class="mt-4 text-red-500">{{ errorMsg }}</div>
+          <div class="mt-4 text-green-500">{{ successMsg }}</div>
+          <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2" for="email">
+              E-post
+            </label>
+            <input
+              v-model="email"
+              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="email"
+              type="email"
+              placeholder="Knowit@gmail.com"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2" for="password">
+              Lösenord
+            </label>
+            <input
+              v-model="password"
+              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              id="password"
+              type="password"
+              placeholder="Lösenord"
+              required
+            />
+          </div>
+          <div class="mb-6">
+            <label
+              class="block text-gray-700 font-bold mb-2"
+              for="confirmPassword"
+            >
+              Bekräfta lösenord
+            </label>
+            <input
+              v-model="confirmPassword"
+              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              id="confirmPassword"
+              type="password"
+              placeholder="Bekräfta lösenord"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full bg-primapear-800 hover:bg-primapear-900 transition duration-500 ease-in-out text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
-          <input
-            v-model="password"
-            type="password"
-            id="password"
-            name="password"
-            class="bg-opacity-20 w-full rounded border border-gray-600 bg-transparent py-1 px-3 text-base leading-8 text-gray-100 outline-none transition-colors duration-200 ease-in-out focus:border-[#42d392] focus:bg-transparent focus:ring-2 focus:ring-transparent"
-            required
-          />
-        </div>
-        <div class="relative mb-4">
-          <label for="confirmPassword" class="text-sm leading-7 text-gray-400"
-            >Confirm password</label
+            <i class="fa fa-user-plus mr-2"></i> Skapa konto
+          </button>
+        </form>
+        <div class="mt-8 text-center">
+          <p class="text-gray-700">Redan registrerad?</p>
+          <NuxtLink
+            to="/login"
+            class="font-bold text-primapear-800 hover:text-primapear-900 transition duration-500 ease-in-out"
+            >Logga in</NuxtLink
           >
-          <input
-            v-model="confirmPassword"
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            class="bg-opacity-20 w-full rounded border border-gray-600 bg-transparent py-1 px-3 text-base leading-8 text-gray-100 outline-none transition-colors duration-200 ease-in-out focus:border-[#42d392] focus:bg-transparent focus:ring-2 focus:ring-transparent"
-            required
-          />
         </div>
-        <button
-          type="submit"
-          class="rounded border-0 bg-[#42b883] py-2 px-8 font-sans font-bold text-[#213547] transition-colors duration-500 hover:bg-[#42d392] focus:outline-none"
-        >
-          Submit
-        </button>
-        <span
-          class="bg-opacity-50 absolute right-8 top-8 rounded-lg bg-[#242424] p-8 px-4 py-2 text-red-500"
-          v-if="errorMsg"
-          >{{ errorMsg }}</span
-        >
-        <span
-          class="bg-opacity-50 absolute right-8 top-8 rounded-lg bg-[#242424] p-8 px-4 py-2 text-green-500"
-          v-if="successMsg"
-          >{{ successMsg }}</span
-        >
-        <p class="mt-3 text-xs">Do you have an account yet?</p>
-        <NuxtLink
-          class="w-fit text-sm text-[#aac8e4] hover:text-[#42b883]"
-          to="/login"
-          >Login</NuxtLink
-        >
-      </form>
-    </section>
-  </main>
+      </div>
+    </div>
+  </div>
 </template>
+
 <script setup>
+import { useRouter } from 'vue-router'
+
+/* initiate variabels */
 const user = useSupabaseUser();
 const email = ref("");
 const password = ref("");
@@ -81,10 +89,12 @@ const confirmPassword = ref("");
 const errorMsg = ref("");
 const successMsg = ref("");
 const { auth } = useSupabaseAuthClient();
+const router = useRouter()
 
+/* function to register user */
 const userRegister = async () => {
   if (password.value !== confirmPassword.value) {
-    errorMsg.value = "Passwords do not match!";
+    errorMsg.value = "Lösenorden matchar inte!";
     password.value = "";
     confirmPassword.value = "";
     setTimeout(() => {
@@ -96,27 +106,32 @@ const userRegister = async () => {
     const { error } = await auth.signUp({
       email: email.value,
       password: password.value,
+      
     });
     email.value = "";
     password.value = "";
     confirmPassword.value = "";
     if (error) throw error;
+    
+    // show success message for 2 seconds before redirecting to login page
+    successMsg.value = "Du har registrerat dig!";
+    setTimeout(() => {
+      router.push('/login')
+    }, 2000)
+    
   } catch (error) {
     errorMsg.value = error.message;
     setTimeout(() => {
       errorMsg.value = "";
     }, 3000);
-  } finally {
-    successMsg.value = "You have successfully registered!";
-    setTimeout(() => {
-      successMsg.value = "";
-    }, 3000);
   }
 };
 
+// redirect to home page if user is logged in
  watchEffect(() => {
   if (user.value) {
     return navigateTo("/");
   }
 }); 
 </script>
+
