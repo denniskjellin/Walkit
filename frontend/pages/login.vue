@@ -16,7 +16,19 @@
         </div>
         <!-- form with function userLogin -->
         <form @submit.prevent="userLogin">
-          <div class="mt-4 text-red-500">{{ errorMsg }}</div>
+          <div
+            v-if="errorMsg"
+            class="mt-4 border-2 bg-red-100 border-red-400 text-red-700 p-2 mb-2"
+          >
+            {{ errorMsg }}
+          </div>
+          <div
+            v-if="successMsg"
+            class="mt-4 border-2 border-green-500 bg-green-100 text-green-700 p-2 mb-2"
+          >
+            {{ successMsg }}
+          </div>
+
           <div class="mb-4">
             <label class="block text-gray-700 font-bold mb-2" for="email">
               E-post
@@ -96,4 +108,3 @@ watchEffect(() => {
   }
 });
 </script>
-

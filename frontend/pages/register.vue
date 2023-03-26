@@ -14,8 +14,19 @@
         </div>
         <!-- form with function useRegister -->
         <form @submit.prevent="userRegister">
-          <div class="mt-4 text-red-500">{{ errorMsg }}</div>
-          <div class="mt-4 text-green-500">{{ successMsg }}</div>
+          <div
+            v-if="errorMsg"
+            class="mt-4 border-2 bg-red-100 border-red-400 text-red-700 p-2 mb-2"
+          >
+            {{ errorMsg }}
+          </div>
+          <div
+            v-if="successMsg"
+            class="mt-4 border-2 border-green-500 bg-green-100 text-green-700 p-2 mb-2"
+          >
+            {{ successMsg }}
+          </div>
+
           <div class="mb-4">
             <label class="block text-gray-700 font-bold mb-2" for="email">
               E-post
@@ -79,7 +90,7 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
+import { useRouter } from "vue-router";
 
 /* initiate variabels */
 const user = useSupabaseUser();
@@ -89,7 +100,7 @@ const confirmPassword = ref("");
 const errorMsg = ref("");
 const successMsg = ref("");
 const { auth } = useSupabaseAuthClient();
-const router = useRouter()
+const router = useRouter();
 
 /* function to register user */
 const userRegister = async () => {
@@ -106,19 +117,17 @@ const userRegister = async () => {
     const { error } = await auth.signUp({
       email: email.value,
       password: password.value,
-      
     });
     email.value = "";
     password.value = "";
     confirmPassword.value = "";
     if (error) throw error;
-    
+
     // show success message for 2 seconds before redirecting to login page
     successMsg.value = "Du har registrerat dig!";
     setTimeout(() => {
-      router.push('/login')
-    }, 2000)
-    
+      router.push("/login");
+    }, 2000);
   } catch (error) {
     errorMsg.value = error.message;
     setTimeout(() => {
@@ -128,10 +137,9 @@ const userRegister = async () => {
 };
 
 // redirect to home page if user is logged in
- watchEffect(() => {
+watchEffect(() => {
   if (user.value) {
     return navigateTo("/");
   }
-}); 
+});
 </script>
-
