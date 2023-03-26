@@ -81,6 +81,7 @@ const user = useSupabaseUser();
 const email = ref("");
 const password = ref("");
 const errorMsg = ref("");
+const successMsg = ref('');
 const { auth } = useSupabaseAuthClient();
 
 /* function to login user */
