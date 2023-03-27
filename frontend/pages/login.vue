@@ -99,7 +99,7 @@ const userLogin = async () => {
     errorMsg.value = "Felaktigt användarnamn eller lösenord!";
     setTimeout(() => {
       errorMsg.value = "";
-    }, 3000);
+    }, 8000);
   }
 };
 /* watch on change */
