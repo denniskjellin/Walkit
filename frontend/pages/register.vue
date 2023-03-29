@@ -71,7 +71,7 @@
           </div>
           <button
             type="submit"
-            class="w-full bg-primapear-800 hover:bg-primapear-900 transition duration-500 ease-in-out text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            class="w-full bg-primapear-900 hover:bg-primapear-800 transition duration-500 ease-in-out text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             <i class="fa fa-user-plus mr-2"></i> Skapa konto
           </button>
@@ -80,7 +80,7 @@
           <p class="text-gray-700">Redan registrerad?</p>
           <NuxtLink
             to="/login"
-            class="font-bold text-primapear-800 hover:text-primapear-900 transition duration-500 ease-in-out"
+            class="font-bold text-primapear-900 hover:text-primapear-800 transition duration-500 ease-in-out"
             >Logga in</NuxtLink
           >
         </div>
