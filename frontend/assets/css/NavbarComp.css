@@ -14,6 +14,7 @@
     }
 
 }
+/* main nav container */
 
 /* Profile cirle initials */
 .profile-circle {
@@ -21,7 +22,7 @@ position: absolute;
 width: 35px;
 height: 35px;
 left: 43px;
-top: 20px;
+top: 15px;
 padding: 5px; 
 border: solid black 1px;
 border-radius: 50%;
@@ -33,7 +34,7 @@ border-radius: 50%;
     width: 126.05px;
     height: 61.43px;
     left: 45%;
-    top: 20px;
+    top: 15px;
 
     /* replace logo when screen gets smaler */
     @media screen and (max-width: 500px) {
