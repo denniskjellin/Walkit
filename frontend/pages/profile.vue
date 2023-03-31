@@ -47,6 +47,7 @@
     // Redirect to the home page if the user is signed in
     definePageMeta({
       middleware: "auth",
+      layout: "default"
     }); 
   };
   </script>

@@ -109,4 +109,11 @@ watchEffect(() => {
     return navigateTo("/");
   }
 });
+
+// define page meta 
+definePageMeta({
+  layout: "",
+});
+
+
 </script>
