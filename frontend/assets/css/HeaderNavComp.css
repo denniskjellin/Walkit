@@ -3,45 +3,43 @@
 
 /* fold-out menu, when clicking hamburger nav button */
 .fold-out-menu {
-    position: absolute;
-    width: 100vw;
-    right: 0;
-    top: 61px;
-    padding-top: 3rem;
-    
-    @media screen and (min-width: 768px) {
-      width: 40vw;
-    }
+  position: absolute;
+  width: 100vw;
+  right: 0;
+  top: 61px;
+  padding-top: 3rem;
+  max-width: 400px;
+  /* max width of menu */
+
+  /* New width of smaler screens */
+  @media screen and (min-width: 768px) {
+    width: 40vw;
   }
+}
 
-
-/* main nav container */
 
 /* Profile cirle initials */
 .profile-circle {
-position: absolute;
-width: 35px;
-height: 35px;
-left: 43px;
-top: 15px;
-padding: 5px; 
-border: solid black 1px;
-border-radius: 50%;
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  left: 43px;
+  top: 15px;
+  padding: 5px;
+  border: solid black 1px;
+  border-radius: 50%;
 }
 
 /* svg logotype Walkit header */
 .logo-header {
-    position: absolute;
-    width: 126.05px;
-    height: 61.43px;
-    left: 45%;
-    top: 15px;
+  position: absolute;
+  width: 126.05px;
+  height: 61.43px;
+  left: 45%;
+  top: 15px;
 
-    /* re-position logo when screen gets smaler */
-    @media screen and (max-width: 500px) {
-        left: 40%;
-    }
+  /* re-position logo when screen gets smaler */
+  @media screen and (max-width: 500px) {
+    left: 40%;
+  }
 }
-
-
-

@@ -11,8 +11,9 @@
       <!-- import of Walkit svg logotype -->
       <LogoHeaderComp />
     </div>
-    <!-- add icon for steps -->
+    <!-- add svg-icon for steps (X) -->
     <div class="absolute right-14">
+      <button class="addStepsBtn py-2">  <!---right now this button is empty, gives validation error, come back to fix this -->
       <svg
         width="26"
         height="26"
@@ -38,9 +39,10 @@
           </clipPath>
         </defs>
       </svg>
+    </button>
     </div>
     <!-- button in navbar with is open event -->
-    <button class="flex items-center mr-3 rounded" @click="isOpen = !isOpen">
+    <button id="menu-button" class="flex items-center mr-3 rounded" @click="isOpen = !isOpen" :aria-expanded="isOpen">
       <!-- svg hamburger nav -->
       <svg
         v-if="!isOpen"
@@ -49,12 +51,12 @@
         viewBox="0 0 26 16"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        aria-label="Open menu"
       >
         <title>Open</title>
         <path d="M26 7.3064H0V8.70073H26V7.3064Z" fill="#333333" />
         <path d="M26 0H0V1.39434H26V0Z" fill="#333333" />
         <path d="M26 14.6057H0V16H26V14.6057Z" fill="#333333" />
-        >
         <title>Menu</title>
         <path d="M0 3h20v2H0zm0 6h20v2H0zm0 6h20v2H0z" />
       </svg>
@@ -67,6 +69,7 @@
         viewBox="0 0 23 23"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        aria-label="Close menu"
       >
         <title>Close</title>
         <path
@@ -84,17 +87,22 @@
       </svg>
     </button>
 
-    <!-- Insert nuxtlinks here later -->
+    <!-- Styling for fold-out menu, additional CSS in @HeaderNavComp.css, Pink-svg line @PinkLineComp -->
     <div
-      ref="main-nav"
-      class="fold-out-menu bg-primasand-500 text-center shadow-md"
-      :class="{ hidden: !isOpen, block: isOpen }"
-    >
-      <a href="#" class="block px-4 py-4 text-black font-semibold">Profil</a>
-      <a href="#" class="block px-4 py-4 text-black font-semibold"
+  ref="main-nav"
+  class="fold-out-menu bg-primasand-500 text-center shadow-md"
+  :class="{ hidden: !isOpen, block: !isOpen }"
+  aria-labelledby="menu-button"
+>
+      <a href="#" class="block leading-6 font-normal font-xl py-6">Profil</a>
+      <IconPinkLineComp />
+      <a href="#" class="block leading-6 font-normal font-xl py-6"
         >Aktivitetslista</a
       >
-      <a href="#" class="block px-4 py-4 text-black font-semibold">Om</a>
+      <IconPinkLineComp />
+      <a href="#" class="block leading-6 font-normal font-xl py-6">Om</a>
+      <IconPinkLineComp />
+      <a href="#" class="block leading-6 font-normal font-xl mt-24 mb-10">Logga ut</a>
     </div>
   </nav>
 </header>
