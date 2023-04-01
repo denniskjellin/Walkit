@@ -37,6 +37,7 @@
               id="email"
               type="email"
               placeholder="Knowit@gmail.com"
+              aria-label="Email address"
               required
             />
           </div>
@@ -50,6 +51,7 @@
               id="password"
               type="password"
               placeholder="Lösenord"
+              aria-label="Password"
               required
             />
           </div>
@@ -66,12 +68,14 @@
               id="confirmPassword"
               type="password"
               placeholder="Bekräfta lösenord"
+              aria-label="Confirm Password"
               required
             />
           </div>
           <button
             type="submit"
             class="w-full bg-primapear-900 hover:bg-primapear-800 transition duration-500 ease-in-out text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            aria-label="Sign up"
           >
             <i class="fa fa-user-plus mr-2"></i> Skapa konto
           </button>
@@ -81,6 +85,7 @@
           <NuxtLink
             to="/login"
             class="font-bold text-primapear-900 hover:text-primapear-800 transition duration-500 ease-in-out"
+            aria-label="Sign in"
             >Logga in</NuxtLink
           >
         </div>

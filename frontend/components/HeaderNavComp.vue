@@ -12,7 +12,7 @@
       <LogosLogoHeaderComp />
     </div>
     <!-- add svg-icon for steps (X) -->
-    <div class="absolute right-14">
+    <div class="absolute right-14 md:right-28">
       <button class="addStepsBtn py-2">  <!---right now this button is empty, gives validation error, come back to fix this -->
       <svg
         width="26"
@@ -42,7 +42,7 @@
     </button>
     </div>
     <!-- button in navbar with is open event -->
-    <button id="menu-button" class="flex items-center mr-3 rounded" @click="isOpen = !isOpen" :aria-expanded="isOpen">
+    <button id="menu-button" class="flex items-center mr-3 md:mr-16 rounded" @click="isOpen = !isOpen" :aria-expanded="isOpen">
       <!-- svg hamburger nav -->
       <svg
         v-if="!isOpen"

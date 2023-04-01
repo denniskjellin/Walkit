@@ -39,7 +39,9 @@
               id="email"
               type="email"
               placeholder="Knowit@gmail.com"
+              aria-label="Email address"
               required
+              
             />
           </div>
           <div class="mb-6">
@@ -52,12 +54,14 @@
               id="password"
               type="password"
               placeholder="Lösenord"
+              aria-label="Password"
               required
             />
           </div>
           <button
             type="submit"
             class="w-full bg-primapear-900 hover:bg-primapear-800 transition duration-500 ease-in-out text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            aria-label="Login button"
           >
             <i class="fa fa-sign-in-alt mr-2"></i> Logga in
           </button>
@@ -67,6 +71,7 @@
           <NuxtLink
             to="/register"
             class="font-bold text-primapear-900 hover:primapear-800 transition duration-500 ease-in-out"
+            aria-label="Link to register page"
             >Registrera</NuxtLink
           >
         </div>
