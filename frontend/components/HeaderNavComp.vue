@@ -9,7 +9,7 @@
     </div>
     <div class="logo-header">
       <!-- import of Walkit svg logotype -->
-      <LogoHeaderComp />
+      <LogosLogoHeaderComp />
     </div>
     <!-- add svg-icon for steps (X) -->
     <div class="absolute right-14">

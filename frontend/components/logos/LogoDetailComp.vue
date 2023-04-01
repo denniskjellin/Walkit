@@ -1,4 +1,4 @@
-<!-- Walkit logo with 'details in pink' -->
+<!-- Walkit logo with 'details in pink' used on login/register page -->
 <template>
 <svg width="150" height="80" viewBox="0 0 88 36" fill="none" xmlns="http://www.w3.org/2000/svg">
     <title>Walkit</title>

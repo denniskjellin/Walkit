@@ -1,4 +1,5 @@
 <template>
+    <!-- This is the Walkit text logotype placed in HeaderNavComp.vue -->
     <NuxtLink to="/">
     <svg width="93" height="27" viewBox="0 0 93 27" fill="none" xmlns="http://www.w3.org/2000/svg">
         <title>Walkit</title>
