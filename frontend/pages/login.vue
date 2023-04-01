@@ -10,7 +10,7 @@
       <div class="px-6 py-8">
         <div class="flex justify-center items-center">
           <h1 class="mb-5">
-            <LogosLogoDetailComp />
+            <LogoDetailComp />
             <!-- Svg logo component -->
           </h1>
         </div>

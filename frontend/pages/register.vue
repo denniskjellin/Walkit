@@ -9,7 +9,7 @@
     >
       <div class="px-6 py-8">
         <div class="flex justify-center items-center">
-          <h1 class="mb-5"><LogosLogoDetailComp /></h1>
+          <h1 class="mb-5"><LogoDetailComp /></h1>
           <!-- Svg logo component -->
         </div>
         <!-- form with function useRegister -->

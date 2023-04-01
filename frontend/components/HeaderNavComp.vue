@@ -1,111 +1,71 @@
 <template>
-  <header>
-  <nav
-    class="shadow-md flex relative items-center justify-between flex-wrap bg-primasand-500 py-6"
-  >
-    <div class="flex items-center">
-      <!-- custom placeholder for user initials -->
-      <span class="profile-circle">DK</span>
+  <header class="z-99 h-20 grid grid-cols-8 py-0 bg-primasand-500">
+    
+    <div class="col-span-2 flex flex-col items-center place-self-center justify-between">
+      <NuxtLink to="/" title="Profile page"
+        ><i class="fas fa-user"></i>
+      </NuxtLink>
+      <p class="hidden md:block">Profil</p>
     </div>
-    <div class="logo-header">
-      <!-- import of Walkit svg logotype -->
-      <LogosLogoHeaderComp />
+  <NuxtLink to="/" class="col-span-4 place-self-center main-logo">
+    <img
+      src="../media/mainlogo.svg"
+      
+      alt="logotype Walkit"
+    />
+  </NuxtLink>
+    <div class="col-span-2 flex place-self-center gap-6">
+      <div class="flex flex-col items-center justify-between">
+        <NuxtLink to="/" title="Profile page"
+          ><i class="fas fa-plus"></i>
+        </NuxtLink>
+        <p class="hidden md:block">Lägg till</p>
+      </div>
+      <div v-if="!isOpen" class="flex flex-col items-center justify-between">
+        <button
+          id="menu-button"
+          @click="isOpen = !isOpen"
+          :aria-expanded="isOpen"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+        <p class="hidden md:block">Meny</p>
+      </div>
+      <div v-else class="flex flex-col items-center justify-between">
+        <button
+          id="menu-button"
+          @click="isOpen = !isOpen"
+          :aria-expanded="isOpen"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+        <p class="hidden md:block">Stäng</p>
+      </div>
     </div>
-    <!-- add svg-icon for steps (X) -->
-    <div class="absolute right-14 md:right-28">
-      <button class="addStepsBtn py-2">  <!---right now this button is empty, gives validation error, come back to fix this -->
-      <svg
-        width="26"
-        height="26"
-        viewBox="0 0 26 26"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <g clip-path="url(#clip0_652_16280)">
-          <path
-            d="M21.0464 12.5615H13.4849V5H12.6123V12.5615H5.05078V13.4341H12.6123V21H13.4849V13.4341H21.0464V12.5615Z"
-            fill="#FF00FF"
-          />
-        </g>
-        <circle cx="13" cy="13" r="12.5" stroke="#333333" />
-        <defs>
-          <clipPath id="clip0_652_16280">
-            <rect
-              width="16"
-              height="16"
-              fill="white"
-              transform="translate(5.05078 5)"
-            />
-          </clipPath>
-        </defs>
-      </svg>
-    </button>
-    </div>
-    <!-- button in navbar with is open event -->
-    <button id="menu-button" class="flex items-center mr-3 md:mr-16 rounded" @click="isOpen = !isOpen" :aria-expanded="isOpen">
-      <!-- svg hamburger nav -->
-      <svg
-        v-if="!isOpen"
-        width="26"
-        height="16"
-        viewBox="0 0 26 16"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-label="Open menu"
-      >
-        <title>Open</title>
-        <path d="M26 7.3064H0V8.70073H26V7.3064Z" fill="#333333" />
-        <path d="M26 0H0V1.39434H26V0Z" fill="#333333" />
-        <path d="M26 14.6057H0V16H26V14.6057Z" fill="#333333" />
-        <title>Menu</title>
-        <path d="M0 3h20v2H0zm0 6h20v2H0zm0 6h20v2H0z" />
-      </svg>
-
-      <!-- svg cross (X)  -->
-      <svg
-        v-if="isOpen"
-        width="23"
-        height="16"
-        viewBox="0 0 23 23"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-label="Close menu"
-      >
-        <title>Close</title>
-        <path
-          d="M13.9319 12.7465L12.7383 13.9402L21.7981 23L22.9917 21.8063L13.9319 12.7465Z"
-          fill="#333333"
-        />
-        <path
-          d="M1.19365 0.00605891L0 1.19971L9.00608 10.2058L10.1997 9.01213L1.19365 0.00605891Z"
-          fill="#333333"
-        />
-        <path
-          d="M21.802 2.02296e-05L0 21.802L1.19365 22.9957L22.9956 1.19367L21.802 2.02296e-05Z"
-          fill="#333333"
-        />
-      </svg>
-    </button>
+    <div v-if="isOpen" class="grey-out top-20 z-1"></div>
 
     <!-- Styling for fold-out menu, additional CSS in @HeaderNavComp.css, Pink-svg line @PinkLineComp -->
     <div
-  ref="main-nav"
-  class="fold-out-menu bg-primasand-500 text-center shadow-md"
-  :class="{ hidden: !isOpen, block: !isOpen }"
-  aria-labelledby="menu-button"
->
+      ref="main-nav"
+      class="nav-menu fold-out-menu bg-primasand-500 text-center shadow-md z-2"
+      :class="{ hidden: !isOpen, block: !isOpen }"
+      aria-labelledby="menu-button"
+    >
       <a href="#" class="block leading-6 font-normal font-xl py-6">Profil</a>
-      <IconPinkLineComp />
+      <hr class="pink-line" />
       <a href="#" class="block leading-6 font-normal font-xl py-6"
         >Aktivitetslista</a
       >
-      <IconPinkLineComp />
+      <hr class="pink-line" />
       <a href="#" class="block leading-6 font-normal font-xl py-6">Om</a>
-      <IconPinkLineComp />
-      <a href="#" class="block leading-6 font-normal font-xl mt-24 mb-10">Logga ut</a>
+      <hr class="pink-line" />
+      <a href="#" class="block leading-6 font-normal font-xl mt-24 mb-10"
+        >Logga ut</a
+      >
+      <hr />
     </div>
-  </nav>
-</header>
+ 
+  </header>
 </template>
 
 <script>

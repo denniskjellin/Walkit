@@ -1,14 +1,14 @@
 /* main navigation header element (nav) */
 
-
 /* fold-out menu, when clicking hamburger nav button */
 .fold-out-menu {
   position: absolute;
   width: 100vw;
   right: 0;
-  top: 61px;
+  top: 78px;
   padding-top: 3rem;
   max-width: 400px;
+  animation: fold-out-menu 0.5s ease-in-out 0s 1 normal none;
   /* max width of menu */
 
   /* New width of smaler screens */
@@ -17,29 +17,47 @@
   }
 }
 
+/* fold out transition */
+@keyframes fold-out-menu {
+	0% {
+		opacity: 0;
+		transform: translateX(250px);
+	}
 
-/* Profile cirle initials */
-.profile-circle {
-  position: absolute;
-  width: 35px;
-  height: 35px;
-  left: 43px;
-  top: 15px;
-  padding: 5px;
-  border: solid black 1px;
-  border-radius: 50%;
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
 
-/* svg logotype Walkit header */
-.logo-header {
-  position: absolute;
-  width: 126.05px;
-  height: 61.43px;
-  left: 45%;
-  top: 15px;
-
-  /* re-position logo when screen gets smaler */
-  @media screen and (max-width: 500px) {
-    left: 40%;
-  }
+/* grey out div */
+.grey-out {
+  width: 100%;
+  height: 100vh;
+  background-color: #000000;
+  opacity: 0.5;
+  display: block;
+  position: fixed;
 }
+
+/* pink dash in navbar list */
+.pink-line {
+  width: 15%;
+  align-items: center;
+  height: 2px;
+  background-color: #FF00FF;
+  margin-bottom: 1rem;
+  margin: 0 auto;
+}
+
+
+/* hamburger nav button specified */
+#menu-button {
+  min-width: 30px;
+  min-height: 30px;
+}
+/* font awesome icons inside header */
+.fas.fa-times, .fas.fa-bars, .fas.fa-plus, .fas.fa-user {
+  font-size: 24px
+}
+
