@@ -1,19 +1,16 @@
 <template>
   <header class="z-99 h-20 grid grid-cols-8 py-0 bg-primasand-500">
-    
-    <div class="col-span-2 flex flex-col items-center place-self-center justify-between">
+    <div
+      class="col-span-2 flex flex-col items-center place-self-center justify-between"
+    >
       <NuxtLink to="/" title="Profile page"
         ><i class="fas fa-user"></i>
       </NuxtLink>
       <p class="hidden md:block">Profil</p>
     </div>
-  <NuxtLink to="/" class="col-span-4 place-self-center main-logo">
-    <img
-      src="../media/mainlogo.svg"
-      
-      alt="logotype Walkit"
-    />
-  </NuxtLink>
+    <NuxtLink to="/" class="col-span-4 place-self-center main-logo">
+      <img src="../media/mainlogo.svg" alt="logotype Walkit" />
+    </NuxtLink>
     <div class="col-span-2 flex place-self-center gap-6">
       <div class="flex flex-col items-center justify-between">
         <NuxtLink to="/" title="Profile page"
@@ -47,11 +44,18 @@
     <!-- Styling for fold-out menu, additional CSS in @HeaderNavComp.css, Pink-svg line @PinkLineComp -->
     <div
       ref="main-nav"
+      id="fold-out-menu"
       class="nav-menu fold-out-menu bg-primasand-500 text-center shadow-md z-2"
       :class="{ hidden: !isOpen, block: !isOpen }"
-      aria-labelledby="menu-button"
+      aria-labelledby="menu-label"
     >
-      <a href="#" class="block leading-6 font-normal font-xl py-6">Profil</a>
+      <div id="menu-label" class="sr-only">Huvudmeny</div>
+      <a
+        href="#"
+        id="profil-menu-item"
+        class="block leading-6 font-normal font-xl py-6"
+        >Profil</a
+      >
       <hr class="pink-line" />
       <a href="#" class="block leading-6 font-normal font-xl py-6"
         >Aktivitetslista</a
@@ -64,7 +68,6 @@
       >
       <hr />
     </div>
- 
   </header>
 </template>
 
