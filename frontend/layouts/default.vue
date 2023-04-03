@@ -3,7 +3,7 @@
     
     <!--Import of Header Navigation-->
     <!-- <Nav /> -->
- <HeaderNavComp />
+ <HeaderNav />
     <main class="flex-grow py-8 border-2">
       <!--Output the page content-->
       <slot></slot>

@@ -1,30 +1,31 @@
-<!-- This component is imported in HeaderNavComponent, its extra CSS lies in HeaderNavComp.css -->
 <template>
-    
-  <!-- Fold out form add Steps -->
-  <div v-if="!isOpen" class="flex flex-col items-center justify-between ">
-    <button @click="($event) => (isOpen = !isOpen)" :aria-expanded="isOpen">
-      <i class="text-primaloli-500 fas fa-plus"></i>
+  <!-- Hamburger button and close button for menu -->
+  <div v-if="!isOpen" class="flex flex-col items-center justify-between">
+    <button id="menu-button" @click="isOpen = !isOpen" :aria-expanded="isOpen">
+      <i class="fas fa-bars"></i>
     </button>
-    <p class="hidden md:block">Lägg till</p>
+    <p class="hidden md:block">Meny</p>
   </div>
-  <!-- If Add steps is open, show the close button -->
+  <!-- If hamburer nav is open, show the close button -->
   <div v-else class="flex flex-col items-center justify-between">
     <button id="menu-button" @click="isOpen = !isOpen" :aria-expanded="isOpen">
       <i class="fas fa-times"></i>
     </button>
     <p class="hidden md:block">Stäng</p>
   </div>
-  <!-- End of fould-out for adding steps -->
-  
 
-  <!-- Fold out add Steps menu -->
+  <!-- This is the grey-out div, addition css in HeaderNavComp -->
+  <div v-if="isOpen" class="grey-out top-20"></div>
+
+  <!-- Styling for fold-out menu, additional CSS in @HeaderNavComp.css, Pink-svg line @PinkLineComp -->
   <div
     ref="main-nav"
-    class="fold-out-steps bg-primasand-500 text-center shadow-md"
+    id="fold-out-menu"
+    class="nav-menu fold-out-menu bg-primasand-500 text-center shadow-md z-2"
     :class="{ hidden: !isOpen, block: !isOpen }"
+    aria-labelledby="menu-label"
   >
-    <div>Add steps</div>
+    <div id="menu-label" class="sr-only">Huvudmeny</div>
     <a
       href="#"
       id="profil-menu-item"
@@ -43,13 +44,6 @@
     >
     <hr />
   </div>
-  
-
- <!-- This is the grey-out div, addition css in HeaderNavComp -->
- <div v-if="isOpen" class="grey-out top-20"></div>
-
-  
-  
 </template>
 
 <script>
