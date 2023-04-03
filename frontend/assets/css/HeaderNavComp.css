@@ -16,8 +16,25 @@
     width: 40vw;
   }
 }
+/*fold-out-steps menu*/
+.fold-out-steps {
+  position: absolute;
+  width: 100vw;
+  right: 0;
+  top: 78px;
+  padding-top: 3rem;
+  max-width: 400px;
+  animation: fold-out-menu 0.5s ease-in-out 0s 1 normal none;
+  z-index: 1;
+  /* max width of menu */
 
-/* fold out transition */
+  /* New width of smaler screens */
+  @media screen and (min-width: 768px) {
+    width: 40vw;
+  }
+}
+
+/* fold out menu transition */
 @keyframes fold-out-menu {
 	0% {
 		opacity: 0;
@@ -32,13 +49,15 @@
 
 /* grey out div */
 .grey-out {
-  width: 100%;
-  height: 100vh;
-  background-color: #000000;
-  opacity: 0.5;
-  display: block;
   position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 0; /* Make sure the grey-out div is on top of other elements */
 }
+
 
 /* pink dash in navbar list */
 .pink-line {

@@ -1,6 +1,6 @@
 <template>
   <header>
-    <nav class="z-99 h-20 grid grid-cols-8 py-0 bg-primasand-500">
+    <nav class="h-20 grid grid-cols-8 py-0 bg-primasand-500">
       <div
         class="col-span-2 flex flex-col items-center place-self-center justify-between"
       >
@@ -13,13 +13,10 @@
         <img src="../media/mainlogo.svg" alt="logotype Walkit" />
       </NuxtLink>
       <div class="col-span-2 flex place-self-center gap-6">
-        <div class="flex flex-col items-center justify-between">
-          <NuxtLink to="/" title="Profile page"
-            ><i class="fas fa-plus"></i>
-          </NuxtLink>
-          <p class="hidden md:block">Lägg till</p>
-        </div>
+        <!-- Add steps form component, icon in the navbar is inside AddStepsComponent-->
+          <AddStepsComp />
 
+        <!-- Hamburger button and close button for menu -->
         <div v-if="!isOpen" class="flex flex-col items-center justify-between">
           <button
             id="menu-button"
@@ -30,6 +27,7 @@
           </button>
           <p class="hidden md:block">Meny</p>
         </div>
+        <!-- If hamburer nav is open, show the close button -->
         <div v-else class="flex flex-col items-center justify-between">
           <button
             id="menu-button"
@@ -43,7 +41,7 @@
       </div>
 
       <!-- This is the grey-out div, addition css in HeaderNavComp -->
-      <div v-if="isOpen" class="grey-out top-20 z-1"></div>
+      <div v-if="isOpen" class="grey-out top-20"></div>
 
       <!-- Styling for fold-out menu, additional CSS in @HeaderNavComp.css, Pink-svg line @PinkLineComp -->
       <div
