@@ -1,0 +1,50 @@
+.main-header {
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
+  background-color: $sand;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+  /* div aroind profile icon */
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    place-self: center;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* main logo inside header*/
+  .walkit-logo {
+    place-self: center;
+  }
+
+  /* font awesome icons inside header */
+  .fas.fa-times,
+  .fas.fa-bars,
+  .fas.fa-plus,
+  .fas.fa-user {
+    font-size: 24px;
+  }
+
+  /* hamburger nav button specified */
+  #menu-button {
+    min-width: 30px;
+    min-height: 30px;
+  }
+
+  .nav-links {
+    display: block;
+    line-height: 1.5rem;
+    font-weight: 400;
+    padding: 1.5rem;
+  }
+
+  .nav-logout {
+    @extend .nav-links;
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+  }
+}

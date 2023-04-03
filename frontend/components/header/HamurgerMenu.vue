@@ -1,27 +1,27 @@
 <template>
   <!-- Hamburger button and close button for menu -->
-  <div v-if="!isOpen" class="flex flex-col items-center justify-between">
+  <div v-if="!isOpen">
     <button id="menu-button" @click="isOpen = !isOpen" :aria-expanded="isOpen">
       <i class="fas fa-bars"></i>
     </button>
-    <p class="hidden md:block">Meny</p>
+    <p class="menu-text">Meny</p>
   </div>
   <!-- If hamburer nav is open, show the close button -->
-  <div v-else class="flex flex-col items-center justify-between">
+  <div v-else >
     <button id="menu-button" @click="isOpen = !isOpen" :aria-expanded="isOpen">
       <i class="fas fa-times"></i>
     </button>
-    <p class="hidden md:block">Stäng</p>
+    <p class="menu-text">Stäng</p>
   </div>
 
   <!-- This is the grey-out div, addition css in HeaderNavComp -->
-  <div v-if="isOpen" class="grey-out top-20"></div>
+  <div v-if="isOpen" class="grey-out"></div>
 
   <!-- Styling for fold-out menu, additional CSS in @HeaderNavComp.css, Pink-svg line @PinkLineComp -->
   <div
     ref="main-nav"
     id="fold-out-menu"
-    class="nav-menu fold-out-menu bg-primasand-500 text-center shadow-md z-2"
+    class="fold-out-menu"
     :class="{ hidden: !isOpen, block: !isOpen }"
     aria-labelledby="menu-label"
   >
@@ -29,17 +29,17 @@
     <a
       href="#"
       id="profil-menu-item"
-      class="block leading-6 font-normal font-xl py-6"
+      class="nav-links"
       >Profil</a
     >
     <hr class="pink-line" />
-    <a href="#" class="block leading-6 font-normal font-xl py-6"
+    <a class="nav-links" href="#"
       >Aktivitetslista</a
     >
     <hr class="pink-line" />
-    <a href="#" class="block leading-6 font-normal font-xl py-6">Om</a>
+    <a href="#" class="nav-links">Om</a>
     <hr class="pink-line" />
-    <a href="#" class="block leading-6 font-normal font-xl mt-24 mb-10"
+    <a href="#" class="nav-logout"
       >Logga ut</a
     >
     <hr />

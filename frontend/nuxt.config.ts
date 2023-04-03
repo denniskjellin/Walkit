@@ -2,7 +2,7 @@
 
 export default defineNuxtConfig({
 
-  css: ['@/assets/css/tailwind.css', '@fortawesome/fontawesome-free/css/all.css'],
+  css: ['@/assets/css/tailwind.css', '@fortawesome/fontawesome-free/css/all.css', '@/assets/css/main.scss'],
   modules: ['@nuxtjs/supabase', '@nuxtjs/tailwindcss'],
 
   app: {
