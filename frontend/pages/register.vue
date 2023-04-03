@@ -2,93 +2,66 @@
 <template>
   <!-- Register form -->
   <div
-    class="min-h-screen flex items-center justify-center bg-gradient-to-r from-primaforest-300 via-primaforest-500 to-primaforest-700 px-4 sm:px-6 lg:px-8"
+    class="main-container bg-gradient-to-r from-primaforest-300 via-primaforest-500 to-primaforest-700 px-4 sm:px-6 lg:px-8"
   >
-    <div
-      class="bg-primapebble-300 w-full max-w-md rounded-lg shadow-lg overflow-hidden"
-    >
-      <div class="px-6 py-8">
-        <div class="flex justify-center items-center">
-          <h1 class="mb-5"><LogoDetailComp /></h1>
-          <!-- Svg logo component -->
+    <div class="child-container">
+      <div class="walkit-logo">
+        <LogoDetailComp />
+        <!-- Svg logo component -->
+      </div>
+      <!-- form with function useRegister -->
+      <form @submit.prevent="userRegister">
+        <div v-if="errorMsg" class="error-box">
+          {{ errorMsg }}
         </div>
-        <!-- form with function useRegister -->
-        <form @submit.prevent="userRegister">
-          <div
-            v-if="errorMsg"
-            class="mt-4 border-2 bg-red-100 border-red-400 text-red-700 p-2 mb-2"
-          >
-            {{ errorMsg }}
-          </div>
-          <div
-            v-if="successMsg"
-            class="mt-4 border-2 border-green-500 bg-green-100 text-green-700 p-2 mb-2"
-          >
-            {{ successMsg }}
-          </div>
+        <div v-if="successMsg" class="success-box">
+          {{ successMsg }}
+        </div>
 
-          <div class="mb-4">
-            <label class="block text-gray-700 font-bold mb-2" for="email">
-              E-post
-            </label>
-            <input
-              v-model="email"
-              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="email"
-              type="email"
-              placeholder="Knowit@gmail.com"
-              aria-label="Email address"
-              required
-            />
-          </div>
-          <div class="mb-4">
-            <label class="block text-gray-700 font-bold mb-2" for="password">
-              Lösenord
-            </label>
-            <input
-              v-model="password"
-              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-              id="password"
-              type="password"
-              placeholder="Lösenord"
-              aria-label="Password"
-              required
-            />
-          </div>
-          <div class="mb-6">
-            <label
-              class="block text-gray-700 font-bold mb-2"
-              for="confirmPassword"
-            >
-              Bekräfta lösenord
-            </label>
-            <input
-              v-model="confirmPassword"
-              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-              id="confirmPassword"
-              type="password"
-              placeholder="Bekräfta lösenord"
-              aria-label="Confirm Password"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            class="w-full bg-primapear-900 hover:bg-primapear-800 transition duration-500 ease-in-out text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            aria-label="Sign up"
-          >
-            <i class="fa fa-user-plus mr-2"></i> Skapa konto
-          </button>
-        </form>
-        <div class="mt-8 text-center">
-          <p class="text-gray-700">Redan registrerad?</p>
-          <NuxtLink
-            to="/login"
-            class="font-bold text-primapear-900 hover:text-primapear-800 transition duration-500 ease-in-out"
-            aria-label="Sign in"
-            >Logga in</NuxtLink
-          >
+        <div class="input-section">
+          <label for="email"> E-post </label>
+          <input
+            v-model="email"
+            id="email"
+            type="email"
+            placeholder="Knowit@gmail.com"
+            aria-label="Email address"
+            required
+          />
         </div>
+        <div class="input-section">
+          <label for="password"> Lösenord </label>
+          <input
+            v-model="password"
+            id="password"
+            type="password"
+            placeholder="Lösenord"
+            aria-label="Password"
+            required
+          />
+        </div>
+        <div class="input-section password">
+          <label for="confirmPassword"> Bekräfta lösenord </label>
+          <input
+            v-model="confirmPassword"
+            id="confirmPassword"
+            type="password"
+            placeholder="Bekräfta lösenord"
+            aria-label="Confirm Password"
+            required
+          />
+        </div>
+        <button type="submit" class="button-submit" aria-label="Sign up">
+          <i class="fa fa-user-plus"></i> Skapa konto
+        </button>
+      </form>
+      <div class="register-section">
+        <p class="text-gray-700">Redan registrerad?</p>
+        <NuxtLink
+          to="/login"
+          aria-label="Sign in"
+          >Logga in</NuxtLink
+        >
       </div>
     </div>
   </div>
@@ -148,7 +121,7 @@ watchEffect(() => {
   }
 });
 
-// define page meta 
+// define page meta
 definePageMeta({
   layout: "",
 });

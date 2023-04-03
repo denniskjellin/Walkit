@@ -1,0 +1,114 @@
+// Styling for registration and login page
+.main-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+
+  @media (min-width: 640px) {
+    .sm\:px-6 {
+      padding-left: 1.5rem /* 24px */;
+      padding-right: 1.5rem /* 24px */;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .lg\:px-8 {
+      padding-left: 2rem /* 32px */;
+      padding-right: 2rem /* 32px */;
+    }
+  }
+}
+
+.child-container {
+    background-color: $pebble300;
+    width: 100%;
+    max-width: 28rem/* 448px */;
+    border-radius: 0.5rem/* 8px */;
+    overflow: hidden;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
+    padding: 2rem 2rem;
+}
+
+.walkit-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.input-section {
+  margin-bottom: 1rem;
+}
+
+.password {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  color: #4A5568;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+
+input {
+appearance: none;
+border-width: 1px;
+border-radius: 0.25rem;
+width: 100%;
+color: #4A5568;
+line-height: 1.25;
+outline: 2px solid transparent;
+outline-offset: 2px;
+padding: 0.5rem 0.75rem;
+
+}
+
+.password {
+  @extend .input-section;
+  margin-bottom: 2rem;
+}
+
+.button-submit {
+ width: 100%;
+ background-color: $pear900;
+ color: white;
+ font-weight: 600;
+ padding: 0.5rem 1rem;
+ border-radius: 0.25rem;
+
+}
+
+.button-submit:hover {
+  background-color: $pear800;
+  transition: ease-in-out 0.2s;
+ } 
+
+ .fa.fa {
+  margin-right: 0.5rem;
+ }
+
+ .register-section {
+  margin-top: 2rem;
+  text-align: center;
+    p {
+      color: #4A5568;
+    }
+
+    a {
+      font-weight: 600;
+      color: $pear900;
+
+    }
+
+    a:hover {
+      color: $pear800;
+      transition: ease-in-out 0.2s;
+
+    }
+    
+ }
+ 
