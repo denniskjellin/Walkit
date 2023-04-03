@@ -16,6 +16,7 @@
     <p class="hidden md:block">Stäng</p>
   </div>
   <!-- End of fould-out for adding steps -->
+  
 
   <!-- Fold out add Steps menu -->
   <div
