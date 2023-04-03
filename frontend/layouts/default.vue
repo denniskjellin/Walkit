@@ -1,10 +1,10 @@
 <template>
-  <div class="flex flex-col h-screen"> 
+  <div class="wrapper"> 
     
     <!--Import of Header Navigation-->
     <!-- <Nav /> -->
  <HeaderNav />
-    <main class="flex-grow py-8 border-2">
+    <main>
       <!--Output the page content-->
       <slot></slot>
     </main>
