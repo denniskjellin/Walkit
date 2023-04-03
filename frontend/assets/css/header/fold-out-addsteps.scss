@@ -1,30 +1,31 @@
-  /* fold-out menu add steps */
-  .container {
-    display: flex;
-
-
-    .child {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    /* add steps icon  */
-   .fas.fa-plus {
-    color: $loli;
-   }
-   
-    .addsteps {
-      
-
-        /* New width of smaler screens */
-    @media screen and (min-width: 768px) {
-      width: 80vw;
-      max-width: unset;
-      right: unset;
-      left: 10vw;
-      
-    }
-    }
+/* fold-out menu add steps */
+.child {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 15px;
 }
+
+/* add steps icon  */
+.fas.fa-plus {
+  color: $loli;
+}
+
+.addsteps {
+  /* New width of smaler screens */
+  @media screen and (min-width: 768px) {
+    width: 80vw;
+    max-width: unset;
+    right: unset;
+    left: 10vw;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .child {
+    width: 60px;
+  }
+}
+

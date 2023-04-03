@@ -8,7 +8,7 @@
         <p class="menu-text">Profil</p>
       </div>
       <NuxtLink to="/" class="walkit-logo">
-        <img src="~/../../media/mainlogo.svg" alt="logotype Walkit" />
+        <LogoWalkitComp/>
       </NuxtLink>
       <div class="menu-foldouts">
         <!-- Add steps form component, icon in the navbar is inside AddStepsComponent-->

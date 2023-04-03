@@ -1,13 +1,13 @@
 <template>
   <!-- Hamburger button and close button for menu -->
-  <div v-if="!isOpen">
+  <div class="child" v-if="!isOpen">
     <button id="menu-button" @click="isOpen = !isOpen" :aria-expanded="isOpen">
       <i class="fas fa-bars"></i>
     </button>
     <p class="menu-text">Meny</p>
   </div>
   <!-- If hamburer nav is open, show the close button -->
-  <div v-else >
+  <div class="child" v-else >
     <button id="menu-button" @click="isOpen = !isOpen" :aria-expanded="isOpen">
       <i class="fas fa-times"></i>
     </button>
