@@ -1,9 +1,10 @@
 <template>
   <form class="add-steps-form">
-      <h2 class="add-steps-h2">Registrera steg</h2>
+    <h2 class="add-steps-h2">Registrera steg</h2>
     <div class="input-label-container">
       <label class="label-add-steps-form" for="date">Datum</label>
       <input
+        required
         class="input-add-steps-form"
         id="date"
         ref="test"
@@ -14,6 +15,7 @@
     <div class="input-label-container">
       <label class="label-add-steps-form" for="steps">Antal steg</label>
       <input
+        required
         class="input-add-steps-form"
         id="steps"
         type="number"
@@ -25,7 +27,7 @@
       {{ errorMsg }}
     </div>
     <!-- success msg div -->
-    <div v-if="successMsg" class="success-box">
+    <div v-if="successMsg" class="success-box steps">
       {{ successMsg }}
     </div>
     <div class="add-steps-form__submit input-label-container">
@@ -97,6 +99,8 @@ const insertSteps = async () => {
     setTimeout(() => {
       successMsg.value = "";
       errorMsg.value = "";
+      date.value = null;
+      steps.value = 0;
     }, 2000);
   } catch (error) {
     // set a custom error message
