@@ -19,8 +19,9 @@
         </div>
 
         <div class="input-section">
-          <label for="email"> E-post </label>
+          <label class="label-loginreg" for="email"> E-post </label>
           <input
+            class="input-loginreg"
             v-model="email"
             id="email"
             type="email"
@@ -30,8 +31,9 @@
           />
         </div>
         <div class="input-section">
-          <label for="password"> Lösenord </label>
+          <label class="label-loginreg" for="password"> Lösenord </label>
           <input
+            class="input-loginreg"
             v-model="password"
             id="password"
             type="password"
@@ -41,8 +43,11 @@
           />
         </div>
         <div class="input-section password">
-          <label for="confirmPassword"> Bekräfta lösenord </label>
+          <label class="label-loginreg" for="confirmPassword">
+            Bekräfta lösenord
+          </label>
           <input
+            class="input-loginreg"
             v-model="confirmPassword"
             id="confirmPassword"
             type="password"
@@ -57,11 +62,7 @@
       </form>
       <div class="register-section">
         <p class="text-gray-700">Redan registrerad?</p>
-        <NuxtLink
-          to="/login"
-          aria-label="Sign in"
-          >Logga in</NuxtLink
-        >
+        <NuxtLink to="/login" aria-label="Sign in">Logga in</NuxtLink>
       </div>
     </div>
   </div>

@@ -19,8 +19,9 @@
         </div>
 
         <div class="input-section">
-          <label for="email"> E-post </label>
-          <input
+          <label class="label-loginreg" for="email"> E-post </label>
+          <input 
+            class="input-loginreg"
             v-model="email"
             id="email"
             type="email"
@@ -30,8 +31,9 @@
           />
         </div>
         <div class="input-section password">
-          <label for="password"> Lösenord </label>
+          <label class="label-loginreg" for="password"> Lösenord </label>
           <input
+            class="input-loginreg"
             v-model="password"
             id="password"
             type="password"

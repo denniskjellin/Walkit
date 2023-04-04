@@ -22,7 +22,8 @@
     class="fold-out-menu addsteps"
     :class="{ hidden: !isOpen, block: !isOpen }"
   >
-    <div>Add steps</div>
+    
+
   </div>
 
   <!-- This is the grey-out div, addition css in HeaderNavComp -->
