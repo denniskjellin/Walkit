@@ -1,24 +1,30 @@
 .btn-bg-clay-black {
     background-color: $clay;
-    border: 1px solid #e5e5e5;
     border-radius: 3px;
     color: $black;
-    cursor: pointer;
     display: inline-block;
     font-size: 1rem;
     font-weight: 600;
     line-height: 1.5;
     margin-bottom: 0;
-    padding: 6px 12px;
+    padding: 6px 24px;
     text-align: center;
     vertical-align: middle;
-    white-space: nowrap;
-    width: 25%;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    width: 100%;
 }   
 
 .btn-bg-clay-black:hover {
     background-color: $clay600;
     transition: background-color 0.2s ease-in-out;
 }
+
+// icon inside button
+.add-steps-form {
+    &__submit {
+      .fas.fa-plus {
+        font-size: 14px;
+      }
+    }
+  }

@@ -14,10 +14,7 @@
         <div v-if="errorMsg" class="error-box">
           {{ errorMsg }}
         </div>
-        <div v-if="successMsg" class="success-box">
-          {{ successMsg }}
-        </div>
-
+    
         <div class="input-section">
           <label class="label-loginreg" for="email"> E-post </label>
           <input 
