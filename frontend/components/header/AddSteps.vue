@@ -22,7 +22,9 @@
     class="fold-out-menu addsteps"
     :class="{ hidden: !isOpen, block: !isOpen }"
   >
-    
+
+  <!-- Import of adding steps form -->
+    <FormsFormAddSteps />
 
   </div>
 
