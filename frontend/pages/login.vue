@@ -6,7 +6,7 @@
   >
     <div class="child-container">
       <div class="walkit-logo">
-        <LogoDetailComp />
+        <LogosLogoSec />
         <!-- Svg logo component -->
       </div>
       <!-- form with function userLogin -->
