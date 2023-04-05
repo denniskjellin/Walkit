@@ -44,6 +44,11 @@
     padding: 1.5rem;
   }
 
+  .nav-links:hover {
+    color: $loli;
+    transition: ease-in-out 0.2s;
+  }
+
   .nav-logout {
     @extend .nav-links;
     margin-top: 5rem;

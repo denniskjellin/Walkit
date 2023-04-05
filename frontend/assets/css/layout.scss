@@ -11,5 +11,32 @@ Basic styling that I have put as "default" in default.vue
 // main container
 main {
     flex: 1;
-    padding: 2rem; /*might remove later*/
+    margin: 0 auto;
+    background-color: #ffffff;
 }
+
+/* Default color for paragrafs */
+* {
+    font-family: arial, sans-serif;
+}
+
+p {
+    color: #000000;
+    line-height: 1, 5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5.h6 {
+    color: #000000;
+}
+
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+    
+}
+
