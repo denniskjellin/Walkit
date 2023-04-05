@@ -10,7 +10,7 @@
     </main>
 
     <!--Import of Footer-->
-    <!-- <Footer /> -->
+    <Footer />
   </div>
 </template>
 
