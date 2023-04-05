@@ -1,43 +1,46 @@
 <template>
-  <form class="add-steps-form">
-    <h2 class="add-steps-h2">Registrera steg</h2>
-    <div class="input-label-container">
-      <label class="label-add-steps-form" for="date">Datum</label>
-      <input
-        required
-        class="input-add-steps-form"
-        id="date"
-        ref="test"
-        type="date"
-        v-model="date"
-      />
-    </div>
-    <div class="input-label-container">
-      <label class="label-add-steps-form" for="steps">Antal steg</label>
-      <input
-        required
-        class="input-add-steps-form"
-        id="steps"
-        type="number"
-        v-model="steps"
-      />
-    </div>
-    <!-- error msg div -->
-    <div v-if="errorMsg" class="error-box">
-      {{ errorMsg }}
-    </div>
-    <!-- success msg div -->
-    <div v-if="successMsg" class="success-box steps">
-      {{ successMsg }}
-    </div>
-    <div class="add-steps-form__submit input-label-container">
-      <!-- call inserSteps when button is pushed, @btn styling inside button components -->
-      <button @click.prevent="insertSteps" class="btn-bg-clay-black">
-        Lägg till <i class="fas fa-plus"></i>
-      </button>
-    </div>
-  </form>
-</template>
+    <form class="add-steps-form">
+      <h2 class="add-steps-h2">Registrera steg</h2>
+      <div class="input-label-container">
+        <label class="label-add-steps-form" for="date">Datum</label>
+        <input
+          required
+          class="input-add-steps-form"
+          id="date"
+          ref="test"
+          type="date"
+          v-model="date"
+          aria-label="Datum"
+        />
+      </div>
+      <div class="input-label-container">
+        <label class="label-add-steps-form" for="steps">Antal steg</label>
+        <input
+          required
+          class="input-add-steps-form"
+          id="steps"
+          type="number"
+          v-model="steps"
+          aria-label="Antal steg"
+        />
+      </div>
+      <!-- error msg div, aria assertive - screenread reads this msg when if it triggers -->
+      <div v-if="errorMsg" class="error-box steps" role="alert" aria-live="assertive">
+        {{ errorMsg }}
+      </div>
+      <!-- success msg div, aria assertive - screenread reads this msg when if it triggers -->
+      <div v-if="successMsg" class="success-box steps" role="alert" aria-live="assertive">
+        {{ successMsg }}
+      </div>
+      <div class="add-steps-form__submit input-label-container">
+        <!-- call inserSteps when button is pushed, @btn styling inside button components -->
+        <button @click.prevent="insertSteps" class="btn-bg-clay-black">
+          Lägg till <i class="fas fa-plus"></i>
+        </button>
+      </div>
+    </form>
+  </template>
+  
 
 <script setup>
 // initiate supabase client
@@ -49,6 +52,7 @@ const steps = ref(0);
 const errorMsg = ref("");
 const successMsg = ref("");
 
+// function to insert steps
 // function to insert steps
 const insertSteps = async () => {
   try {
@@ -81,6 +85,15 @@ const insertSteps = async () => {
       }, 8000);
     }
 
+    // Check if the steps value is valid
+    if (steps.value < 1) {
+      errorMsg.value = "Antal steg måste vara 1 eller högre!";
+      setTimeout(() => {
+        errorMsg.value = "";
+      }, 8000);
+      return;
+    }
+
     // Insert the steps
     const { data: stepsData, error: stepsError } = await supabase
       .from("steps")
@@ -111,4 +124,5 @@ const insertSteps = async () => {
     }, 8000);
   }
 };
+
 </script>
