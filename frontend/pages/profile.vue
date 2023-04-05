@@ -45,11 +45,12 @@
       }
     });
     // Redirect to the home page if the user is signed in
-    definePageMeta({
+  };
+
+      definePageMeta({
       middleware: "auth",
       layout: "default"
     }); 
-  };
   </script>
   
   <style lang="scss" scoped></style>
