@@ -1,3 +1,5 @@
+/*Styling for admin.vue (page folder)
+*/
 .container {
     display: flex;
     justify-content: center;
@@ -13,6 +15,58 @@
     max-width: 1000px;
     padding: 1rem 2rem;
   }
+
+  .label-form {
+    display: block;
+    color: #4A5568;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-admin {
+    min-width: 280px;
+    max-width: 400px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    padding: 2rem;
+  }
+  .input-form {
+  border-width: 1px;
+  border-radius: 0.25rem;
+  width: 100%;
+  color: #4A5568;
+  line-height: 1.25;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  padding: 0.5rem 0.75rem;
+  }
+
+
+  .input-section {
+    margin-bottom: 1rem;
+  }
+  
+  .button-submit {
+   width: 100%;
+   background-color: $pear900;
+   color: white;
+   font-weight: 600;
+   padding: 0.5rem 1rem;
+   border-radius: 0.25rem;
+   margin-top: .5rem;
+  
+  }
+  
+  .button-submit:hover {
+    background-color: $pear800;
+    transition: ease-in-out 0.2s;
+   } 
+  
+    .fa.fa {
+    margin-right: 0.5rem;
+   }
+
+  
   
   @media only screen and (max-width: 767px) {
     .container {

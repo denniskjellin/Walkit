@@ -10,3 +10,9 @@
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 0; /* Make sure the grey-out div is on top of other elements */
   }
+
+  @media (min-width: 768px) {
+    .grey-out {
+      top: 5rem;
+    }
+  }
