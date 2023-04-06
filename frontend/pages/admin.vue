@@ -169,8 +169,8 @@ const insertDestination = async (destination) => {
     if (!user.value) {
       throw new Error("User not logged in");
     }
-
-    const { data: destinationData, error: destinationError } = await supabase
+    const supabase3 = useSupabaseClient();
+    const { data: destinationData, error: destinationError } = await supabase3
       .from("destinations")
       .insert([
         {
@@ -220,21 +220,45 @@ const checkActiveStatus = async () => {
         "Det finns redan en aktiv destination, sätt alla andra till inaktiva"
       );
       try {
-        const user = useSupabaseUser();
-        if (!user.value) {
-          throw new Error("User not logged in");
-        }
+        // const user = useSupabaseUser();
+        // if (!user.value) {
+        //   throw new Error("User not logged in");
+        // }
 
+        console.log("försöker sätta alla andra till inaktiva");
         // Set active destination to inactive
+
+        const { data , error } = await supabase
+          .from("destinations")
+          .select('*')
+          .eq('is_active', true);
 
         // Query, där is_active är true, update, sätt is_active till false
         // När det är klart, kör insertDestination
-        const { data: destinationData, error: destinationError } =
-          await supabase
+        // const { data , error } = await supabase
+        //   .from("destinations")
+        //   .update({ from: 'Sundsvall2' })
+        //   .eq("from", 'Sundsvall');
+
+        if (data) {
+          console.log("Gick bra, ", data);
+          console.log(data[0].id);
+          const supabase2 = useSupabaseClient();
+          const { data: updateData, error: updateError } = await supabase2
             .from("destinations")
             .update({ is_active: false })
-            .eq("is_active", true);
+            .eq("id", data[0].id);
 
+          if (updateData) {
+            console.log('Mikedrop');
+          } else {
+            console.log('dåligt', updateError, error);
+          }
+        }
+        if (error) {
+          console.log("fel", error);
+          throw error;
+        }
       } catch (error) {
         console.log("Nu gick allt åt helvete ", error);
       }
