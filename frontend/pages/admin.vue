@@ -204,69 +204,25 @@ const insertDestination = async (destination) => {
  * destinations to inactive
  */
 const checkActiveStatus = async () => {
-  if (isActive.value) {
-    console.log("nya destinationen är aktiv, sätt alla andra till inaktiva");
-    // If new destination is active, set all other destinations to inactive
-    let alreadyHasActive = false;
+  try {
+    // If the new destination is active, set all other destinations to inactive
+    if (isActive.value) {
+      const { data: updateData, error: updateError } = await supabase
+        .from("destinations")
+        .update({ is_active: false })
+        .eq("is_active", true); // Update all destinations where is_active is true
 
-    destinations.forEach(async (destination) => {
-      if (destination.is_active) {
-        alreadyHasActive = true;
+      // If there was an error, throw it
+      if (updateError) {
+        errorMsg.value = "Fel vid uppdatering av befintliga destinationer";
+        throw updateError;
       }
-    });
-
-    if (alreadyHasActive) {
-      console.log(
-        "Det finns redan en aktiv destination, sätt alla andra till inaktiva"
-      );
-      try {
-        // const user = useSupabaseUser();
-        // if (!user.value) {
-        //   throw new Error("User not logged in");
-        // }
-
-        console.log("försöker sätta alla andra till inaktiva");
-        // Set active destination to inactive
-
-        const { data , error } = await supabase
-          .from("destinations")
-          .select('*')
-          .eq('is_active', true);
-
-        // Query, där is_active är true, update, sätt is_active till false
-        // När det är klart, kör insertDestination
-        // const { data , error } = await supabase
-        //   .from("destinations")
-        //   .update({ from: 'Sundsvall2' })
-        //   .eq("from", 'Sundsvall');
-
-        if (data) {
-          console.log("Gick bra, ", data);
-          console.log(data[0].id);
-          const supabase2 = useSupabaseClient();
-          const { data: updateData, error: updateError } = await supabase2
-            .from("destinations")
-            .update({ is_active: false })
-            .eq("id", data[0].id);
-
-          if (updateData) {
-            console.log('Mikedrop');
-          } else {
-            console.log('dåligt', updateError, error);
-          }
-        }
-        if (error) {
-          console.log("fel", error);
-          throw error;
-        }
-      } catch (error) {
-        console.log("Nu gick allt åt helvete ", error);
-      }
-    } else {
-      insertDestination();
     }
-  } else {
-    insertDestination();
+
+    // Add the new destination
+    await insertDestination();
+  } catch (error) {
+    errorMsg.value = "Det gick inte att lägga till destination just nu.";
   }
 };
 
