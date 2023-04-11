@@ -74,12 +74,6 @@
             required
           />
         </div>
-        <div class="add-steps-form__submit input-label-container">
-          <!-- call inserSteps when button is pushed, @btn styling inside button components -->
-          <button @click.prevent="updateDestination" class="btn-bg-clay-black">
-            Uppdatera <i class="fas fa-plus"></i>
-          </button>
-        </div>
         <!-- success msg div, aria assertive - screenread reads this msg when if it triggers -->
         <div
           v-if="successMsg"
@@ -97,6 +91,12 @@
           aria-live="assertive"
         >
           {{ errorMsg }}
+        </div>
+        <div class="add-steps-form__submit input-label-container">
+          <!-- call inserSteps when button is pushed, @btn styling inside button components -->
+          <button @click.prevent="checkActiveStatus" class="btn-bg-clay-black">
+            Uppdatera <i class="fas fa-plus"></i>
+          </button>
         </div>
       </form>
     </article>
@@ -123,6 +123,7 @@ const start = ref(destination.start);
 const end = ref(destination.end);
 const isActive = ref(destination.is_active);
 const pending = ref(false);
+const router = useRouter();
 
 // success/error msg
 const successMsg = ref("");
@@ -156,13 +157,35 @@ const updateDestination = async () => {
     // clear success msg after 2 sec
     setTimeout(() => {
       successMsg.value = "";
+      router.push({ path: "/admin" }); // redirect to admin page
     }, 2000);
-
-    
   } catch (error) {
-    console.log("error", error);
     errorMsg.value = error.message;
     pending.value = false;
+  }
+};
+
+// function to check if new destination is active (if so, set all other destinations to inactive when updated)
+const checkActiveStatus = async () => {
+  try {
+    // If the new destination is active, set all other destinations to inactive
+    if (isActive.value) {
+      const { data: updateData, error: updateError } = await supabase
+        .from("destinations")
+        .update({ is_active: false })
+        .eq("is_active", true); // Update all destinations where is_active is true
+
+      // If there was an error, throw it
+      if (updateError) {
+        errorMsg.value = "Fel vid uppdatering av befintliga destinationer";
+        throw updateError;
+      }
+    }
+
+    // Add the new destination
+    await updateDestination();
+  } catch (error) {
+    errorMsg.value = "Det gick inte att lägga till destination just nu.";
   }
 };
 </script>

@@ -29,10 +29,6 @@
           </div>
         </div>
       </article>
-      <!-- error msg div, aria assertive - screenread reads this msg when if it triggers -->
-      <div v-if="errorMsg" class="error-box" role="alert" aria-live="assertive">
-        {{ errorMsg }}
-      </div>
     </div>
     <div class="right-column">
       <article>
@@ -108,14 +104,14 @@
               required
             />
           </div>
-          <div class="add-steps-form__submit input-label-container">
-            <!-- call inserSteps when button is pushed, @btn styling inside button components -->
-            <button
-              @click.prevent="checkActiveStatus"
-              class="btn-bg-clay-black"
-            >
-              Lägg till <i class="fas fa-plus"></i>
-            </button>
+          <!-- error msg div, aria assertive - screenread reads this msg when if it triggers -->
+          <div
+            v-if="errorMsg"
+            class="error-box"
+            role="alert"
+            aria-live="assertive"
+          >
+            {{ errorMsg }}
           </div>
           <!-- success msg div, aria assertive - screenread reads this msg when if it triggers -->
           <div
@@ -125,6 +121,15 @@
             aria-live="assertive"
           >
             {{ successMsg }}
+          </div>
+          <div class="add-steps-form__submit input-label-container">
+            <!-- call inserSteps when button is pushed, @btn styling inside button components -->
+            <button
+              @click.prevent="checkActiveStatus"
+              class="btn-bg-clay-black"
+            >
+              Lägg till <i class="fas fa-plus"></i>
+            </button>
           </div>
         </form>
       </article>
@@ -169,7 +174,7 @@ const fetchDestinations = async () => {
       pending.value = false;
       return response;
     }
-    
+
     if (error) throw error;
   } catch (error) {
     // Set a custom error message
@@ -184,13 +189,12 @@ destinations = await fetchDestinations();
 
 // function for inserting a new destination
 const insertDestination = async (destination) => {
-  console.log("Inserdestination");
   try {
     const user = useSupabaseUser();
     if (!user.value) {
       throw new Error("User not logged in");
     }
-   
+
     const { data: destinationData, error: destinationError } = await supabase
       .from("destinations")
       .insert([
@@ -224,7 +228,6 @@ const insertDestination = async (destination) => {
   } catch (error) {
     // set a custom error message
     errorMsg.value = "Det gick inte att lägga till destination just nu.";
-    console.log(error);
     return [];
   }
 };
