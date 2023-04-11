@@ -1,4 +1,4 @@
-<!-- pages/index.vue -->
+<!-- admin page-->
 <template>
   <div class="container">
     <div class="left-column">
@@ -23,6 +23,9 @@
             <p v-else>Slutdatum: ej bestämt</p>
             <p v-if="destination.is_active">Aktiv: Aktiv</p>
             <p v-else>Aktiv: Inaktiv</p>
+            <NuxtLink :to="`/admin/${destination.id}`">
+              <button class="btn-bg-clay-black">Redigera</button>
+            </NuxtLink>
           </div>
         </div>
       </article>
