@@ -187,8 +187,8 @@ const insertDestination = async (destination) => {
     if (!user.value) {
       throw new Error("User not logged in");
     }
-    const supabase3 = useSupabaseClient();
-    const { data: destinationData, error: destinationError } = await supabase3
+   
+    const { data: destinationData, error: destinationError } = await supabase
       .from("destinations")
       .insert([
         {
@@ -212,6 +212,11 @@ const insertDestination = async (destination) => {
       errorMsg.value = "";
       date.value = null;
       steps.value = 0;
+      from.value = "";
+      to.value = "";
+      stepsGoal.value = 0;
+      start.value = null;
+      end.value = null;
     }, 2000);
   } catch (error) {
     // set a custom error message

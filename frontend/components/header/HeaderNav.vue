@@ -2,7 +2,7 @@
   <header>
     <nav class="main-header">
       <div class="profile-container">
-        <NuxtLink to="/" title="Profile page"
+        <NuxtLink to="/profile" title="Profile page"
           ><i class="fas fa-user"></i>
         </NuxtLink>
         <p class="menu-text">Profil</p>
