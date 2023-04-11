@@ -1,105 +1,131 @@
 <template>
-  <div class="right-column">
-    <article>
-      <h1>Lägg till Destination</h1>
-      <form class="form-admin">
-        <p v-if="pending">Laddar...</p>
-        <div class="input-section">
-          <label class="label-form" for="from">Från:</label>
-          <input
-            aria-label="from"
-            v-model="from"
-            class="input-form"
-            type="text"
-            id="from"
-            name="from"
-            required
-          />
-        </div>
-        <div class="input-section">
-          <label class="label-form" for="to">Till:</label>
-          <input
-            aria-label="to"
-            v-model="to"
-            class="input-form"
-            type="text"
-            id="to"
-            name="to"
-            required
-          />
-        </div>
-        <div class="input-section">
-          <label class="label-form" for="stepsGoal">Stegmål:</label>
-          <input
-            aria-label="Stepsgoal"
-            type="number"
-            v-model="stepsGoal"
-            class="input-form"
-            id="stepsGoal"
-            name="stepsGoal"
-            required
-          />
-        </div>
-        <div class="input-section">
-          <label class="label-form" for="start">Startdatum:</label>
-          <input
-            aria-label="start date"
-            type="date"
-            v-model="start"
-            class="input-form"
-            id="start"
-            name="start"
-            required
-          />
-        </div>
-        <div class="input-section">
-          <label class="label-form" for="end">Slutdatum:</label>
-          <input
-            aria-label="end date"
-            type="date"
-            v-model="end"
-            class="input-form"
-            id="end"
-            name="end"
-            required
-          />
-        </div>
-        <div class="input-section">
-          <label class="label-form-checkbox" for="isActive">Aktiv:</label>
-          <input
-            type="checkbox"
-            v-model="isActive"
-            id="isActive"
-            name="isActive"
-            required
-          />
-        </div>
-        <!-- success msg div, aria assertive - screenread reads this msg when if it triggers -->
-        <div
-          v-if="successMsg"
-          class="success-box steps"
-          role="alert"
-          aria-live="assertive"
+  <div class="container">
+    <div class="left-column">
+      <article>
+        <h1>Editera</h1>
+        <div class="card"
+        :class="destination.is_active ? 'background-active' : ''"
         >
-          {{ successMsg }}
+          <div class="card-container">
+            <p>Från: {{ destination.from }}</p>
+            <p>Till: {{ destination.to }}</p>
+            <p>Mål antal steg: {{ destination.steps_goal }}</p>
+            <p>Startdatum: {{ destination.start }}</p>
+            <p v-if="destination.end !== null">
+              Slutdatum: {{ destination.end }}
+            </p>
+            <p v-else>Slutdatum: ej bestämt</p>
+            <p v-if="destination.is_active">Aktiv: Aktiv</p>
+            <p v-else>Aktiv: Inaktiv</p>
+          </div>
         </div>
-        <!-- error msg div, aria assertive - screenread reads this msg when if it triggers -->
-        <div
-          v-if="errorMsg"
-          class="error-box"
-          role="alert"
-          aria-live="assertive"
-        >
-          {{ errorMsg }}
-        </div>
-        <div class="add-steps-form__submit input-label-container">
-          <!-- call inserSteps when button is pushed, @btn styling inside button components -->
-          <button @click.prevent="checkActiveStatus" class="btn-bg-clay-black">
-            Uppdatera <i class="fas fa-plus"></i>
-          </button>
-        </div>
-      </form>
-    </article>
+      </article>
+    </div>
+    <div class="right-column">
+      <article>
+        <h1>Lägg till Destination</h1>
+        <form class="form-admin">
+          <p v-if="pending">Laddar...</p>
+          <div class="input-section">
+            <label class="label-form" for="from">Från:</label>
+            <input
+              aria-label="from"
+              v-model="from"
+              class="input-form"
+              type="text"
+              id="from"
+              name="from"
+              required
+            />
+          </div>
+          <div class="input-section">
+            <label class="label-form" for="to">Till:</label>
+            <input
+              aria-label="to"
+              v-model="to"
+              class="input-form"
+              type="text"
+              id="to"
+              name="to"
+              required
+            />
+          </div>
+          <div class="input-section">
+            <label class="label-form" for="stepsGoal">Stegmål:</label>
+            <input
+              aria-label="Stepsgoal"
+              type="number"
+              v-model="stepsGoal"
+              class="input-form"
+              id="stepsGoal"
+              name="stepsGoal"
+              required
+            />
+          </div>
+          <div class="input-section">
+            <label class="label-form" for="start">Startdatum:</label>
+            <input
+              aria-label="start date"
+              type="date"
+              v-model="start"
+              class="input-form"
+              id="start"
+              name="start"
+              required
+            />
+          </div>
+          <div class="input-section">
+            <label class="label-form" for="end">Slutdatum:</label>
+            <input
+              aria-label="end date"
+              type="date"
+              v-model="end"
+              class="input-form"
+              id="end"
+              name="end"
+              required
+            />
+          </div>
+          <div class="input-section">
+            <label class="label-form-checkbox" for="isActive">Aktiv:</label>
+            <input
+              type="checkbox"
+              v-model="isActive"
+              id="isActive"
+              name="isActive"
+              required
+            />
+          </div>
+          <!-- success msg div, aria assertive - screenread reads this msg when if it triggers -->
+          <div
+            v-if="successMsg"
+            class="success-box steps"
+            role="alert"
+            aria-live="assertive"
+          >
+            {{ successMsg }}
+          </div>
+          <!-- error msg div, aria assertive - screenread reads this msg when if it triggers -->
+          <div
+            v-if="errorMsg"
+            class="error-box"
+            role="alert"
+            aria-live="assertive"
+          >
+            {{ errorMsg }}
+          </div>
+          <div class="add-steps-form__submit input-label-container">
+            <!-- call inserSteps when button is pushed, @btn styling inside button components -->
+            <button
+              @click.prevent="checkActiveStatus"
+              class="btn-bg-clay-black"
+            >
+              Uppdatera <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </form>
+      </article>
+    </div>
   </div>
 </template>
 

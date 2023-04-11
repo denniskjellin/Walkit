@@ -24,8 +24,11 @@
             <p v-if="destination.is_active">Aktiv: Aktiv</p>
             <p v-else>Aktiv: Inaktiv</p>
             <NuxtLink :to="`/admin/${destination.id}`">
-              <button class="btn-bg-clay-black">Redigera</button>
+              <p class="btn-bg-clay-black">Redigera</p>
             </NuxtLink>
+            <button class="btn-bg-clay-black" @click="deleteDestination(destination.id)">
+              Ta bort
+            </button>
           </div>
         </div>
       </article>
@@ -256,6 +259,29 @@ const checkActiveStatus = async () => {
     await insertDestination();
   } catch (error) {
     errorMsg.value = "Det gick inte att lägga till destination just nu.";
+  }
+};
+
+// Delete a destination
+const deleteDestination = async (id) => {
+  try {
+    const { data: deleteData, error: deleteError } = await supabase
+      .from("destinations")
+      .delete()
+      .eq("id", id);
+
+    if (deleteError) throw deleteError;
+    if (!deleteError) {
+      successMsg.value = "Destinationen har tagits bort!";
+      destinations = await fetchDestinations();
+    }
+
+    setTimeout(() => {
+      successMsg.value = "";
+      errorMsg.value = "";
+    }, 2000);
+  } catch (error) {
+    errorMsg.value = "Det gick inte att ta bort destination just nu.";
   }
 };
 
