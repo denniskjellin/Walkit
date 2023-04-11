@@ -4,13 +4,13 @@
     <div class="left-column">
       <article>
         <h1>Lista</h1>
-        <!-- Check if destination is active -->
+        <p v-if="pending">Laddar...</p>
         <div
           v-for="destination in destinations"
           :key="destination.id"
-          :class="{ card: true, 'background-active': destination.is_active }" 
+          class="card"
+          :class="destination.is_active ? 'background-active' : ''"
         >
-          <!-- Card for each destination -->
           <div class="card-container">
             <h2>Destination</h2>
             <p>Från: {{ destination.from }}</p>
@@ -21,10 +21,8 @@
               Slutdatum: {{ destination.end }}
             </p>
             <p v-else>Slutdatum: ej bestämt</p>
-            <p v-if="destination.is_active === true">
-              Aktiv: Är aktiv
-            </p>
-            <p v-else>Aktiv: Ej aktiv</p>
+            <p v-if="destination.is_active">Aktiv: Aktiv</p>
+            <p v-else>Aktiv: Inaktiv</p>
           </div>
         </div>
       </article>
@@ -143,9 +141,11 @@ const stepsGoal = ref(0);
 const start = ref(null);
 const end = ref(null);
 const isActive = ref(false);
+const pending = ref(false);
 
 // function fetch destinations from Supabase
 const fetchDestinations = async () => {
+  pending.value = true;
   try {
     let { data: response, error } = await supabase
       .from("destinations")
@@ -156,20 +156,22 @@ const fetchDestinations = async () => {
       // Sort the response so that the active destination is always on top
       response.sort((a, b) => {
         if (a.is_active === b.is_active) {
-          // If both records have is_active set to true or false, sort by start date
+          // If both records have the same is_active value, sort by start date
           return new Date(a.start) - new Date(b.start);
         } else {
-          // If one record has is_active set to true and the other to false, sort by is_active
+          // If one of the records has is_active set to true, move it to the top
           return a.is_active ? -1 : 1;
         }
       });
+      pending.value = false;
       return response;
     }
-
+    
     if (error) throw error;
   } catch (error) {
     // Set a custom error message
     errorMsg.value = "Det gick inte att hämta destinationer just nu.";
+    pending.value = false;
     return [];
   }
 };
@@ -200,7 +202,11 @@ const insertDestination = async (destination) => {
       ]);
 
     if (destinationError) throw destinationError;
-    successMsg.value = "Destinationen har lagts till!";
+    if (!destinationError) {
+      successMsg.value = "Destinationen har lagts till!";
+      destinations = await fetchDestinations();
+    }
+
     setTimeout(() => {
       successMsg.value = "";
       errorMsg.value = "";
