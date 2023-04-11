@@ -2,7 +2,7 @@
   <div class="container">
     <div class="left-column">
       <article>
-        <h1>Editera</h1>
+        <h1>Vald destination</h1>
         <div class="card"
         :class="destination.is_active ? 'background-active' : ''"
         >
@@ -23,7 +23,7 @@
     </div>
     <div class="right-column">
       <article>
-        <h1>Lägg till Destination</h1>
+        <h2>Redigera destination</h2>
         <form class="form-admin">
           <p v-if="pending">Laddar...</p>
           <div class="input-section">
@@ -184,7 +184,7 @@ const updateDestination = async () => {
     setTimeout(() => {
       successMsg.value = "";
       router.push({ path: "/admin" }); // redirect to admin page
-    }, 2000);
+    }, 1000);
   } catch (error) {
     errorMsg.value = error.message;
     pending.value = false;

@@ -23,10 +23,16 @@
             <p v-else>Slutdatum: ej bestämt</p>
             <p v-if="destination.is_active">Aktiv: Aktiv</p>
             <p v-else>Aktiv: Inaktiv</p>
-            <NuxtLink :to="`/admin/${destination.id}`">
-              <p class="btn-bg-clay-black">Redigera</p>
+            <NuxtLink
+              class="btn-bg-clay-black"
+              :to="`/admin/${destination.id}`"
+            >
+              Redigera
             </NuxtLink>
-            <button class="btn-bg-clay-black" @click="deleteDestination(destination.id)">
+            <button
+              class="btn-bg-clay-black"
+              @click="deleteDestination(destination.id)"
+            >
               Ta bort
             </button>
           </div>
@@ -265,21 +271,23 @@ const checkActiveStatus = async () => {
 // Delete a destination
 const deleteDestination = async (id) => {
   try {
-    const { data: deleteData, error: deleteError } = await supabase
-      .from("destinations")
-      .delete()
-      .eq("id", id);
+    if (confirm("Är du säker på att du vill radera? Detta går ej att ångra!") == true) {
+      const { data: deleteData, error: deleteError } = await supabase
+        .from("destinations")
+        .delete()
+        .eq("id", id);
 
-    if (deleteError) throw deleteError;
-    if (!deleteError) {
-      successMsg.value = "Destinationen har tagits bort!";
-      destinations = await fetchDestinations();
+      if (deleteError) throw deleteError;
+      if (!deleteError) {
+        successMsg.value = "Destinationen har tagits bort!";
+        destinations = await fetchDestinations();
+      }
     }
 
     setTimeout(() => {
       successMsg.value = "";
       errorMsg.value = "";
-    }, 2000);
+    }, 1000);
   } catch (error) {
     errorMsg.value = "Det gick inte att ta bort destination just nu.";
   }
