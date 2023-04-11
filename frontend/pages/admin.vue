@@ -4,11 +4,13 @@
     <div class="left-column">
       <article>
         <h1>Lista</h1>
+        <!-- Check if destination is active -->
         <div
           v-for="destination in destinations"
           :key="destination.id"
-          class="card"
+          :class="{ card: true, 'background-active': destination.is_active }" 
         >
+          <!-- Card for each destination -->
           <div class="card-container">
             <h2>Destination</h2>
             <p>Från: {{ destination.from }}</p>
@@ -19,7 +21,10 @@
               Slutdatum: {{ destination.end }}
             </p>
             <p v-else>Slutdatum: ej bestämt</p>
-            <p>Aktiv: {{ destination.is_active }}</p>
+            <p v-if="destination.is_active === true">
+              Aktiv: Är aktiv
+            </p>
+            <p v-else>Aktiv: Ej aktiv</p>
           </div>
         </div>
       </article>
@@ -145,14 +150,25 @@ const fetchDestinations = async () => {
     let { data: response, error } = await supabase
       .from("destinations")
       .select("*")
-      .order("created", { ascending: true });
+      .order("start", { ascending: true });
 
     if (response) {
+      // Sort the response so that the active destination is always on top
+      response.sort((a, b) => {
+        if (a.is_active === b.is_active) {
+          // If both records have is_active set to true or false, sort by start date
+          return new Date(a.start) - new Date(b.start);
+        } else {
+          // If one record has is_active set to true and the other to false, sort by is_active
+          return a.is_active ? -1 : 1;
+        }
+      });
       return response;
     }
+
     if (error) throw error;
   } catch (error) {
-    // set a custom error message
+    // Set a custom error message
     errorMsg.value = "Det gick inte att hämta destinationer just nu.";
     return [];
   }
