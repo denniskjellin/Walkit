@@ -1,34 +1,24 @@
 /*
-Basic styling that I have put as "default" in default.vue
+Basic styling that I have put as "default"
 */
 
 // First element inside template in deffault.vue
-.wrapper { 
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 // main container
 main {
-    flex: 1;
-    margin: 0 auto;
+  flex: 1;
+  margin: 0 auto;
 }
 
-/* Default color for paragrafs */
-* {
-    font-family: arial, sans-serif;
-}
-
-p {
-    color: #000000;
-    line-height: 1, 5;
-}
-
-
-
+// Styling body content
 body {
-    margin: 0;
-    overflow-x: hidden;
-    
+  font-family: arial, sans-serif;
+  color: #000000;
+  line-height: 1.5;
+  margin: 0;
+  overflow-x: hidden;
 }
-

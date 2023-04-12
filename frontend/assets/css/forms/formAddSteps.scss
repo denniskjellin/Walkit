@@ -1,50 +1,47 @@
+// Description: Styling for add steps form
+
+// styling for form container
 .add-steps-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 1.25rem;
 }
-
+// styling for header title
 .add-steps-h2 {
-    align-items: right;
-    font-size: 20px;
-    margin-bottom: 20px;
-    border: solid blue 2px;
-  }
-  
-
+  align-self: center;
+  font-size: 1.25rem;
+  margin-bottom: 20px;
+}
+// styling for input fields container
 .input-label-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 10px;
-  margin-top: 20px;
+  margin-bottom: 0.625rem;
+  margin-top: 1.25rem;
 }
 
+// styling for labels
 .label-add-steps-form {
-  margin-bottom: 5px;
-  font-size: 14px;
+  margin-bottom: 0.32rem;
+  font-size: 0.875rem;
 }
 
+// styling for input fields
 .input-add-steps-form {
   padding: 5px;
   border-radius: 5px;
-  border: 1px solid #ccc;
   font-size: 14px;
   border: solid 1px $loli;
-  height: 40px;
+  height: 2.5rem;
   width: 20rem;
 }
 
-.success-box,.error-box, .steps {
-    width: 20rem;
+// width for user feedback messeges boxes
+.success-box,
+.error-box,
+.steps {
+  width: 20rem;
 }
-
-@media screen and (max-width: 768px) {
-  .success-box, .error-box, .steps {
-    
-    width: 20rem;
-  }
-}
-

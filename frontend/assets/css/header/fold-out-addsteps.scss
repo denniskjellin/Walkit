@@ -5,12 +5,12 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 15px;
+  width: 0.93rem;
 }
 
 /* add steps icon  */
 .fas.fa-plus {
-  color: $loli;
+  color: $loli; // color of the plus icon, @source: assets/css/variables.scss
 }
 
 .addsteps {
@@ -25,7 +25,7 @@
 
 @media screen and (min-width: 768px) {
   .child {
-    width: 60px;
+    width: 3.75rem;
   }
 }
 
