@@ -1,14 +1,12 @@
 <template>
-  <div class="wrapper"> 
-    
+  <!-- content wrapper, pushes footer to bottom -->
+  <div class="wrapper">
     <!--Import of Header Navigation-->
-    <!-- <Nav /> -->
- <HeaderNav />
+    <HeaderNav />
     <main>
       <!--Output the page content-->
       <slot></slot>
     </main>
-
     <!--Import of Footer-->
     <Footer />
   </div>

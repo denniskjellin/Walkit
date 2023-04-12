@@ -1,7 +1,7 @@
 <!-- pages/index.vue -->
 <template>
-<div class="border-2 border-green-600">
-  <h1>Hey boy</h1>
+<div>
+  
 
 </div>
     
