@@ -26,14 +26,14 @@
         />
       </div>
       <!-- error/success msg div, aria assertive  -->
-      <section role="alert" aria-live="assertive">
-        <div v-if="errorMsg" class="error-box steps">
+      <div v-if="errorMsg || successMsg" role="alert" aria-live="assertive">
+        <p v-if="errorMsg" class="error-box steps">
           {{ errorMsg }}
-        </div>
-        <div v-if="successMsg" class="success-box steps">
+        </p>
+        <p v-if="successMsg" class="success-box steps">
           {{ successMsg }}
-        </div>
-      </section>
+        </p>
+      </div>
 
       <section class="add-steps-form__submit input-label-container">
         <!-- call inserSteps when button is pushed, @btn styling inside button components -->
