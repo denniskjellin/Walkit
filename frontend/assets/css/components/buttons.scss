@@ -7,7 +7,7 @@
     font-weight: 600;
     line-height: 1.5;
     margin-bottom: 0;
-    padding: 6px 24px;
+    padding: 0.375rem 1.5rem;
     text-align: center;
     vertical-align: middle;
     margin-top: 1rem;
@@ -24,7 +24,7 @@
 .add-steps-form {
     &__submit {
       .fas.fa-plus {
-        font-size: 14px;
+        font-size: 0.875rem;
       }
     }
   }
