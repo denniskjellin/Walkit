@@ -25,7 +25,7 @@
           aria-label="Antal steg"
         />
       </div>
-      <!-- error/success msg div, aria assertive  -->
+         <!-- success msg div, aria assertive - screenread reads this msg when if it triggers -->
       <div v-if="errorMsg || successMsg" role="alert" aria-live="assertive">
         <p v-if="errorMsg" class="error-box steps">
           {{ errorMsg }}
