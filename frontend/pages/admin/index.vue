@@ -115,24 +115,12 @@
               required
             />
           </div>
-          <!-- error msg div, aria assertive - screenread reads this msg when if it triggers -->
-          <div
-            v-if="errorMsg"
-            class="error-box"
-            role="alert"
-            aria-live="assertive"
-          >
-            {{ errorMsg }}
+          <!-- error msg div, aria assertive  -->
+          <div v-if="errorMsg || successMsg" role="alert" aria-live="assertive">
+            <p v-if="errorMsg" class="error-box">{{ errorMsg }}</p>
+            <p v-if="successMsg" class="success-box steps">{{ successMsg }}</p>
           </div>
-          <!-- success msg div, aria assertive - screenread reads this msg when if it triggers -->
-          <div
-            v-if="successMsg"
-            class="success-box steps"
-            role="alert"
-            aria-live="assertive"
-          >
-            {{ successMsg }}
-          </div>
+
           <div class="add-steps-form__submit input-label-container">
             <!-- call inserSteps when button is pushed, @btn styling inside button components -->
             <button

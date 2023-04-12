@@ -25,24 +25,29 @@
           aria-label="Antal steg"
         />
       </div>
-      <!-- error msg div, aria assertive - screenread reads this msg when if it triggers -->
-      <section v-if="errorMsg" class="error-box steps" role="alert" aria-live="assertive">
-        {{ errorMsg }}
+      <!-- error/success msg div, aria assertive  -->
+      <section role="alert" aria-live="assertive">
+        <div v-if="errorMsg" class="error-box steps">
+          {{ errorMsg }}
+        </div>
+        <div v-if="successMsg" class="success-box steps">
+          {{ successMsg }}
+        </div>
       </section>
-      <!-- success msg div, aria assertive - screenread reads this msg when if it triggers -->
-      <section v-if="successMsg" class="success-box steps" role="alert" aria-live="assertive">
-        {{ successMsg }}
-      </section>
+
       <section class="add-steps-form__submit input-label-container">
         <!-- call inserSteps when button is pushed, @btn styling inside button components -->
-        <button @click.prevent="insertSteps" class="btn-bg-clay-black" aria-label="Lägg till steg">
+        <button
+          @click.prevent="insertSteps"
+          class="btn-bg-clay-black"
+          aria-label="Lägg till steg"
+        >
           Lägg till <i class="fas fa-plus"></i>
         </button>
       </section>
     </form>
   </section>
-  </template>
-  
+</template>
 
 <script setup>
 // initiate supabase client
@@ -126,5 +131,4 @@ const insertSteps = async () => {
     }, 8000);
   }
 };
-
 </script>
