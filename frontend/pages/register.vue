@@ -66,9 +66,11 @@
             required
           />
         </div>
-        <button type="submit" class="button-submit" aria-label="Registrera">
-          <i class="fa fa-user-plus"></i> Skapa konto
-        </button>
+        <div class="submit-button-container">
+          <button type="submit" class="button-submit" aria-label="Registrera">
+            <i class="fa fa-user-plus"></i> Skapa konto
+          </button>
+        </div>
       </form>
       <div class="register-section">
         <p class="text-gray-700">Redan registrerad?</p>

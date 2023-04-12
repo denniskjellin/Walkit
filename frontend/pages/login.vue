@@ -44,9 +44,11 @@
             required
           />
         </div>
+        <div class="submit-button-container">
         <button type="submit" class="button-submit" aria-label="Logga in">
           <i class="fa fa-sign-in-alt"></i> Logga in
         </button>
+      </div>
       </form>
       <div class="register-section">
         <p>Har du inget konto?</p>
