@@ -11,21 +11,9 @@
       </div>
       <!-- form with function useRegister -->
       <form @submit.prevent="userRegister" aria-label="Skapa användarkonto">
-        <div
-          v-if="errorMsg"
-          class="error-box"
-          role="alert"
-          aria-live="assertive"
-        >
-          {{ errorMsg }}
-        </div>
-        <div
-          v-if="successMsg"
-          class="success-box"
-          role="alert"
-          aria-live="assertive"
-        >
-          {{ successMsg }}
+        <div v-if="errorMsg || successMsg" role="alert" aria-live="assertive">
+          <p v-if="errorMsg" class="error-box">{{ errorMsg }}</p>
+          <p v-if="successMsg" class="success-box">{{ successMsg }}</p>
         </div>
 
         <div class="input-section">
