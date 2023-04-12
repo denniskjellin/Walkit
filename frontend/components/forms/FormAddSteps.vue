@@ -1,4 +1,5 @@
 <template>
+  <section>
     <form class="add-steps-form">
       <h2 class="add-steps-h2">Registrera steg</h2>
       <div class="input-label-container">
@@ -25,20 +26,21 @@
         />
       </div>
       <!-- error msg div, aria assertive - screenread reads this msg when if it triggers -->
-      <div v-if="errorMsg" class="error-box steps" role="alert" aria-live="assertive">
+      <section v-if="errorMsg" class="error-box steps" role="alert" aria-live="assertive">
         {{ errorMsg }}
-      </div>
+      </section>
       <!-- success msg div, aria assertive - screenread reads this msg when if it triggers -->
-      <div v-if="successMsg" class="success-box steps" role="alert" aria-live="assertive">
+      <section v-if="successMsg" class="success-box steps" role="alert" aria-live="assertive">
         {{ successMsg }}
-      </div>
-      <div class="add-steps-form__submit input-label-container">
+      </section>
+      <section class="add-steps-form__submit input-label-container">
         <!-- call inserSteps when button is pushed, @btn styling inside button components -->
-        <button @click.prevent="insertSteps" class="btn-bg-clay-black">
+        <button @click.prevent="insertSteps" class="btn-bg-clay-black" aria-label="Lägg till steg">
           Lägg till <i class="fas fa-plus"></i>
         </button>
-      </div>
+      </section>
     </form>
+  </section>
   </template>
   
 

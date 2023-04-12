@@ -1,10 +1,11 @@
 <template>
   <div class="container">
     <div class="left-column">
-      <article>
+      <section>
         <h1>Vald destination</h1>
-        <div class="card"
-        :class="destination.is_active ? 'background-active' : ''"
+        <div
+          class="card"
+          :class="destination.is_active ? 'background-active' : ''"
         >
           <div class="card-container">
             <p>Från: {{ destination.from }}</p>
@@ -19,17 +20,17 @@
             <p v-else>Aktiv: Inaktiv</p>
           </div>
         </div>
-      </article>
+      </section>
     </div>
     <div class="right-column">
-      <article>
+      <section>
         <h2>Redigera destination</h2>
         <form class="form-admin">
           <p v-if="pending">Laddar...</p>
           <div class="input-section">
             <label class="label-form" for="from">Från:</label>
             <input
-              aria-label="from"
+              aria-label="Från"
               v-model="from"
               class="input-form"
               type="text"
@@ -41,7 +42,7 @@
           <div class="input-section">
             <label class="label-form" for="to">Till:</label>
             <input
-              aria-label="to"
+              aria-label="Till"
               v-model="to"
               class="input-form"
               type="text"
@@ -53,7 +54,7 @@
           <div class="input-section">
             <label class="label-form" for="stepsGoal">Stegmål:</label>
             <input
-              aria-label="Stepsgoal"
+              aria-label="Stegmål"
               type="number"
               v-model="stepsGoal"
               class="input-form"
@@ -65,7 +66,7 @@
           <div class="input-section">
             <label class="label-form" for="start">Startdatum:</label>
             <input
-              aria-label="start date"
+              aria-label="Startdatum"
               type="date"
               v-model="start"
               class="input-form"
@@ -77,7 +78,7 @@
           <div class="input-section">
             <label class="label-form" for="end">Slutdatum:</label>
             <input
-              aria-label="end date"
+              aria-label="Slutdatum"
               type="date"
               v-model="end"
               class="input-form"
@@ -89,6 +90,7 @@
           <div class="input-section">
             <label class="label-form-checkbox" for="isActive">Aktiv:</label>
             <input
+              aria-label="Aktiv"
               type="checkbox"
               v-model="isActive"
               id="isActive"
@@ -124,7 +126,7 @@
             </button>
           </div>
         </form>
-      </article>
+      </section>
     </div>
   </div>
 </template>

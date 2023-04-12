@@ -10,11 +10,21 @@
         <!-- Svg logo component -->
       </div>
       <!-- form with function useRegister -->
-      <form @submit.prevent="userRegister">
-        <div v-if="errorMsg" class="error-box">
+      <form @submit.prevent="userRegister" aria-label="Skapa användarkonto">
+        <div
+          v-if="errorMsg"
+          class="error-box"
+          role="alert"
+          aria-live="assertive"
+        >
           {{ errorMsg }}
         </div>
-        <div v-if="successMsg" class="success-box">
+        <div
+          v-if="successMsg"
+          class="success-box"
+          role="alert"
+          aria-live="assertive"
+        >
           {{ successMsg }}
         </div>
 
@@ -26,7 +36,7 @@
             id="email"
             type="email"
             placeholder="Knowit@gmail.com"
-            aria-label="Email address"
+            aria-label="E-post adress"
             required
           />
         </div>
@@ -38,7 +48,7 @@
             id="password"
             type="password"
             placeholder="Lösenord"
-            aria-label="Password"
+            aria-label="Lösenord"
             required
           />
         </div>
@@ -52,17 +62,17 @@
             id="confirmPassword"
             type="password"
             placeholder="Bekräfta lösenord"
-            aria-label="Confirm Password"
+            aria-label="Bekräfta lösenord"
             required
           />
         </div>
-        <button type="submit" class="button-submit" aria-label="Sign up">
+        <button type="submit" class="button-submit" aria-label="Registrera">
           <i class="fa fa-user-plus"></i> Skapa konto
         </button>
       </form>
       <div class="register-section">
         <p class="text-gray-700">Redan registrerad?</p>
-        <NuxtLink to="/login" aria-label="Sign in">Logga in</NuxtLink>
+        <NuxtLink to="/login" aria-label="Logga in">Logga in</NuxtLink>
       </div>
     </div>
   </div>

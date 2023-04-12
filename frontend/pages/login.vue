@@ -10,20 +10,25 @@
         <!-- Svg logo component -->
       </div>
       <!-- form with function userLogin -->
-      <form @submit.prevent="userLogin">
-        <div v-if="errorMsg" class="error-box">
+      <form @submit.prevent="userLogin" aria-label="Logga in formulär">
+        <div
+          v-if="errorMsg"
+          class="error-box"
+          role="alert"
+          aria-live="assertive"
+        >
           {{ errorMsg }}
         </div>
-    
+
         <div class="input-section">
           <label class="label-loginreg" for="email"> E-post </label>
-          <input 
+          <input
             class="input-loginreg"
             v-model="email"
             id="email"
             type="email"
             placeholder="Knowit@gmail.com"
-            aria-label="Email address"
+            aria-label="E-post adress"
             required
           />
         </div>
@@ -35,23 +40,23 @@
             id="password"
             type="password"
             placeholder="Lösenord"
-            aria-label="Password"
+            aria-label="Lösenord"
             required
           />
         </div>
-        <button type="submit" class="button-submit" aria-label="Login button">
+        <button type="submit" class="button-submit" aria-label="Logga in">
           <i class="fa fa-sign-in-alt"></i> Logga in
         </button>
       </form>
       <div class="register-section">
         <p>Har du inget konto?</p>
-        <NuxtLink to="/register" aria-label="Link to register page"
+        <NuxtLink to="/register" aria-label="Registrera dig"
           >Registrera</NuxtLink
         >
       </div>
       <div class="register-section">
         <p>Glömt lösenord?</p>
-        <NuxtLink to="/reset" aria-label="Link to reset password page"
+        <NuxtLink to="/reset" aria-label="Återställ lösenord"
           >Återställ lösenord</NuxtLink
         >
       </div>

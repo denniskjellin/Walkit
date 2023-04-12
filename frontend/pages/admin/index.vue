@@ -5,12 +5,13 @@
       <article>
         <h1>Lista</h1>
         <p v-if="pending">Laddar...</p>
-        <div
+        <section
           v-for="destination in destinations"
           :key="destination.id"
           class="card"
           :class="destination.is_active ? 'background-active' : ''"
         >
+          <!-- Cards with destination information  -->
           <div class="card-container">
             <h2>Destination</h2>
             <p>Från: {{ destination.from }}</p>
@@ -36,17 +37,17 @@
               Ta bort
             </button>
           </div>
-        </div>
+        </section>
       </article>
     </div>
     <div class="right-column">
-      <article>
+      <section>
         <h1>Lägg till Destination</h1>
-        <form class="form-admin">
+        <form class="form-admin" aria-label="Lägg till destination">
           <div class="input-section">
             <label class="label-form" for="from">Från:</label>
             <input
-              aria-label="from"
+              aria-label="Från"
               v-model="from"
               class="input-form"
               type="text"
@@ -58,7 +59,7 @@
           <div class="input-section">
             <label class="label-form" for="to">Till:</label>
             <input
-              aria-label="to"
+              aria-label="Till"
               v-model="to"
               class="input-form"
               type="text"
@@ -70,7 +71,7 @@
           <div class="input-section">
             <label class="label-form" for="stepsGoal">Stegmål:</label>
             <input
-              aria-label="Stepsgoal"
+              aria-label="Stegmål"
               type="number"
               v-model="stepsGoal"
               class="input-form"
@@ -82,7 +83,7 @@
           <div class="input-section">
             <label class="label-form" for="start">Startdatum:</label>
             <input
-              aria-label="start date"
+              aria-label="Start datum"
               type="date"
               v-model="start"
               class="input-form"
@@ -94,7 +95,7 @@
           <div class="input-section">
             <label class="label-form" for="end">Slutdatum:</label>
             <input
-              aria-label="end date"
+              aria-label="Slutdatum"
               type="date"
               v-model="end"
               class="input-form"
@@ -106,6 +107,7 @@
           <div class="input-section">
             <label class="label-form-checkbox" for="isActive">Aktiv:</label>
             <input
+              aria-label="Aktiv"
               type="checkbox"
               v-model="isActive"
               id="isActive"
@@ -136,12 +138,13 @@
             <button
               @click.prevent="checkActiveStatus"
               class="btn-bg-clay-black"
+              aria-label="Lägg till destination"
             >
               Lägg till <i class="fas fa-plus"></i>
             </button>
           </div>
         </form>
-      </article>
+      </section>
     </div>
   </div>
 </template>
@@ -271,7 +274,10 @@ const checkActiveStatus = async () => {
 // Delete a destination
 const deleteDestination = async (id) => {
   try {
-    if (confirm("Är du säker på att du vill radera? Detta går ej att ångra!") == true) {
+    if (
+      confirm("Är du säker på att du vill radera? Detta går ej att ångra!") ==
+      true
+    ) {
       const { data: deleteData, error: deleteError } = await supabase
         .from("destinations")
         .delete()
