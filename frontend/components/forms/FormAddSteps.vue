@@ -1,28 +1,30 @@
 <template>
   <form class="add-steps-form">
-    <h2 class="h2-s">Registrera steg</h2>
-    <div class="input-label-container">
-      <label class="label-add-steps-form" for="date">Datum</label>
-      <input
-        required
-        class="input-add-steps-form"
-        id="date"
-        ref="test"
-        type="date"
-        v-model="date"
-        aria-label="Datum"
-      />
-    </div>
-    <div class="input-label-container">
-      <label class="label-add-steps-form" for="steps">Antal steg</label>
-      <input
-        required
-        class="input-add-steps-form"
-        id="steps"
-        type="number"
-        v-model="steps"
-        aria-label="Antal steg"
-      />
+    <div class="input-group">
+      <h2 class="h2-s">Registrera steg</h2>
+      <div class="input-label-container">
+        <label class="label-add-steps-form" for="date">Datum</label>
+        <input
+          required
+          class="input-add-steps-form"
+          id="date"
+          ref="test"
+          type="date"
+          v-model="date"
+          aria-label="Datum"
+        />
+      </div>
+      <div class="input-label-container">
+        <label class="label-add-steps-form" for="steps">Antal steg</label>
+        <input
+          required
+          class="input-add-steps-form"
+          id="steps"
+          type="number"
+          v-model="steps"
+          aria-label="Antal steg"
+        />
+      </div>
     </div>
     <!-- success msg div, aria assertive - screenread reads this msg when if it triggers -->
     <div v-if="errorMsg || successMsg" role="alert" aria-live="assertive">
