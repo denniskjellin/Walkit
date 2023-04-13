@@ -1,7 +1,7 @@
 .btn-bg-clay-black {
-    background-color: $clay;
+    background-color: $forest;
     border-radius: 3px;
-    color: $black;
+    color: white;
     display: inline-block;
     font-size: 1rem;
     font-weight: 600;
@@ -16,7 +16,7 @@
 }   
 
 .btn-bg-clay-black:hover {
-    background-color: $clay600;
+    background-color: $pear800;
     transition: background-color 0.2s ease-in-out;
 }
 
@@ -24,7 +24,8 @@
 .add-steps-form {
     &__submit {
       .fas.fa-plus {
-        font-size: 0.875rem;
+        font-size: 1rem;
+        color: white;
       }
     }
   }

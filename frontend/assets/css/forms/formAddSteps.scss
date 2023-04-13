@@ -31,13 +31,16 @@
 
 // styling for input fields
 .input-add-steps-form {
-  padding: 5px;
+  padding: 0rem 0.25rem;
+  margin: 0;
   border-radius: 5px;
   font-size: 14px;
-  border: solid 1px $loli;
+  border: solid 2px $forest;
   height: 2.5rem;
   width: 20rem;
+  box-sizing: border-box;
 }
+
 
 // width for user feedback messeges boxes
 .success-box,
@@ -45,3 +48,9 @@
 .steps {
   width: 20rem;
 }
+
+.input-add-steps-form:focus {
+  outline: none;
+  border: solid 2px black;
+}
+
