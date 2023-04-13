@@ -2,7 +2,7 @@
 <template>
   <!-- Register form -->
   <div
-    class="main-container bg-gradient-to-r from-primaforest-300 via-primaforest-500 to-primaforest-700 px-4 sm:px-6 lg:px-8"
+    class="main-container"
   >
     <div class="child-container">
       <div class="walkit-logo">

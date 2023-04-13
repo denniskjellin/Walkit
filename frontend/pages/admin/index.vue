@@ -121,8 +121,7 @@
             <p v-if="successMsg" class="success-box steps">{{ successMsg }}</p>
           </div>
 
-          <div class="add-steps-form__submit input-label-container">
-            <!-- call inserSteps when button is pushed, @btn styling inside button components -->
+          <!-- add destination button -->
             <button
               @click.prevent="checkActiveStatus"
               class="btn-bg-clay-black"
@@ -130,7 +129,6 @@
             >
               Lägg till <i class="fas fa-plus"></i>
             </button>
-          </div>
         </form>
       </section>
     </div>
