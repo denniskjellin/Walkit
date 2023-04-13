@@ -1,6 +1,6 @@
 <template>
   <form class="add-steps-form">
-    <h2 class="add-steps-h2">Registrera steg</h2>
+    <h2 class="h2-s">Registrera steg</h2>
     <div class="input-label-container">
       <label class="label-add-steps-form" for="date">Datum</label>
       <input
