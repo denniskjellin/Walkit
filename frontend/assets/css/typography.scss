@@ -14,6 +14,11 @@ h1,h2,h3,h4 {
   line-height: auto;
 }
 
+.h1-s {
+  font-size: 2rem;
+  line-height: auto;
+}
+
 // h2 smal title
 .h2-s {
   font-size: 1.5rem;
@@ -42,3 +47,6 @@ p {
     font-size: 1rem; 
   }
   
+  .pb {
+    font-weight: 600;
+  }
