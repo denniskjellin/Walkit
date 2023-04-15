@@ -125,9 +125,9 @@
             <!-- call checkActiveStatus when button is pushed, @btn styling inside button components -->
             <button
               @click.prevent="checkActiveStatus"
-              class="btn-bg-clay-black"
+              class="btn-primary btn-forest"
             >
-              Uppdatera <i class="fas fa-plus"></i>
+              Uppdatera <i class="fas fa-sync-alt"></i>
             </button>
           </div>
         </form>

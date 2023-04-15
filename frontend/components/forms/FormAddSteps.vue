@@ -40,7 +40,7 @@
       <!-- call inserSteps when button is pushed, @btn styling inside button components -->
       <button
         @click.prevent="insertSteps"
-        class="btn-bg-clay-black"
+        class="btn-primary btn-forest"
         aria-label="Lägg till steg"
       >
         Lägg till <i class="fas fa-plus"></i>

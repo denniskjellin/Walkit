@@ -26,16 +26,16 @@
             <p v-if="destination.is_active">Aktiv: Aktiv</p>
             <p v-else>Aktiv: Inaktiv</p>
             <NuxtLink
-              class="btn-bg-clay-black"
+              class="btn-primary btn-forest"
               :to="`/admin/${destination.id}`"
             >
-              Redigera
+              Redigera <i class="fas fa-edit"></i>
             </NuxtLink>
             <button
-              class="btn-bg-clay-black"
+              class="btn-primary btn-danger"
               @click="hideDestination(destination.id)"
             >
-              Ta bort
+              Ta bort <i class="fas fa-trash-alt"></i>
             </button>
           </div>
         </section>
@@ -137,7 +137,7 @@
           <!-- add destination button -->
           <button
             @click.prevent="checkActiveStatus"
-            class="btn-bg-clay-black"
+            class="btn-primary btn-forest"
             aria-label="Lägg till destination"
           >
             Lägg till <i class="fas fa-plus"></i>
