@@ -316,7 +316,10 @@ const hideDestination = async (id) => {
     ) {
       const { data: hiddenData, error: hiddenError } = await supabase
         .from("destinations")
-        .update({ hidden: true })
+        .update({
+          hidden: true,
+          is_active: false, // Set is_active to false when hiding the destination
+        })
         .match({ id: id });
 
       if (hiddenError) throw hiddenError;
