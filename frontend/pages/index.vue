@@ -1,6 +1,6 @@
 <!-- pages/index.vue -->
 <template>
-  <Sectionblock />
+  <Stepsleftblock />
   <Percentblock />
   <Goalblock />
   <Goalprog />
