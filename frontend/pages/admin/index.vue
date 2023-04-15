@@ -1,6 +1,6 @@
 <!-- admin page-->
 <template>
-  <div class="container">
+  <div class="container main">
     <div class="left-column">
       <article>
         <h1>Lista</h1>
@@ -17,6 +17,7 @@
             <p>Från: {{ destination.from }}</p>
             <p>Till: {{ destination.to }}</p>
             <p>Mål antal steg: {{ destination.steps_goal }}</p>
+            <p>Total distans: {{ destination.km }} km </p>
             <p>Startdatum: {{ destination.start }}</p>
             <p v-if="destination.end !== null">
               Slutdatum: {{ destination.end }}
@@ -77,6 +78,18 @@
               class="input-form"
               id="stepsGoal"
               name="stepsGoal"
+              required
+            />
+          </div>
+          <div class="input-section">
+            <label class="label-form" for="km">Total distans/km:</label>
+            <input
+              aria-label="Distans i Km"
+              type="number"
+              v-model="km"
+              class="input-form"
+              id="km"
+              name="km"
               required
             />
           </div>
@@ -144,6 +157,7 @@ const successMsg = ref("");
 const from = ref("");
 const to = ref("");
 const stepsGoal = ref(0);
+const km = ref(0);
 const start = ref(null);
 const end = ref(null);
 const isActive = ref(false);
@@ -200,6 +214,7 @@ const insertDestination = async (destination) => {
           from: from.value,
           to: to.value,
           steps_goal: stepsGoal.value,
+          km: km.value,
           start: start.value,
           end: end.value,
           is_active: isActive.value,
@@ -217,6 +232,7 @@ const insertDestination = async (destination) => {
       errorMsg.value = "";
       date.value = null;
       steps.value = 0;
+      km.value = 0;
       from.value = "";
       to.value = "";
       stepsGoal.value = 0;

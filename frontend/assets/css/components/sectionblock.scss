@@ -1,3 +1,5 @@
+
+// Main block //
 .section-block {
   padding: 5rem 0;
   width: 100vw;
@@ -6,29 +8,34 @@
   justify-content: center;
     align-items: center;
 }
+
+// Section block for step count index.page//
 .steps-left {
     padding: 3rem 0;
     background-color: $white;
 }
+
+// Section block for percentage index.page//
 .section-percentage {
     background-color: $sand;
 }
+
+// Section block for goal index.page//
 .section-goal {
     background-color: $pear;
 }
 
+// Section block for goal progress index.page//
 .section-goalprog {
     background-color: $mint;
 }
 
+// Section block for goal progress index.page//
 .section-top-list {
     background-color: $sand;
 }
 
-// .container-circle {
-//     display: flex;
-//     flex-direction: row;
-// }
+// Container for cirles with data, index.vue
 .container-circle {
     display: flex;
     flex-direction: column;
@@ -39,6 +46,8 @@
         
     }
 }
+
+// Circle component, index.vue
 .content-cirle {
     display: flex;
     flex-direction: column;

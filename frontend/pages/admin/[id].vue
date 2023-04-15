@@ -11,6 +11,7 @@
             <p>Från: {{ destination.from }}</p>
             <p>Till: {{ destination.to }}</p>
             <p>Mål antal steg: {{ destination.steps_goal }}</p>
+            <p>Total distans: {{ destination.km }} km </p>
             <p>Startdatum: {{ destination.start }}</p>
             <p v-if="destination.end !== null">
               Slutdatum: {{ destination.end }}
@@ -60,6 +61,18 @@
               class="input-form"
               id="stepsGoal"
               name="stepsGoal"
+              required
+            />
+          </div>
+          <div class="input-section">
+            <label class="label-form" for="km">Total distans/km:</label>
+            <input
+              aria-label="Distans i Km"
+              type="number"
+              v-model="km"
+              class="input-form"
+              id="km"
+              name="km"
               required
             />
           </div>
@@ -139,6 +152,7 @@ const { data: destination, error } = await supabase
 const from = ref(destination.from);
 const to = ref(destination.to);
 const stepsGoal = ref(destination.steps_goal);
+const km = ref(destination.km);
 const start = ref(destination.start);
 const end = ref(destination.end);
 const isActive = ref(destination.is_active);
@@ -160,6 +174,7 @@ const updateDestination = async () => {
           from: from.value,
           to: to.value,
           steps_goal: stepsGoal.value,
+          km: km.value,
           start: start.value,
           end: end.value,
           is_active: isActive.value,
