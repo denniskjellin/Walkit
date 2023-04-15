@@ -17,7 +17,7 @@
             <p>Från: {{ destination.from }}</p>
             <p>Till: {{ destination.to }}</p>
             <p>Mål antal steg: {{ destination.steps_goal }}</p>
-            <p>Total distans: {{ destination.km }} km </p>
+            <p>Total distans: {{ destination.km }} km</p>
             <p>Startdatum: {{ destination.start }}</p>
             <p v-if="destination.end !== null">
               Slutdatum: {{ destination.end }}
@@ -135,13 +135,13 @@
           </div>
 
           <!-- add destination button -->
-            <button
-              @click.prevent="checkActiveStatus"
-              class="btn-bg-clay-black"
-              aria-label="Lägg till destination"
-            >
-              Lägg till <i class="fas fa-plus"></i>
-            </button>
+          <button
+            @click.prevent="checkActiveStatus"
+            class="btn-bg-clay-black"
+            aria-label="Lägg till destination"
+          >
+            Lägg till <i class="fas fa-plus"></i>
+          </button>
         </form>
       </section>
     </div>
@@ -162,6 +162,37 @@ const start = ref(null);
 const end = ref(null);
 const isActive = ref(false);
 const pending = ref(false);
+
+// validation check for form inputs
+const validateInput = () => {
+  let isValid = true;
+
+  if (from.value.length < 2) {
+    errorMsg.value = "Från: Behöver vara minst två tecken.";
+    isValid = false;
+  } else if (to.value.length < 2) {
+    errorMsg.value = "Till: Behöver vara minst två tecken.";
+    isValid = false;
+  } else if (stepsGoal.value < 1) {
+    errorMsg.value = "Stegmål: Kan inte vara mindre än 1.";
+    isValid = false;
+  } else if (km.value < 1) {
+    errorMsg.value = "Total distans: Kan inte vara mindre än 1 km.";
+    isValid = false;
+  } else if (!start.value) {
+    errorMsg.value = "Startdatum kan inte vara tom.";
+    isValid = false;
+  }
+
+  if (!isValid) {
+    setTimeout(() => {
+      errorMsg.value = "";
+    }, 7000); // 7 seconds
+  }
+
+  return isValid;
+};
+
 
 // function fetch destinations from Supabase
 const fetchDestinations = async () => {
@@ -252,22 +283,25 @@ const insertDestination = async (destination) => {
  */
 const checkActiveStatus = async () => {
   try {
-    // If the new destination is active, set all other destinations to inactive
-    if (isActive.value) {
-      const { data: updateData, error: updateError } = await supabase
-        .from("destinations")
-        .update({ is_active: false })
-        .eq("is_active", true); // Update all destinations where is_active is true
+    // If validation is successful, continue
+    if (validateInput()) {
+      // If the new destination is active, set all other destinations to inactive
+      if (isActive.value) {
+        const { data: updateData, error: updateError } = await supabase
+          .from("destinations")
+          .update({ is_active: false })
+          .eq("is_active", true); // Update all destinations where is_active is true
 
-      // If there was an error, throw it
-      if (updateError) {
-        errorMsg.value = "Fel vid uppdatering av befintliga destinationer";
-        throw updateError;
+        // If there was an error, throw it
+        if (updateError) {
+          errorMsg.value = "Fel vid uppdatering av befintliga destinationer";
+          throw updateError;
+        }
       }
-    }
 
-    // Add the new destination
-    await insertDestination();
+      // Add the new destination
+      await insertDestination();
+    }
   } catch (error) {
     errorMsg.value = "Det gick inte att lägga till destination just nu.";
   }
