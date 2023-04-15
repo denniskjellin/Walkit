@@ -46,13 +46,32 @@
     <hr class="pink-line" />
     <a aria-label="Om" href="#" class="nav-links">Om</a>
     <hr class="pink-line" />
-    <a href="#" class="nav-logout">Logga ut</a>
+    <a href="#" class="nav-logout" @click="userLogout">Logga ut</a>
     <hr />
   </div>
 </template>
 
 <script>
 export default {
+  setup() {
+    const { auth } = useSupabaseAuthClient();
+    const user = useSupabaseUser();
+
+    const userLogout = async () => {
+      // Sign out the user
+      await auth.signOut();
+
+      // Redirect to the login page if the user is not signed in
+      if (!user.value) {
+        return navigateTo("/login");
+      }
+      // Redirect to the home page if the user is signed in
+    };
+
+    return {
+      userLogout,
+    };
+  },
   data() {
     return {
       isOpen: false,
