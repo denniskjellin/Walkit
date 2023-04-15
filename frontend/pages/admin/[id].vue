@@ -197,19 +197,18 @@ const validateInput = () => {
 const updateDestination = async () => {
   pending.value = true;
   try {
+    if (!validateInput()) return;
     const { data, error } = await supabase
       .from("destinations")
-      .update([
-        {
-          from: from.value,
-          to: to.value,
-          steps_goal: stepsGoal.value,
-          km: km.value,
-          start: start.value,
-          end: end.value,
-          is_active: isActive.value,
-        },
-      ])
+      .update({
+        from: from.value,
+        to: to.value,
+        steps_goal: stepsGoal.value,
+        km: km.value,
+        start: start.value,
+        end: end.value,
+        is_active: isActive.value,
+      })
       .eq("id", id);
     pending.value = false;
 
@@ -234,26 +233,24 @@ const updateDestination = async () => {
 const checkActiveStatus = async () => {
   try {
     // If validation is successful, continue
-    if (validateInput()) {
-      // If the new destination is active, set all other destinations to inactive
-      if (isActive.value) {
-        const { data: updateData, error: updateError } = await supabase
-          .from("destinations")
-          .update({ is_active: false })
-          .eq("is_active", true); // Update all destinations where is_active is true
-
-        // If there was an error, throw it
-        if (updateError) {
-          errorMsg.value = "Fel vid uppdatering av befintliga destinationer";
-          throw updateError;
-        }
+    if (!validateInput()) return;
+    // If the new destination is active, set all other destinations to inactive
+    if (isActive.value) {
+      const { data: updateData, error: updateError } = await supabase
+        .from("destinations")
+        .update({ is_active: false })
+        .eq("is_active", true); // Update all destinations where is_active is true
+      // If there was an error, throw it
+      if (updateError) {
+        errorMsg.value = "Fel vid uppdatering av befintliga destinationer";
+        throw updateError;
       }
-
-      // Add the new destination
-      await insertDestination();
     }
+
+    // Update the destination
+    await updateDestination();
   } catch (error) {
-    errorMsg.value = "Det gick inte att lägga till destination just nu.";
+    errorMsg.value = "Det gick inte att uppdatera destination just nu.";
   }
 };
 </script>

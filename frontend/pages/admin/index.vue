@@ -33,7 +33,7 @@
             </NuxtLink>
             <button
               class="btn-bg-clay-black"
-              @click="deleteDestination(destination.id)"
+              @click="hideDestination(destination.id)"
             >
               Ta bort
             </button>
@@ -193,7 +193,6 @@ const validateInput = () => {
   return isValid;
 };
 
-
 // function fetch destinations from Supabase
 const fetchDestinations = async () => {
   pending.value = true;
@@ -201,7 +200,8 @@ const fetchDestinations = async () => {
     let { data: response, error } = await supabase
       .from("destinations")
       .select("*")
-      .order("start", { ascending: true });
+      .order("start", { ascending: true })
+      .match({ hidden: false }); // only show destinations that are not hidden (the rest is soft deleted)
 
     if (response) {
       // Sort the response so that the active destination is always on top
@@ -308,19 +308,19 @@ const checkActiveStatus = async () => {
 };
 
 // Delete a destination
-const deleteDestination = async (id) => {
+const hideDestination = async (id) => {
   try {
     if (
       confirm("Är du säker på att du vill radera? Detta går ej att ångra!") ==
       true
     ) {
-      const { data: deleteData, error: deleteError } = await supabase
+      const { data: hiddenData, error: hiddenError } = await supabase
         .from("destinations")
-        .delete()
-        .eq("id", id);
+        .update({ hidden: true })
+        .match({ id: id });
 
-      if (deleteError) throw deleteError;
-      if (!deleteError) {
+      if (hiddenError) throw hiddenError;
+      if (!hiddenError) {
         successMsg.value = "Destinationen har tagits bort!";
         destinations = await fetchDestinations();
       }
