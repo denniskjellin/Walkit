@@ -1,7 +1,7 @@
 <template>
   <div class="content-div">
     <section class="section-block steps-left">
-      <p class="h1-s bold">{{ remainingSteps }}</p>
+      <h2 class="h1-s bold">{{ remainingSteps }}</h2>
       <p>steg kvar!</p>
       <hr class="pink-line line-small" />
       <p
