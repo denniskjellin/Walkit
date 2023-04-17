@@ -52,7 +52,7 @@
               required
             />
           </div>
-          <div class="input-section">
+          <!-- <div class="input-section">
             <label class="label-form" for="stepsGoal">Stegmål:</label>
             <input
               aria-label="Stegmål"
@@ -63,7 +63,7 @@
               name="stepsGoal"
               required
             />
-          </div>
+          </div> -->
           <div class="input-section">
             <label class="label-form" for="km">Total distans/km:</label>
             <input
@@ -173,9 +173,9 @@ const validateInput = () => {
   } else if (to.value.length < 2) {
     errorMsg.value = "Till: Behöver vara minst två tecken.";
     isValid = false;
-  } else if (stepsGoal.value < 1) {
-    errorMsg.value = "Stegmål: Kan inte vara mindre än 1.";
-    isValid = false;
+  // } else if (stepsGoal.value < 1) {
+  //   errorMsg.value = "Stegmål: Kan inte vara mindre än 1.";
+  //   isValid = false;
   } else if (km.value < 1) {
     errorMsg.value = "Total distans: Kan inte vara mindre än 1 km.";
     isValid = false;
@@ -193,9 +193,14 @@ const validateInput = () => {
   return isValid;
 };
 
+function kmToSteps(km) {
+  return km* 1400;
+}
+
 // function to update destination
 const updateDestination = async () => {
   pending.value = true;
+  const stepsGoal = kmToSteps(km.value)
   try {
     if (!validateInput()) return;
     const { data, error } = await supabase
@@ -203,7 +208,7 @@ const updateDestination = async () => {
       .update({
         from: from.value,
         to: to.value,
-        steps_goal: stepsGoal.value,
+        steps_goal: stepsGoal,
         km: km.value,
         start: start.value,
         end: end.value,
