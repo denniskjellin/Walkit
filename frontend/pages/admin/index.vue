@@ -230,6 +230,7 @@ const fetchDestinations = async () => {
 let destinations = [];
 destinations = await fetchDestinations();
 
+// function for converting km to steps
 function kmToSteps(km) {
   return km* 1400;
 }
@@ -242,6 +243,7 @@ const insertDestination = async (destination) => {
       throw new Error("User not logged in");
     }
 
+    // Convert km to steps
     const stepsGoal = kmToSteps(km.value)
     const { data: destinationData, error: destinationError } = await supabase
       .from("destinations")

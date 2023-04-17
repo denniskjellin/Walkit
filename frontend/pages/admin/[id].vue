@@ -173,9 +173,9 @@ const validateInput = () => {
   } else if (to.value.length < 2) {
     errorMsg.value = "Till: Behöver vara minst två tecken.";
     isValid = false;
-  // } else if (stepsGoal.value < 1) {
-  //   errorMsg.value = "Stegmål: Kan inte vara mindre än 1.";
-  //   isValid = false;
+    // } else if (stepsGoal.value < 1) {
+    //   errorMsg.value = "Stegmål: Kan inte vara mindre än 1.";
+    //   isValid = false;
   } else if (km.value < 1) {
     errorMsg.value = "Total distans: Kan inte vara mindre än 1 km.";
     isValid = false;
@@ -194,14 +194,19 @@ const validateInput = () => {
 };
 
 function kmToSteps(km) {
-  return km* 1400;
+  return km * 1400;
 }
 
 // function to update destination
 const updateDestination = async () => {
   pending.value = true;
-  const stepsGoal = kmToSteps(km.value)
+  // convert km to steps
+  const stepsGoal = kmToSteps(km.value);
   try {
+    const user = useSupabaseUser();
+    if (!user.value) {
+      throw new Error("User not logged in");
+    }
     if (!validateInput()) return;
     const { data, error } = await supabase
       .from("destinations")
