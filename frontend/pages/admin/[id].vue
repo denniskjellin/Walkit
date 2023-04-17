@@ -193,6 +193,7 @@ const validateInput = () => {
   return isValid;
 };
 
+// function to convert km to steps
 function kmToSteps(km) {
   return km * 1400;
 }
