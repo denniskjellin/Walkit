@@ -2,7 +2,7 @@
   <div class="content-div">
     <section class="section-block steps-left">
       <p class="h1-s bold">{{ remainingSteps }}</p>
-      <p class="bold">steg kvar!</p>
+      <p>steg kvar!</p>
       <hr class="pink-line line-small" />
       <p
         v-if="errorMsg"
