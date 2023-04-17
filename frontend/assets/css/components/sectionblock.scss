@@ -1,4 +1,3 @@
-
 // Main block //
 .section-block {
   padding: 5rem 0;
@@ -6,61 +5,89 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-    align-items: center;
+  align-items: center;
 }
 
 // Section block for step count index.page//
 .steps-left {
-    padding: 3rem 0;
-    background-color: $white;
+  padding: 3rem 0;
+  background-color: $white;
 }
 
 // Section block for percentage index.page//
 .section-percentage {
-    background-color: $sand;
+  background-color: $sand;
+
+  p {
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  // svg icon
+  .percentblock-ico {
+    height: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  // progress bar
+  .progress {
+    width: 65%;
+    border-radius: 10px;
+    border: solid 1px;
+    height: 1.2rem;
+
+    @media screen and (max-width: 768px) {
+      width: 75%;
+    }
+  }
+
+  .progress::-webkit-progress-value {
+    background-color: $loli;
+    border-radius: 10px;
+  }
+
+  .progress::-webkit-progress-bar {
+    background-color: $black;
+    border-radius: 10px;
+  }
 }
 
 // Section block for goal index.page//
 .section-goal {
-    background-color: $pear;
+  background-color: $pear;
 }
 
 // Section block for goal progress index.page//
 .section-goalprog {
-    background-color: $mint;
+  background-color: $mint;
 }
 
 // Section block for goal progress index.page//
 .section-top-list {
-    background-color: $sand;
+  background-color: $sand;
 }
 
 // Container for cirles with data, index.vue
 .container-circle {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    @media screen and (min-width: 768px) {
-        flex-direction: row;
-
-        
-    }
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
 }
 
 // Circle component, index.vue
 .content-cirle {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: $white;
-    width: 160px;
-    height: 160px;
-    padding: 2rem;
-    margin: 1rem;
-    border-radius: 50%;
-    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
-
-    
-        
-    }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $white;
+  width: 160px;
+  height: 160px;
+  padding: 2rem;
+  margin: 1rem;
+  border-radius: 50%;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+}

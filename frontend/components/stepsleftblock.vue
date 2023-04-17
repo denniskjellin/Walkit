@@ -17,9 +17,9 @@
 </template>
 
 <script setup>
+// Variable for the supabase client, remainingSteps and errorMsg
 const supabase = useSupabaseClient();
 const remainingSteps = ref(null);
-
 const errorMsg = ref("");
 
 const getRemainingSteps = async () => {
@@ -31,6 +31,7 @@ const getRemainingSteps = async () => {
       .eq("is_active", true);
 
     if (error) throw error;
+
     // Get the ID of the first active destination (there should only be one)
     const destinationId = activeDestinations[0]?.id;
     if (!destinationId) {
@@ -46,7 +47,10 @@ const getRemainingSteps = async () => {
     if (stepsError) throw stepsError;
 
     // Sumary of all steps added to the active destination
-    const totalSteps = stepsData.reduce((total, current) => total + current.steps, 0);
+    const totalSteps = stepsData.reduce(
+      (total, current) => total + current.steps,
+      0
+    );
 
     // Get the goal number of steps for the active destination
     const { data: destinationData, error: destinationError } = await supabase
@@ -56,6 +60,7 @@ const getRemainingSteps = async () => {
 
     // If there is an error, throw it
     if (destinationError) throw destinationError;
+    // Get the goal number of steps for the active destination
     const stepsGoal = destinationData[0]?.steps_goal;
 
     // Count the remaining steps and set the value of the ref "remainingSteps"
