@@ -100,6 +100,17 @@ const insertSteps = async () => {
       return;
     }
 
+    // Date check, if the selected date is in the future, throw an error
+    const currentDate = new Date();
+    const selectedDate = new Date(date.value);
+    if (selectedDate > currentDate) {
+      errorMsg.value = "Du kan inte lägga till steg för framtida datum!";
+      setTimeout(() => {
+        errorMsg.value = "";
+      }, 8000);
+      return;
+    }
+
     // Insert the steps
     const { data: stepsData, error: stepsError } = await supabase
       .from("steps")
