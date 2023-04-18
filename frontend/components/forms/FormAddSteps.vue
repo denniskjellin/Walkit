@@ -58,6 +58,7 @@ const date = ref(null);
 const steps = ref(0);
 const errorMsg = ref("");
 const successMsg = ref("");
+let remainingStepsData = useState('remainingStepsData');
 
 // function to insert steps
 const insertSteps = async () => {
@@ -126,6 +127,10 @@ const insertSteps = async () => {
     // Reset the form if success
     if (stepsError) throw stepsError;
     successMsg.value = "Stegen har lagts till!";
+
+    
+    remainingStepsData.value  = await getRemainingSteps();
+
     setTimeout(() => {
       successMsg.value = "";
       errorMsg.value = "";
