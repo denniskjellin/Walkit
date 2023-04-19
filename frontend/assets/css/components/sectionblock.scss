@@ -6,12 +6,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 350px;
+  
 }
 
 // Section block for step count index.page//
 .steps-left {
   padding: 3rem 0;
   background-color: $white;
+  height: unset;
  
   p {
    
@@ -72,11 +75,16 @@
 // Section block for goal progress index.page//
 .section-goalprog {
   background-color: $mint;
+  .goalprog-ico {
+    height: 5rem;
+    margin-bottom: .5rem;
+  }
 }
 
 // Section block for goal progress index.page//
 .section-top-list {
   background-color: $sand;
+  height: unset;
 }
 
 // Container for cirles with data, index.vue
