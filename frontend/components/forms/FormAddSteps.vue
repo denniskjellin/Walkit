@@ -59,6 +59,8 @@ const steps = ref(0);
 const errorMsg = ref("");
 const successMsg = ref("");
 let remainingStepsData = useState('remainingStepsData');
+let totalStepsData = useState('totalStepsData');
+let totalWalkedData = useState('totalWalkedData');
 
 // function to insert steps
 const insertSteps = async () => {
@@ -130,6 +132,8 @@ const insertSteps = async () => {
 
     
     remainingStepsData.value  = await getRemainingSteps();
+    totalStepsData.value  = await getTotalSteps();
+    totalWalkedData.value  = await getTotalWalked();
 
     setTimeout(() => {
       successMsg.value = "";

@@ -25,17 +25,12 @@ let totalStepsData = useState("totalStepsData", () => {
   };
 });
 
-let remainingStepsData = useState("remainingStepsData");
-
 let totalWalkedData = useState("totalWalkedData", () => {
   return {
     totalWalked: 0,
     errorMsg: "",
   };
 });
-
-
-
 
 let percentage = computed(() => {
   return Math.floor(
