@@ -5,17 +5,18 @@
     <p>{{ destinationSumData.from }} - {{ destinationSumData.to }}</p>
     <p>{{ destinationSumData.km }} km</p>
     <p>{{ totalStepsData.totalSteps }} steg</p>
+    <p
+      v-if="destinationSumData.errorMsg"
+      class="error-box center"
+      role="alert"
+      aria-live="assertive"
+    >
+      {{ destinationSumData.errorMsg }}
+    </p>
   </section>
 </template>
 
 <script setup>
-const supabase = useSupabaseClient();
-
-let { data: destinations, error } = await supabase
-  .from("destinations")
-  .select("from, to")
-  .eq("is_active", true);
-
   let totalStepsData = useState("totalStepsData", () => {
   return {
     totalSteps: 1,
@@ -29,6 +30,7 @@ let destinationSumData = useState("destinationSumData", () => {
     steps_goal: 0,
     is_active: false,
     km: 0,
+    errorMsg: "",
   };
 });
 

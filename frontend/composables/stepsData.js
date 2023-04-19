@@ -136,6 +136,7 @@ export const destinationSum = async () => {
     steps_goal: 0,
     is_active: false,
     km: 0,
+    errorMsg: "",
   };
 
   try {
@@ -152,12 +153,13 @@ export const destinationSum = async () => {
     returnValue.steps_goal = destinationSum[0]?.steps_goal;
     returnValue.is_active = destinationSum[0]?.is_active;
     returnValue.km = destinationSum[0]?.km;
+    returnValue.errorMsg = "";
+
   
 
   } catch (error) {
-    console.log(error);
+    returnValue.errorMsg = "Något gick fel.. :(";
   }
-  console.log(returnValue, "hej")
   return returnValue;
     
 }
