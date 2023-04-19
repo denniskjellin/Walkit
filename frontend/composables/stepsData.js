@@ -120,12 +120,46 @@ export const getTotalWalked = async () => {
     );
 
     returnValue.totalWalked = totalSteps;
-    console.log(totalSteps, "totala steg boi")
   } catch (error) {
     returnValue.errorMsg = "Kunde inte hämta antal steg";
   }
 
   return returnValue;
+}
+
+export const destinationSum = async () => {
+  const supabase = useSupabaseClient();
+
+  let returnValue = {
+    to: "",
+    from: "",
+    steps_goal: 0,
+    is_active: false,
+    km: 0,
+  };
+
+  try {
+    const { data: destinationSum, error  } = await supabase
+      .from("destinations")
+      .select("to, from, steps_goal, is_active, km")
+      .eq("is_active", true);
+
+    if (error) throw error;
+
+    // set return values
+    returnValue.to = destinationSum[0]?.to;
+    returnValue.from = destinationSum[0]?.from;
+    returnValue.steps_goal = destinationSum[0]?.steps_goal;
+    returnValue.is_active = destinationSum[0]?.is_active;
+    returnValue.km = destinationSum[0]?.km;
+  
+
+  } catch (error) {
+    console.log(error);
+  }
+  console.log(returnValue, "hej")
+  return returnValue;
+    
 }
 
 

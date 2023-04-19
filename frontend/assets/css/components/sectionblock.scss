@@ -24,7 +24,7 @@
   background-color: $sand;
 
   p {
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: 1rem;
   }
 
@@ -60,6 +60,13 @@
 // Section block for goal index.page//
 .section-goal {
   background-color: $pear;
+
+   // svg icon
+   .goalblock-ico {
+    height: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+
 }
 
 // Section block for goal progress index.page//

@@ -1,9 +1,8 @@
 <template>
   <svg
-    class="percentblock-ico"
-    width="40"
+    width="50"
     height="50"
-    viewBox="0 0 40 50"
+    viewBox="0 0 45 50"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >

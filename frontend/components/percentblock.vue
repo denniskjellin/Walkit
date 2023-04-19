@@ -1,7 +1,7 @@
 <template>
   <section class="section-block section-percentage">
     <!-- writing out the % accomplished towards the destination -->
-    <SvgPercentblockIco />
+    <SvgPercentblockIco class="percentblock-ico"/>
     <h2 class="h1-s">{{ percentage }}%</h2>
     <p>av målet är uppnått!</p>
     <!-- progress bar, styling in sectionblock.scss -->
