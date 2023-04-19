@@ -12,8 +12,8 @@
   </div>
 </template>
 
-<script>
-/* Placeholder */
+<script setup>
+
 </script>
 
 <style scoped>

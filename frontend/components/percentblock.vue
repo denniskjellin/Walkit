@@ -7,7 +7,7 @@
     <!-- progress bar, styling in sectionblock.scss -->
     <progress class="progress" :value="percentage" max="100"></progress>
     <p
-      v-if="totalStepsData.errorMsg"
+      v-if="totalStepsData?.errorMsg"
       class="error-box center"
       role="alert"
       aria-live="assertive"
@@ -18,26 +18,14 @@
 </template>
 
 <script setup>
-let totalStepsData = useState("totalStepsData", () => {
-  return {
-    totalSteps: 1,
-    errorMsg: "",
-  };
-});
-
-let totalWalkedData = useState("totalWalkedData", () => {
-  return {
-    totalWalked: 0,
-    errorMsg: "",
-  };
-});
+let totalStepsData = useState("totalStepsData");
+let totalWalkedData = useState("totalWalkedData");
 
 let percentage = computed(() => {
-  return Math.floor(
-    (totalWalkedData.value.totalWalked /
-      totalStepsData.value.totalSteps) *
-      100
-  );
+  if(!totalStepsData.value || !totalWalkedData.value)
+    return 0;
+    
+  return Math.floor(totalWalkedData.value.totalWalked / totalStepsData.value.totalSteps * 100);
 });
 
 
