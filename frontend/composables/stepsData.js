@@ -49,7 +49,7 @@ export const getRemainingSteps = async () => {
     const remainingStepsValue = stepsGoal - totalSteps;
     returnValue.remainingSteps = remainingStepsValue;
   } catch (error) {
-    returnValue.errorMsg = "Kunde inte hämta antal steg";
+    returnValue.errorMsg = "Obs! Kunde inte hämta data.";
   }
 
   return returnValue;
@@ -76,7 +76,7 @@ export const getTotalSteps = async () => {
     returnValue.totalSteps = destinationData[0]?.steps_goal;
 
   } catch (error) {
-    returnValue.errorMsg = "Något gick fel.. :(";
+    returnValue.errorMsg = "Obs! Kunde inte hämta data.";
   }
 
   return returnValue;
@@ -121,7 +121,7 @@ export const getTotalWalked = async () => {
 
     returnValue.totalWalked = totalSteps;
   } catch (error) {
-    returnValue.errorMsg = "Kunde inte hämta antal steg";
+    returnValue.errorMsg = "Obs! Kunde inte hämta data.";
   }
 
   return returnValue;
@@ -158,7 +158,7 @@ export const destinationSum = async () => {
   
 
   } catch (error) {
-    returnValue.errorMsg = "Något gick fel.. :(";
+    returnValue.errorMsg = "Obs! Kunde inte hämta data.";
   }
   return returnValue;
     
