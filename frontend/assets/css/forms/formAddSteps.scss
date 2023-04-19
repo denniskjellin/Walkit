@@ -1,0 +1,55 @@
+// Description: Styling for add steps form
+
+// styling for form container
+.add-steps-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+// styling for input fields container
+.input-label-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 0.625rem;
+  margin-top: 1.25rem;
+}
+
+// styling for labels
+// .label-add-steps-form {
+
+// }
+
+// styling for input fields
+.input-add-steps-form {
+  padding: 0rem 0.25rem;
+  margin: 0;
+  border-radius: 5px;
+  font-size: 14px;
+  border: solid 2px $forest;
+  height: 2.5rem;
+  width: 20rem;
+  box-sizing: border-box;
+}
+
+// width for user feedback messeges boxes
+.success-box,
+.error-box,
+.steps {
+  width: 20rem;
+}
+
+.input-add-steps-form:focus {
+  outline: none;
+  border: solid 2px black;
+}
+// grouping the form inputs and title together
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+

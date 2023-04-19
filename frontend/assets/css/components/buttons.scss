@@ -1,0 +1,45 @@
+.btn-primary {
+  border-radius: 3px;
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 0;
+  padding: 0.375rem 1.5rem;
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background-color: $hover-btn;
+  transition: background-color 0.2s ease-in-out;
+}
+
+// btn forest, icons and text white
+.btn-forest {
+  background-color: $forest;
+  color: white;
+
+  // icons inside button
+  .fas.fa-plus,
+  .fas.fa-edit {
+    font-size: 1rem;
+    color: white;
+  }
+}
+
+// btn danger (ico white)
+.btn-danger {
+  background-color: $danger;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: $danger-hover;
+  transition: background-color 0.2s ease-in-out;
+}
+
+

@@ -1,0 +1,53 @@
+<template>
+  <section class="section-block section-percentage">
+    <!-- writing out the % accomplished towards the destination -->
+    <SvgPercentblockIco />
+    <h2 class="h1-s">{{ percentage }}%</h2>
+    <p>av målet är uppnått!</p>
+    <!-- progress bar, styling in sectionblock.scss -->
+    <progress class="progress" :value="percentage" max="100"></progress>
+    <p
+      v-if="totalStepsData.errorMsg"
+      class="error-box center"
+      role="alert"
+      aria-live="assertive"
+    >
+      {{ totalStepsData.errorMsg }}
+    </p>
+  </section>
+</template>
+
+<script setup>
+let totalStepsData = useState("totalStepsData", () => {
+  return {
+    totalSteps: 1,
+    errorMsg: "",
+  };
+});
+
+let remainingStepsData = useState("remainingStepsData");
+
+let totalWalkedData = useState("totalWalkedData", () => {
+  return {
+    totalWalked: 0,
+    errorMsg: "",
+  };
+});
+
+
+
+
+let percentage = computed(() => {
+  return Math.floor(
+    (totalWalkedData.value.totalWalked /
+      totalStepsData.value.totalSteps) *
+      100
+  );
+});
+
+
+onMounted(async () => {
+  totalStepsData.value = await getTotalSteps();
+  totalWalkedData.value = await getTotalWalked();
+});
+</script>

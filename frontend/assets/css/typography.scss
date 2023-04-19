@@ -1,0 +1,52 @@
+body {
+  font-family: arial, sans-serif;
+  color: #333; 
+  line-height: 1.6;
+}
+
+// Headings
+h1,h2,h3,h4 {
+    font-weight: 700;
+}
+// h1 large title
+.h1-l {
+  font-size: 3.125rem;
+  line-height: auto;
+}
+
+.h1-s {
+  font-size: 2rem;
+  line-height: auto;
+}
+
+// h2 smal title
+.h2-s {
+  font-size: 1.5rem;
+  line-height: auto;
+}
+
+// h2 medium title
+.h2-m {
+  font-size: 1.875rem;
+}
+
+// xs title
+.h3 {
+    font-size: 1.125rem;
+    line-height: 150%;
+}
+
+// xxs title
+.h4 {
+    font-size: 1rem;
+    line-height: 150%;
+    
+}
+
+p {
+    font-size: 1rem; 
+  }
+  
+  .bold {
+    font-weight: 600;
+  }

@@ -1,0 +1,31 @@
+/* fold-out menu add steps */
+.child {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 0.93rem;
+}
+
+/* add steps icon  */
+.fas.fa-plus {
+  color: $forest; // color of the plus icon, @source: assets/css/variables.scss
+}
+
+.addsteps {
+  /* New width of smaler screens */
+  @media screen and (min-width: 768px) {
+    width: 80vw;
+    max-width: unset;
+    right: unset;
+    left: 10vw;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .child {
+    width: 3.75rem;
+  }
+}
+

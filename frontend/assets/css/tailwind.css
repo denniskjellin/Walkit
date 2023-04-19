@@ -2,17 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Default color for paragrafs */
-* {
-    font-family: arial, sans-serif;
-}
 
-p {
-    color: #333333;
-    line-height: 1,5;
-}
 
-h1,h2,h3,h4,h5.h6 {
-    color: #333333;
-}
 
+/*  */
+.container {
+    max-width: 100%;
+
+}

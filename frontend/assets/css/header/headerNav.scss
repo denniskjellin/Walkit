@@ -1,0 +1,45 @@
+// Description: This file contains the styling for the header boxes
+.main-header {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  padding: 0.8rem 2rem;
+  background-color: $sand;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+  /* div aroind profile icon */
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    place-self: center;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* main logo inside header*/
+  .walkit-logo {
+    place-self: center;
+    align-self: center;
+    margin: 0;
+    svg {
+      height: 3rem;
+    }
+  }
+
+  /* font awesome icons inside header */
+  .fas.fa-times,
+  .fas.fa-bars,
+  .fas.fa-plus,
+  .fas.fa-user {
+    font-size: 24px;
+  }
+
+  @media screen and (min-width: 768px) {
+    padding: 0 2rem;
+    .walkit-logo {
+      svg {
+        height: 5rem;
+      }
+    }
+  }
+}
