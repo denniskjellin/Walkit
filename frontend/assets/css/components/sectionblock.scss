@@ -6,18 +6,19 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 350px;
-  
+
+   // svg icon
+   .homepage-svg {
+    margin-bottom: 1.5rem;
+  }
 }
 
 // Section block for step count index.page//
 .steps-left {
   padding: 3rem 0;
   background-color: $white;
-  height: unset;
- 
+
   p {
-   
     margin-bottom: 1rem;
   }
 }
@@ -31,11 +32,7 @@
     margin-bottom: 1rem;
   }
 
-  // svg icon
-  .percentblock-ico {
-    height: 2.5rem;
-    margin-bottom: 1.5rem;
-  }
+ 
 
   // progress bar
   .progress {
@@ -63,28 +60,16 @@
 // Section block for goal index.page//
 .section-goal {
   background-color: $pear;
-
-   // svg icon
-   .goalblock-ico {
-    height: 2.5rem;
-    margin-bottom: 1.5rem;
-  }
-
 }
 
 // Section block for goal progress index.page//
 .section-goalprog {
   background-color: $mint;
-  .goalprog-ico {
-    height: 5rem;
-    margin-bottom: .5rem;
-  }
 }
 
 // Section block for goal progress index.page//
 .section-top-list {
   background-color: $sand;
-  height: unset;
 }
 
 // Container for cirles with data, index.vue
@@ -98,7 +83,7 @@
 }
 
 // Circle component, index.vue
-.content-cirle {
+.content-circle {
   display: flex;
   flex-direction: column;
   justify-content: center;

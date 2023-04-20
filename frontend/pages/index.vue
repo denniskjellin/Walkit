@@ -3,7 +3,7 @@
   <Stepsleftblock />
   <Percentblock />
   <Goalblock />
-  <Goalprog />
+  <Goalprogblock />
   <TopListblock />
 </template>
 
