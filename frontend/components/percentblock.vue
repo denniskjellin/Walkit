@@ -3,17 +3,13 @@
     <!-- writing out the % accomplished towards the destination -->
     <SvgPercentblockIco class="homepage-svg" />
     <template v-if="percentage">
-    <h2 class="h1-s">{{ percentage }}%</h2>
-    <p>av målet är uppnått!</p>
-  </template>
-  <!-- show %, if not show 'laddar..' -->
-  <p v-else>Laddar...</p>
+      <h2 class="h1-s">{{ percentage }}%</h2>
+      <p>av målet är uppnått!</p>
+    </template>
+    <!-- show %, if not show 'laddar..' -->
+    <p v-else>Laddar...</p>
     <!-- progress bar, styling in sectionblock.scss -->
-    <progress
-      class="progress"
-      :value="percentage"
-      max="100"
-    ></progress>
+    <progress class="progress" :value="percentage" max="100"></progress>
     <!-- error msg if statement -->
     <p
       v-if="totalStepsData?.errorMsg"
@@ -21,7 +17,7 @@
       role="alert"
       aria-live="assertive"
     >
-      {{ totalStepsData.errorMsg }} 
+      {{ totalStepsData.errorMsg }}
     </p>
   </section>
 </template>
