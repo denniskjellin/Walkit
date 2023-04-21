@@ -61,7 +61,8 @@ const successMsg = ref("");
 let remainingStepsData = useState("remainingStepsState");
 let totalStepsData = useState("totalStepsData");
 let totalWalkedData = useState("totalWalkedData");
-let topListData = useState("topListState")
+let userDailyStepsData = useState("userDailyStepsState");
+let getAllStepsData = useState("getAllStepsState");
 
 // function to insert steps
 const insertSteps = async () => {
@@ -131,11 +132,12 @@ const insertSteps = async () => {
     if (stepsError) throw stepsError;
     successMsg.value = "Stegen har lagts till!";
 
-    // Update 
-    remainingStepsData.value  = await getRemainingStepsData();
-    totalStepsData.value  = await getTotalSteps();
-    totalWalkedData.value  = await getTotalWalked();
-    topListData.value = await getUserSteps();
+    // Update the remaining steps
+    remainingStepsData.value = await getRemainingStepsData();
+    totalStepsData.value = await getTotalSteps();
+    totalWalkedData.value = await getTotalWalked();
+    userDailyStepsData.value = await getUserSteps();
+    getAllStepsData.value = await getAllSteps();
 
     setTimeout(() => {
       successMsg.value = "";
