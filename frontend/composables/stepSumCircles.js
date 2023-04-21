@@ -76,9 +76,10 @@ export const getAllSteps = async () => {
     // set return values
     returnValue.allUserSteps = allStepsSum;
     returnValue.errorMsg = "";
-
   } catch (error) {
     returnValue.errorMsg = "Obs! Kunde inte hämta data.";
   }
   return returnValue;
 };
+
+

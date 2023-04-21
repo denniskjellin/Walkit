@@ -48,7 +48,6 @@
 // state variable
 let userDailyStepsData = useState("userDailyStepsState");
 let getAllStepsData = useState("getAllStepsState");
-console.log(getAllStepsData.value);
 
 // onMounted hook to fetch data
 onMounted(async () => {
