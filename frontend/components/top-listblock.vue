@@ -11,7 +11,7 @@
     </p>
 
     <div class="container-circle">
-      <div class="content-circle">
+      <div class="content-circle user-daily-steps">
         <!-- data of logged in users step of the day -->
         <template
           v-if="
@@ -24,7 +24,7 @@
         <p v-else>Laddar...</p>
       </div>
 
-      <div class="content-circle">
+      <div class="content-circle all-daily-steps">
         <template v-if="getAllStepsData?.allUserSteps">
           <!-- data of all users step of the day -->
           <h1 class="p">Allas steg</h1>
@@ -32,7 +32,7 @@
         </template>
         <p v-else>Laddar...</p>
       </div>
-      <div class="content-circle">
+      <div class="content-circle all-week-steps">
         <h1 class="h1-s">div 3</h1>
         <p>Section block</p>
       </div>

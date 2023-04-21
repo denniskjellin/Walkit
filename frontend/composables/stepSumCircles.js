@@ -1,4 +1,4 @@
-// function to get the logged in user steps for current day
+// function to get the logged in user steps for current day (user-daily-steps)
 export const getUserSteps = async () => {
   const supabase = useSupabaseClient();
   const user = useSupabaseUser();
@@ -40,6 +40,7 @@ export const getUserSteps = async () => {
   return returnValue;
 };
 
+// function to get all user steps for current day (all-daily-steps)
 export const getAllSteps = async () => {
   const supabase = useSupabaseClient();
 
