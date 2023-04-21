@@ -7,7 +7,7 @@
       <p>av målet är uppnått!</p>
     </template>
     <!-- show %, if not show 'laddar..' -->
-    <p v-else>Laddar...</p>
+     <p v-else>{{ percentage !== null ? '0% av målet är uppnått.' : 'Laddar...' }}</p>
     <!-- progress bar, styling in sectionblock.scss -->
     <progress class="progress" :value="percentage" max="100"></progress>
     <!-- error msg if statement -->

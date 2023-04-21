@@ -3,7 +3,7 @@
     <div class="container-circle">
       <div class="content-circle">
         <!-- data of logged in users step of the day -->
-        <template v-if="topListData?.userSteps">
+        <template v-if="topListData?.userSteps || topListData?.userSteps === 0">
           <h3 class="p">Dina steg idag</h3>
           <p>{{ topListData.userSteps }}</p>
         </template>
