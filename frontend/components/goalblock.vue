@@ -3,33 +3,24 @@
     <SvgGoalblockIco class="homepage-svg" />
     <h2 class="h2-s">Målet:</h2>
     <!-- if got data, show it - else show 'laddar' -->
-    <template v-if="destinationSumData && totalStepsData">
+    <template v-if="destinationSumData">
       <p>{{ destinationSumData.from }} - {{ destinationSumData.to }}</p>
       <p>{{ destinationSumData.km }} km</p>
-      <p>{{ totalStepsData.totalSteps }} steg</p>
+      <p>{{ destinationSumData.steps_goal }} steg</p>
     </template>
     <p v-else>Laddar...</p>
-
     <!-- check for error -->
     <p
-      v-if="destinationSumData?.errorMsg || totalStepsData?.errorMsg"
+      v-if="destinationSumData?.errorMsg"
       class="error-box center"
       role="alert"
       aria-live="assertive"
     >
-      {{ destinationSumData.errorMsg || totalStepsData.errorMsg }}
+      {{ destinationSumData.errorMsg }}
     </p>
   </section>
 </template>
 
 <script setup>
-// import state variables
-let totalStepsData = useState("totalStepsData");
-let destinationSumData = useState("destinationSumData");
-
-// onMounted hook to fetch data
-onMounted(async () => {
-  totalStepsData.value = await getTotalSteps();
-  destinationSumData.value = await destinationSum();
-});
+let destinationSumData = await destinationSum(); //Läs på om useAsyncData
 </script>

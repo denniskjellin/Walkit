@@ -20,9 +20,11 @@
 </template>
 
 <script setup>
-let remainingStepsData = useState("remainingStepsData");
+let remainingStepsData = useState("remainingStepsState");
+
 
 onMounted(async () => {
-  remainingStepsData.value = await getRemainingSteps();
+  remainingStepsData.value = await getRemainingStepsData();
+  
 });
 </script>
