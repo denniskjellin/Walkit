@@ -27,7 +27,7 @@
           "
         >
           <h3 class="p">Dina steg idag</h3>
-          <p>{{ userDailyStepsData.userSteps }}</p>
+          <p class="p-circle">{{ userDailyStepsData.userSteps }}</p>
         </template>
         <p v-else>Laddar...</p>
       </div>
@@ -35,21 +35,21 @@
       <div class="content-circle all-daily-steps">
         <template v-if="getAllStepsData?.allUserSteps || getAllStepsData?.allUserSteps === 0">
           <!-- data of all users step of the day -->
-          <h1 class="p">Allas steg</h1>
-          <p>{{ getAllStepsData.allUserSteps }}</p>
+          <h3 class="p">Allas steg idag</h3>
+          <p class="p-circle">{{ getAllStepsData.allUserSteps }}</p>
         </template>
         <p v-else>Laddar...</p>
       </div>
       <div class="content-circle all-week-steps">
         <template v-if="getAllStepsWeekData?.stepsCurrWeek || getAllStepsWeekData?.stepsCurrWeek === 0">
-          <h3 class="h1-s">div 3</h3>
-          <p>{{ getAllStepsWeekData.stepsCurrWeek }}</p>
+          <h3 class="p">Allas steg vecka .{{ getAllStepsWeekData.currentWeekNumber }} </h3>
+          <p class="p-circle">{{ getAllStepsWeekData.stepsCurrWeek }}</p>
         </template>
         <p v-else>Laddar...</p>
       </div>
     </div>
     <p>Icon</p>
-    <h2 class="h2-s">Top list</h2>
+    <h3 class="h2-s">Top list</h3>
     <p>Komponent för tp</p>
     <p>Section block</p>
   </section>
@@ -61,8 +61,6 @@ let userDailyStepsData = useState("userDailyStepsState");
 let getAllStepsData = useState("getAllStepsState");
 let getAllStepsWeekData = useState("getAllStepsWeekState");
 
-getAllStepsWeek();
-console.log(getAllStepsWeekData.stepsCurrWeek, "hey");
 
 // onMounted hook to fetch data
 onMounted(async () => {

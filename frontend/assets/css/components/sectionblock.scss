@@ -89,10 +89,33 @@
   justify-content: center;
   align-items: center;
   background-color: $white;
-  width: 160px;
-  height: 160px;
+  width: 210px;
+  height: 210px;
   padding: 2rem;
   margin: 1rem;
   border-radius: 50%;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+ 
+
+  @media screen and (min-width: 820px) {
+    margin: 2rem;
+  }
+}
+
+.user-daily-steps {
+border: solid 1px $loli;
+}
+
+.all-daily-steps {
+border: solid 1px $pear;
+}
+
+.all-week-steps {
+border: solid 1px $clay;
+}
+
+// for <p> in circle
+.p-circle {
+  font-weight: 700;
+  font-size: 1.5rem;
 }

@@ -1,12 +1,15 @@
 body {
   font-family: arial, sans-serif;
-  color: #333; 
+  color: #333;
   line-height: 1.6;
 }
 
 // Headings
-h1,h2,h3,h4 {
-    font-weight: 700;
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
 }
 // h1 large title
 .h1-l {
@@ -32,25 +35,25 @@ h1,h2,h3,h4 {
 
 // xs title
 .h3 {
-    font-size: 1.125rem;
-    line-height: 150%;
+  font-size: 1.125rem;
+  line-height: 150%;
 }
 
 // xxs title
 .h4 {
-    font-size: 1rem;
-    line-height: 150%;
-    
+  font-size: 1rem;
+  line-height: 150%;
 }
 
 p {
-    font-size: 1rem; 
-  }
+  font-size: 1rem;
+}
 
-  .p {
-    font-size: 1rem;
-  }
-  
-  .bold {
-    font-weight: 600;
-  }
+.p {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.bold {
+  font-weight: 600;
+}
