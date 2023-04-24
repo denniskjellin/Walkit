@@ -61,6 +61,7 @@ let userDailyStepsData = useState("userDailyStepsState");
 let getAllStepsData = useState("getAllStepsState");
 let getAllStepsWeekData = useState("getAllStepsWeekState");
 
+getProfiles();
 
 
 
