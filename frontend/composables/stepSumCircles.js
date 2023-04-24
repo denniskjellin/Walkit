@@ -24,7 +24,6 @@ export const getUserSteps = async () => {
 
     if (error) throw error;
 
- 
     // sum all steps for current day for logged in user
     let stepsSum = stepsData.reduce(
       (total, current) => total + current.steps,
@@ -89,6 +88,7 @@ export const getAllSteps = async () => {
   return returnValue;
 };
 
+// function to get all user steps for current week (all-weekly-steps)
 export const getAllStepsWeek = async () => {
   const supabase = useSupabaseClient();
   let returnValue = {
@@ -106,6 +106,7 @@ export const getAllStepsWeek = async () => {
   const startOfWeek = new Date(now.setDate(diffDay)); // set the date to the first day of the week
   const endOfWeek = new Date(now.setDate(startOfWeek.getDate() + 6));
 
+  // Get the current week number to write out on screen
   let currentWeekNumber = getWeek(startOfWeek);
   function getWeek(date) {
     const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
