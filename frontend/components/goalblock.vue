@@ -5,8 +5,8 @@
     <!-- if got data, show it - else show 'laddar' -->
     <template v-if="destinationSumData">
       <p>{{ destinationSumData.from }} - {{ destinationSumData.to }}</p>
-      <p>{{ destinationSumData.km }} km</p>
-      <p>{{ destinationSumData.steps_goal }} steg</p>
+      <p>{{ numberToSweString(destinationSumData.km) }} km</p>
+      <p>{{ numberToSweString(destinationSumData.steps_goal) }} steg</p>
     </template>
     <p v-else>Laddar...</p>
     <!-- check for error -->

@@ -23,11 +23,18 @@ export const getUserSteps = async () => {
 
     if (error) throw error;
 
+ 
     // sum all steps for current day for logged in user
     let stepsSum = stepsData.reduce(
       (total, current) => total + current.steps,
       0
     );
+
+    // // format stepsSum as "100 000"
+    // stepsSum = stepsSum.toLocaleString("sv-SE", { minimumFractionDigits: 0 });
+
+    // set return values
+    returnValue.userSteps = stepsSum;
 
     // set return values
     returnValue.userSteps = stepsSum;
@@ -72,7 +79,6 @@ export const getAllSteps = async () => {
     });
 
     if (error) throw error;
-
     // set return values
     returnValue.allUserSteps = allStepsSum;
     returnValue.errorMsg = "";
@@ -87,6 +93,8 @@ export const getAllStepsWeek = async () => {
   let returnValue = {
     stepsCurrWeek: 0,
     errorMsg: "",
+    weekStart: "",
+    currentWeekNumber: "",
   };
 
   // Get the current week number
@@ -97,6 +105,12 @@ export const getAllStepsWeek = async () => {
   const startOfWeek = new Date(now.setDate(diffDay)); // set the date to the first day of the week
   const endOfWeek = new Date(now.setDate(startOfWeek.getDate() + 6));
 
+  let currentWeekNumber = getWeek(startOfWeek);
+  function getWeek(date) {
+    const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
+    const pastDaysOfYear = (date - firstDayOfYear) / 86400000;
+    return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+  }
 
   try {
     // Query the database for steps in the current week
@@ -114,14 +128,13 @@ export const getAllStepsWeek = async () => {
       (total, current) => total + current.steps,
       0
     );
-      console.log(stepsSum, "stepsSum i funktionen")
     // set return values
     returnValue.stepsCurrWeek = stepsSum;
-    console.log(returnValue.stepsCurrWeek, "stepsCurrWeek efter loopen")
     returnValue.errorMsg = "";
+    returnValue.currentWeekNumber = currentWeekNumber;
   } catch (error) {
     returnValue.errorMsg = "Obs! Kunde inte hämta data.";
   }
-  // console.log(returnValue, "stepsCurrWeek");
+
   return returnValue;
 };

@@ -2,7 +2,7 @@
   <div class="content-div">
     <section class="section-block steps-left">
       <h2 v-if="remainingStepsData" class="h1-s bold">
-        {{ remainingStepsData.remainingSteps }}
+        {{ numberToSweString(remainingStepsData.remainingSteps) }}
       </h2>
       <p v-else>Laddar...</p>
       <p class="bold">steg kvar!</p>

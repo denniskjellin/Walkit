@@ -4,7 +4,7 @@
     <SvgGoalprogIco class="homepage-svg" />
     <h2 class="h2-s">Avverkat:</h2>
     <!-- if got data show it, else show 'laddar'  -->
-    <p v-if="totalWalkedData">{{ totalWalkedData.totalWalked }} steg</p>
+    <p v-if="totalWalkedData">{{ numberToSweString(totalWalkedData.totalWalked) }} steg</p>
     <p v-else>Laddar...</p>
     <!-- if error msg, show -->
     <p
