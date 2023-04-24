@@ -15,7 +15,17 @@ main {
 }
 
 // Styling body content
-body {
+.body {
   margin: 0;
   overflow-x: hidden;
+  margin-top: 75px;
 }
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+

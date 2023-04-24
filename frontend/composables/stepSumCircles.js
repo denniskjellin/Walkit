@@ -82,4 +82,46 @@ export const getAllSteps = async () => {
   return returnValue;
 };
 
+export const getAllStepsWeek = async () => {
+  const supabase = useSupabaseClient();
+  let returnValue = {
+    stepsCurrWeek: 0,
+    errorMsg: "",
+  };
 
+  // Get the current week number
+  const now = new Date(); // current date
+  const weekStart = 1; // 1 = Monday as start day (0 = Sunday)
+  const day = now.getDay(); // current day
+  const diffDay = now.getDate() - day + (day === 0 ? -6 : weekStart); // correct for day 0 (sunday)
+  const startOfWeek = new Date(now.setDate(diffDay)); // set the date to the first day of the week
+  const endOfWeek = new Date(now.setDate(startOfWeek.getDate() + 6));
+
+
+  try {
+    // Query the database for steps in the current week
+    const { data: stepsCurrWeek, error } = await supabase
+      .from("steps")
+      .select("steps")
+      .gte("date", startOfWeek.toISOString())
+      .lte("date", endOfWeek.toISOString())
+      .order("date");
+
+    if (error) throw error;
+
+    // Sum all steps for the current week
+    let stepsSum = stepsCurrWeek.reduce(
+      (total, current) => total + current.steps,
+      0
+    );
+      console.log(stepsSum, "stepsSum i funktionen")
+    // set return values
+    returnValue.stepsCurrWeek = stepsSum;
+    console.log(returnValue.stepsCurrWeek, "stepsCurrWeek efter loopen")
+    returnValue.errorMsg = "";
+  } catch (error) {
+    returnValue.errorMsg = "Obs! Kunde inte hämta data.";
+  }
+  // console.log(returnValue, "stepsCurrWeek");
+  return returnValue;
+};

@@ -63,6 +63,7 @@ let totalStepsData = useState("totalStepsData");
 let totalWalkedData = useState("totalWalkedData");
 let userDailyStepsData = useState("userDailyStepsState");
 let getAllStepsData = useState("getAllStepsState");
+let getAllStepsWeekData = useState("getAllStepsWeekState");
 
 // function to insert steps
 const insertSteps = async () => {
@@ -138,6 +139,7 @@ const insertSteps = async () => {
     totalWalkedData.value = await getTotalWalked();
     userDailyStepsData.value = await getUserSteps();
     getAllStepsData.value = await getAllSteps();
+    getAllStepsWeekData.value = await getAllStepsWeek();
 
     setTimeout(() => {
       successMsg.value = "";

@@ -2,12 +2,20 @@
   <section class="section-block section-top-list">
     <!-- error msg if statement -->
     <p
-      v-if="userDailyStepsData?.errorMsg || getAllStepsData?.errorMsg"
+      v-if="
+        userDailyStepsData?.errorMsg ||
+        getAllStepsData?.errorMsg ||
+        getAllStepsWeekData?.errorMsg
+      "
       class="error-box center"
       role="alert"
       aria-live="assertive"
     >
-      {{ userDailyStepsData.errorMsg || getAllStepsData.errorMsg}}
+      {{
+        userDailyStepsData.errorMsg ||
+        getAllStepsData.errorMsg ||
+        getAllStepsWeekData.errorMsg
+      }}
     </p>
 
     <div class="container-circle">
@@ -25,7 +33,7 @@
       </div>
 
       <div class="content-circle all-daily-steps">
-        <template v-if="getAllStepsData?.allUserSteps">
+        <template v-if="getAllStepsData?.allUserSteps || getAllStepsData?.allUserSteps === 0">
           <!-- data of all users step of the day -->
           <h1 class="p">Allas steg</h1>
           <p>{{ getAllStepsData.allUserSteps }}</p>
@@ -33,8 +41,11 @@
         <p v-else>Laddar...</p>
       </div>
       <div class="content-circle all-week-steps">
-        <h1 class="h1-s">div 3</h1>
-        <p>Section block</p>
+        <template v-if="getAllStepsWeekData?.stepsCurrWeek || getAllStepsWeekData?.stepsCurrWeek === 0">
+          <h3 class="h1-s">div 3</h3>
+          <p>{{ getAllStepsWeekData.stepsCurrWeek }}</p>
+        </template>
+        <p v-else>Laddar...</p>
       </div>
     </div>
     <p>Icon</p>
@@ -48,10 +59,15 @@
 // state variable
 let userDailyStepsData = useState("userDailyStepsState");
 let getAllStepsData = useState("getAllStepsState");
+let getAllStepsWeekData = useState("getAllStepsWeekState");
+
+getAllStepsWeek();
+console.log(getAllStepsWeekData.stepsCurrWeek, "hey");
 
 // onMounted hook to fetch data
 onMounted(async () => {
   userDailyStepsData.value = await getUserSteps();
   getAllStepsData.value = await getAllSteps();
+  getAllStepsWeekData.value = await getAllStepsWeek();
 });
 </script>
