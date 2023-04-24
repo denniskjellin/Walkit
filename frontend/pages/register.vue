@@ -1,9 +1,7 @@
 <!-- pages/register.vue -->
 <template>
   <!-- Register form -->
-  <div
-    class="main-container"
-  >
+  <div class="main-container">
     <div class="child-container">
       <div class="walkit-logo">
         <LogosLogoSec />
@@ -14,6 +12,18 @@
         <div v-if="errorMsg || successMsg" role="alert" aria-live="assertive">
           <p v-if="errorMsg" class="error-box">{{ errorMsg }}</p>
           <p v-if="successMsg" class="success-box">{{ successMsg }}</p>
+        </div>
+        <div class="input-section">
+          <label class="label-loginreg" for="email"> Namn: </label>
+          <input
+            class="input-loginreg"
+            v-model="full_name"
+            id="full_name"
+            type="text"
+            placeholder="Knowit Knowitsson"
+            aria-label="Namn"
+            required
+          />
         </div>
 
         <div class="input-section">
@@ -74,6 +84,7 @@ import { useRouter } from "vue-router";
 /* initiate variabels */
 const user = useSupabaseUser();
 const email = ref("");
+const full_name = ref("");
 const password = ref("");
 const confirmPassword = ref("");
 const errorMsg = ref("");
@@ -96,7 +107,14 @@ const userRegister = async () => {
     const { error } = await auth.signUp({
       email: email.value,
       password: password.value,
+      options: {
+        data: {
+          full_name: full_name.value,
+        },
+      },
     });
+
+    full_name.value = "";
     email.value = "";
     password.value = "";
     confirmPassword.value = "";
