@@ -64,6 +64,19 @@
             required
           />
         </div>
+        <div class="input-section">
+          <input
+            class="checkbox-input"
+            type="checkbox"
+            id="gdpr-checkbox"
+            v-model="gdprChecked"
+            required
+          />
+          <label class="checkbox-label gdpr" for="gdpr-checkbox">
+            Jag godkänner och samtycker till att mina personuppgifter behandlas enligt
+            enligt GDPR.
+          </label>
+        </div>
         <div class="submit-button-container">
           <button type="submit" class="button-submit" aria-label="Registrera">
             <i class="fa fa-user-plus"></i> Skapa konto
@@ -91,9 +104,19 @@ const errorMsg = ref("");
 const successMsg = ref("");
 const { auth } = useSupabaseAuthClient();
 const router = useRouter();
+const gdprChecked = ref(false);
+
 
 /* function to register user */
 const userRegister = async () => {
+  if (!gdprChecked.value) {
+    errorMsg.value = "Du måste godkänna användarvillkoren och GDPR för att fortsätta.";
+    setTimeout(() => {
+      errorMsg.value = "";
+    }, 3000);
+    return;
+  }
+  
   if (password.value !== confirmPassword.value) {
     errorMsg.value = "Lösenorden matchar inte!";
     password.value = "";
