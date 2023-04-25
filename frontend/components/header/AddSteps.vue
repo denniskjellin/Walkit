@@ -9,7 +9,7 @@
     >
       <!-- <i class="fas fa-plus"></i> -->
 
-      <SvgAddBtnHeader class="BtnHeader" />
+      <SvgAddBtnHeader class="BtnHeader circle" />
     </button>
     <p class="menu-text">Lägg till</p>
   </div>

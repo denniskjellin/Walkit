@@ -48,10 +48,12 @@
     width: 30px;
   }
 
-  /* font awesome icons inside header */
-  .fas.fa-times {
-    font-size: 27px;
+  .circle {
+    margin-right: 1rem;
   }
+
+
+
 
   @media screen and (min-width: 768px) {
     padding: 0 2rem;
@@ -60,5 +62,10 @@
         height: 5rem;
       }
     }
+
+    .circle {
+      margin-right: 0rem;
+    }
+  
   }
 }
