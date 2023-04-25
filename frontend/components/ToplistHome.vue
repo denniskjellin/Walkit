@@ -1,7 +1,7 @@
 <template>
   <div class="toplist-wrapper">
-    <p>Icon</p>
-    <h3 class="h2-s">Top list</h3>
+    <TopListIco class="top-list-ico"/>
+    <h3 class="h2-s">Top 10 </h3>
     <div class="toplist-header">
       <div>
         <span class="toplist-header-order">#</span>
@@ -26,6 +26,8 @@
 </template>
 
 <script setup>
+import TopListIco from './svg/TopList-ico.vue';
+
 let getAllUsersData = useState("getAllUsersState");
 let getToplistStepsData = useState("getToplistStepsState");
 
