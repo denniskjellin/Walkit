@@ -1,18 +1,33 @@
 <template>
-  <p>Icon</p>
-
-  <h3 class="h2-s">Top list</h3>
-  <p>Komponent för tp</p>
-  <!-- <p v-for="user in mapStepsToUser">{{ full_name }} {{ steps }}</p> -->
-  <ul>
-    <li v-for="item in topList">{{ item.full_name }} {{ item.steps }}</li>
-  </ul>
+  <div class="toplist-wrapper">
+    <p>Icon</p>
+    <h3 class="h2-s">Top list</h3>
+    <div class="toplist-header">
+      <div>
+        <span class="toplist-header-order">#</span>
+        Namn
+      </div>
+      <div class="toplist-header-steps">Antal steg</div>
+    </div>
+    <ul class="toplist-list">
+      <li
+        class="toplist-item"
+        v-for="(item, index) in topList"
+        :key="`toplist-${index}`"
+      >
+        <div>
+          <span class="toplist-order">{{ index + 1 }}</span>
+          {{ item.full_name }}
+        </div>
+        {{ item.steps }}
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script setup>
 let getAllUsersData = useState("getAllUsersState");
 let getToplistStepsData = useState("getToplistStepsState");
-
 
 let topList = ref([]);
 
@@ -45,7 +60,6 @@ const mapStepsToUser = (getAllUsersData, getToplistStepsData) => {
         }, 0);
       } else {
         totalStep = 0;
-      
       }
 
       return {
