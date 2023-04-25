@@ -7,7 +7,10 @@
       :aria-expanded="isOpen"
       :aria-label="isOpen ? 'Stäng formulär' : 'Öppna formulär'"
     >
-      <i class="fas fa-plus"></i>
+      <!-- <i class="fas fa-plus"></i> -->
+      <div class="child">
+        <SvgAddBtnHeader class="BtnHeader" />
+      </div>
     </button>
     <p class="menu-text">Lägg till</p>
   </div>

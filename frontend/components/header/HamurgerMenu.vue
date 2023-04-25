@@ -7,7 +7,10 @@
       :aria-expanded="isOpen"
       :aria-label="isOpen ? 'Stäng meny' : 'Öppna meny'"
     >
-      <i class="fas fa-bars"></i>
+      <!-- <i class="fas fa-bars"></i> -->
+      <div class="child">
+      <SvgHambBtnNav class="BtnHeader" />
+    </div>
     </button>
     <p class="menu-text">Meny</p>
   </div>

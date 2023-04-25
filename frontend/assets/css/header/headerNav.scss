@@ -42,11 +42,15 @@
     }
   }
 
+  // styling of hamburger nav and add button for steps in navbar
+  .BtnHeader {
+    height: 30px;
+    width: 30px;
+  }
+
   /* font awesome icons inside header */
-  .fas.fa-times,
-  .fas.fa-bars,
-  .fas.fa-plus {
-    font-size: 24px;
+  .fas.fa-times {
+    font-size: 27px;
   }
 
   @media screen and (min-width: 768px) {
