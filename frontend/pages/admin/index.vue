@@ -69,18 +69,6 @@
               required
             />
           </div>
-          <!-- <div class="input-section">
-            <label class="label-form" for="stepsGoal">Stegmål:</label>
-            <input
-              aria-label="Stegmål"
-              type="number"
-              v-model="stepsGoal"
-              class="input-form"
-              id="stepsGoal"
-              name="stepsGoal"
-              required
-            />
-          </div> -->
           <div class="input-section">
             <label class="label-form" for="km">Total distans/km:</label>
             <input
@@ -173,10 +161,6 @@ const validateInput = () => {
   } else if (to.value.length < 2) {
     errorMsg.value = "Till: Behöver vara minst två tecken.";
     isValid = false;
-  // } else if (stepsGoal.value < 1) {
-  //   errorMsg.value = "Stegmål: Kan inte vara mindre än 1.";
-  //   isValid = false;
-  // } else if (km.value < 1) {
     errorMsg.value = "Total distans: Kan inte vara mindre än 1 km.";
     isValid = false;
   } else if (!start.value) {
@@ -232,19 +216,23 @@ destinations = await fetchDestinations();
 
 // function for converting km to steps
 function kmToSteps(km) {
-  return km* 1400;
+  return km * 1400;
 }
 
 // function for inserting a new destination
 const insertDestination = async (destination) => {
   try {
     const user = useSupabaseUser();
+
+    // Get the user ID
+    const { id: user_id } = user.value;
+    console.log(user_id, "user id");
     if (!user.value) {
       throw new Error("User not logged in");
     }
 
     // Convert km to steps
-    const stepsGoal = kmToSteps(km.value)
+    const stepsGoal = kmToSteps(km.value);
     const { data: destinationData, error: destinationError } = await supabase
       .from("destinations")
       .insert([
@@ -256,6 +244,7 @@ const insertDestination = async (destination) => {
           start: start.value,
           end: end.value,
           is_active: isActive.value,
+          user_id_fk: user_id,
         },
       ]);
 

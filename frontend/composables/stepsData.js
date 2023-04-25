@@ -149,11 +149,11 @@ export const destinationSum = async () => {
     if (error) throw error;
 
     // set return values
-    returnValue.to = destinationSum[0]?.to;
-    returnValue.from = destinationSum[0]?.from;
-    returnValue.steps_goal = destinationSum[0]?.steps_goal;
-    returnValue.is_active = destinationSum[0]?.is_active;
-    returnValue.km = destinationSum[0]?.km;
+    returnValue.to = destinationSum[0].to;
+    returnValue.from = destinationSum[0].from;
+    returnValue.steps_goal = destinationSum[0].steps_goal;
+    returnValue.is_active = destinationSum[0].is_active;
+    returnValue.km = destinationSum[0].km;
     returnValue.errorMsg = "";
   } catch (error) {
     returnValue.errorMsg = "Obs! Kunde inte hämta data.";
