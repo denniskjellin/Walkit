@@ -71,9 +71,7 @@
     <p>Komponent för tp</p>
     <!-- <p v-for="user in mapStepsToUser">{{ full_name }} {{ steps }}</p> -->
     <ul>
-      <li v-for="item in topList">
-        {{ item.full_name }} {{ item.steps }}
-      </li>
+      <li v-for="item in topList">{{ item.full_name }} {{ item.steps }}</li>
     </ul>
   </section>
 </template>
@@ -85,16 +83,18 @@ let getAllStepsData = useState("getAllStepsState");
 let getAllStepsWeekData = useState("getAllStepsWeekState");
 let getAllUsersData = useState("getAllUsersState");
 let getToplistStepsData = useState("getToplistStepsState");
+let errorMsg = ref(null);
 
 let topList = ref([]);
 
 watch(getToplistStepsData, async (newVal, oldVal) => {
   if (newVal) {
-    console.log('steps har uppdaterats, räkna om topplista');
-    topList.value = mapStepsToUser(getAllUsersData.value, getToplistStepsData.value);
+    topList.value = mapStepsToUser(
+      getAllUsersData.value,
+      getToplistStepsData.value
+    );
   }
 });
-
 
 // Map steps to user
 const mapStepsToUser = (getAllUsersData, getToplistStepsData) => {
@@ -103,7 +103,6 @@ const mapStepsToUser = (getAllUsersData, getToplistStepsData) => {
   }
   const users = JSON.parse(JSON.stringify(getAllUsersData.allUsers));
   const steps = JSON.parse(JSON.stringify(getToplistStepsData.allSteps));
-  console.log(steps);
 
   if (users && steps) {
     const usersWithSteps = users.map((user) => {
@@ -117,23 +116,22 @@ const mapStepsToUser = (getAllUsersData, getToplistStepsData) => {
         }, 0);
       } else {
         totalStep = 0;
+        errorMsg = "Inga steg hittades";
       }
-
-      console.log(totalStep, "totalStep");
 
       return {
         ...user,
         steps: totalStep,
       };
     });
-    console.log(usersWithSteps, "hey");
-    
-    return usersWithSteps.sort((a, b) => {
-      return b.steps - a.steps;
-    }).slice(0, 10);
+
+    return usersWithSteps
+      .sort((a, b) => {
+        return b.steps - a.steps;
+      })
+      .slice(0, 10);
   }
 };
-
 
 // onMounted hook to fetch data
 onMounted(async () => {
@@ -142,6 +140,9 @@ onMounted(async () => {
   getAllStepsWeekData.value = await getAllStepsWeek();
   getAllUsersData.value = await getAllUsers();
   getToplistStepsData.value = await getToplistSteps();
-  topList.value = mapStepsToUser(getAllUsersData.value, getToplistStepsData.value);
+  topList.value = mapStepsToUser(
+    getAllUsersData.value,
+    getToplistStepsData.value
+  );
 });
 </script>

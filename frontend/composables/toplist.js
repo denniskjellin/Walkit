@@ -15,7 +15,6 @@ export const getAllUsers = async () => {
     if (error) throw error;
 
     returnValue.allUsers = allUsers;
-    console.log(returnValue.allUsers, "all users");
     return returnValue;
   } catch (error) {
     returnValue.errorMsg = "Obs! Kunde inte hämta data.";
@@ -33,18 +32,16 @@ export const getToplistSteps = async () => {
 
   try {
     const { data: allSteps, error } = await supabase
-    .from("destinations")
-    .select("steps(steps, user_id)")
-    .eq("is_active", true)
-   
+      .from("destinations")
+      .select("steps(steps, user_id)")
+      .eq("is_active", true);
 
     if (error) throw error;
 
     returnValue.allSteps = allSteps[0].steps;
-    console.log(returnValue.allSteps, "all steps");
+
     return returnValue;
   } catch (error) {
     returnValue.errorMsg = "Obs! Kunde inte hämta data.";
   }
 };
-
