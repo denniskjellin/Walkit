@@ -2,8 +2,10 @@
   <header>
     <nav class="main-header">
       <div class="profile-container">
-        <NuxtLink to="/profile" title="Profile page"
-          ><p class="user-circle">{{ userInitials(user.full_name) }}</p>
+        <NuxtLink to="/profile" title="Profile page">
+        <div class="child">
+          <div class="user-circle"><p>{{ userInitials(user.full_name) }}</p></div>
+        </div>
         </NuxtLink>
         <p class="menu-text">{{ userFirst(user.full_name)}}</p>
       </div>

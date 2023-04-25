@@ -28,14 +28,19 @@
 
   // /* profile icon inside header */
   .user-circle {
-    border: solid 1px $black;
     border-radius: 50%;
     background-color: $black;
-    padding: .3rem;
-    width: 100%;
-    color: white;
-  }
+    color: $white;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    p {
+      font-size: 12px;
+    }
+  }
 
   /* font awesome icons inside header */
   .fas.fa-times,
