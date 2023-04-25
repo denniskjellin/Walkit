@@ -8,9 +8,8 @@
       :aria-label="isOpen ? 'Stäng formulär' : 'Öppna formulär'"
     >
       <!-- <i class="fas fa-plus"></i> -->
-      <div class="child">
-        <SvgAddBtnHeader class="BtnHeader" />
-      </div>
+
+      <SvgAddBtnHeader class="BtnHeader" />
     </button>
     <p class="menu-text">Lägg till</p>
   </div>
@@ -22,7 +21,8 @@
       :aria-expanded="isOpen"
       :aria-label="isOpen ? 'Stäng meny' : 'Öppna meny'"
     >
-      <i class="fas fa-times"></i>
+      <!-- <i class="fas fa-times"></i> -->
+      <SvgCloseBtnHeader class="BtnHeader" />
     </button>
     <p class="menu-text">Stäng</p>
   </div>

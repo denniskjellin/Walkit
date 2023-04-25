@@ -22,7 +22,8 @@
       :aria-expanded="isOpen"
       :aria-label="isOpen ? 'Stäng meny' : 'Öppna meny'"
     >
-      <i class="fas fa-times"></i>
+      <!-- <i class="fas fa-times"></i> -->
+      <SvgCloseCrossHeader class="BtnHeader" />
     </button>
     <p class="menu-text">Stäng</p>
   </div>
