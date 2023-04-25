@@ -3,7 +3,7 @@
   <div class="container main">
     <div class="left-column">
       <article>
-        <h1>Lista</h1>
+        <h1 class="h2-s">Destinationer</h1>
         <p v-if="pending">Laddar...</p>
         <section
           v-for="destination in destinations"
@@ -13,18 +13,18 @@
         >
           <!-- Cards with destination information  -->
           <div class="card-container">
-            <h2>Destination</h2>
-            <p>Från: {{ destination.from }}</p>
-            <p>Till: {{ destination.to }}</p>
-            <p>Mål antal steg: {{ destination.steps_goal }}</p>
-            <p>Total distans: {{ destination.km }} km</p>
-            <p>Startdatum: {{ destination.start }}</p>
+            <h2>Destinations information</h2>
+            <p><span class="bold">Från:</span> {{ destination.from }}</p>
+            <p><span class="bold">Till:</span> {{ destination.to }}</p>
+            <p><span class="bold">Antal steg:</span> {{ destination.steps_goal }}</p>
+            <p><span class="bold">Total distans:</span> {{ destination.km }} km</p>
+            <p><span class="bold">Startdatum:</span> {{ destination.start }}</p>
             <p v-if="destination.end !== null">
-              Slutdatum: {{ destination.end }}
+              <span class="bold">Slutdatum:</span> {{ destination.end }}
             </p>
-            <p v-else>Slutdatum: ej bestämt</p>
-            <p v-if="destination.is_active">Aktiv: Aktiv</p>
-            <p v-else>Aktiv: Inaktiv</p>
+            <p v-else><span class="bold">Slutdatum:</span> ej bestämt</p>
+            <p v-if="destination.is_active"><span class="bold">Status:</span> <span class="success-box">Aktiv</span></p>
+            <p v-else><span class="bold">Status:</span> <span class="error-box">Inaktiv</span></p>
             <NuxtLink
               class="btn-primary btn-forest"
               :to="`/admin/${destination.id}`"
@@ -43,7 +43,7 @@
     </div>
     <div class="right-column">
       <section>
-        <h1>Lägg till Destination</h1>
+        <h2 class="h2-s">Lägg till Destination</h2>
         <form class="form-admin" aria-label="Lägg till destination">
           <div class="input-section">
             <label class="label-form" for="from">Från:</label>

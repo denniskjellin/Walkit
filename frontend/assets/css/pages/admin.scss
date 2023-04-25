@@ -9,16 +9,17 @@
   width: 100%;
   margin: 2rem 0rem; // margin from top and bottom
   gap: 3rem;
+  
 
   @media screen and (max-width: 768px) {
     gap: 0rem;
   }
-  
 }
 
 // left column & right column
 .left-column,
 .right-column {
+  
   flex: 1;
   padding: 1rem 1rem;
 }
@@ -43,11 +44,12 @@ article {
 }
 
 .form-admin {
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   min-width: 400px;
 
-  background-color: #f1f1f1;
+  background-color: $white;
   border-radius: 10px;
   padding: 2rem;
 
@@ -96,7 +98,6 @@ article {
   }
 }
 
-
 // end form styling
 
 // Cards
@@ -106,6 +107,8 @@ article {
   transition: 0.3s;
   border-radius: 5px;
   width: 275px;
+  background-color: $white;
+  margin-top: 1rem;
 
   /* On mouse-over, add a deeper shadow */
   .card:hover {
@@ -118,6 +121,8 @@ article {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
   }
 
   @media screen and (max-width: 767px) {
@@ -127,7 +132,9 @@ article {
 
 // If the destination is active, set the bg color of the card to green
 .background-active {
-  background-color: rgba(61, 222, 61, 0.336);
+  background-color: rgba(175, 227, 175, 0.336);
+  border: 2px solid  rgba(61, 222, 61, 0.336);
+  margin-bottom: 2rem;
 }
 
 @media only screen and (max-width: 767px) {
