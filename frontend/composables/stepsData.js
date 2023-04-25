@@ -1,3 +1,4 @@
+// get remaining steps to reach destination
 export const getRemainingStepsData = async () => {
   const supabase = useSupabaseClient();
   let returnValue = {

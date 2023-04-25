@@ -1,4 +1,5 @@
 // Description: This file contains functions to get the sum of all steps for the current day and the current week, used in 'top-listblock.vue'
+
 // function to get the logged in user steps for current day (user-daily-steps)
 export const getUserSteps = async () => {
   const supabase = useSupabaseClient();
@@ -29,9 +30,6 @@ export const getUserSteps = async () => {
       (total, current) => total + current.steps,
       0
     );
-
-    // // format stepsSum as "100 000"
-    // stepsSum = stepsSum.toLocaleString("sv-SE", { minimumFractionDigits: 0 });
 
     // set return values
     returnValue.userSteps = stepsSum;

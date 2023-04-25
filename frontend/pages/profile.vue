@@ -34,6 +34,7 @@
   const { auth } = useSupabaseAuthClient();
   const user = useSupabaseUser();
   
+  // Logout the user
   const userLogout = async () => {
     // Sign out the user
     await auth.signOut();
