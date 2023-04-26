@@ -34,7 +34,6 @@ export const getUser = async () => {
 
     // console.log(returnValue.userFullName, "user full name");
     // console.log(returnValue.initials, "user initials");
-    console.log(user[0].full_name, "user");
     return user[0];
   } catch (error) {
     console.log = "User initials not found";

@@ -26,13 +26,14 @@
 </template>
 
 <script setup>
-import TopListIco from './svg/TopList-ico.vue';
 
+// state variables
 let getAllUsersData = useState("getAllUsersState");
 let getToplistStepsData = useState("getToplistStepsState");
 
 let topList = ref([]);
 
+// Watch for changes in data
 watch(getToplistStepsData, async (newVal, oldVal) => {
   if (newVal) {
     topList.value = mapStepsToUser(
