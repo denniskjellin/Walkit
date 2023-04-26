@@ -1,10 +1,10 @@
 <!-- pages/index.vue -->
 <template>
-
+<ProfileHeroImg />
 </template>
 
 <script setup>
-const { auth } = useSupabaseAuthClient();
+// const { auth } = useSupabaseAuthClient();
 const user = useSupabaseUser();
 
 // Logout the user
