@@ -19,7 +19,7 @@
       :aria-expanded="isOpen"
       :aria-label="isOpen ? 'Stäng meny' : 'Öppna meny'"
     >
-      <SvgCloseBtnHeader class="BtnHeader" />
+      <SvgCloseBtnHeader class="BtnHeader circle" />
     </button>
     <p class="menu-text">Stäng</p>
   </div>

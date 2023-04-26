@@ -1,15 +1,6 @@
 <!-- pages/index.vue -->
 <template>
-  <section v-if="user" class="mt-10 flex justify-center">
-    <div>
-      <button
-        @click="userLogout"
-        class="mt-8 rounded-md bg-[#42b883] px-4 py-2 font-sans font-bold text-[#213547] transition-colors duration-500 hover:bg-[#42d392] focus:outline-none"
-      >
-        logout
-      </button>
-    </div>
-  </section>
+
 </template>
 
 <script setup>
