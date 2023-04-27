@@ -1,6 +1,6 @@
 <template>
   <div class="toplist-wrapper">
-    <TopListIco class="top-list-ico"/>
+    <SvgTopListIco class="top-list-ico" /> 
     <h3 class="h2-s">Top 10 </h3>
     <div class="toplist-header">
       <div>

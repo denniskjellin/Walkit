@@ -23,12 +23,6 @@
 </template>
 
 <script setup>
-// const { data, pending, error, refresh } = await useAsyncData(
-//   'mountains',
-//   () => getUser()
-// )
-
-
 
 const { data: user } = await useAsyncData("user", () => getUser());
 

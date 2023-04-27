@@ -1,23 +1,55 @@
 // Main block //
 .profile-section-block {
-    padding: 5rem 0;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  
-  
-  }
+  padding: 5rem 0;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-  // div for hero-img, placed in component @ProfileHeroImg.vue
-  .profile-hero {
-    width: 100vw;
-  }
+// div for hero-img, placed in component @ProfileHeroImg.vue
+.profile-hero {
+  width: 100vw;
+}
 
-  // img class, images located in component @ProfileHeroImg.vue
-  .profile-hero-img {
-    width: 100%;
-    max-height: 500px;
-    object-fit: cover;
-  }
+// set color $forest on text located in variables.scss
+.forest {
+  color: $forest;
+}
+
+// img class, images located in component @ProfileHeroImg.vue
+.profile-hero-img {
+  width: 100%;
+  max-height: 500px;
+  min-height: 220px;
+  object-fit: cover;
+}
+// user info top section
+.user-info {
+  background-color: $white;
+  padding: 6.125rem 0rem 3rem 0rem;
+  position: relative;
+}
+
+// Container for cirles with data, index.vue
+.container-circle-profile {
+  display: flex;
+  flex-direction: column;
+
+}
+
+// Circle component, index.vue
+.circle-profile {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $sand;
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+
+  border: solid 10px $white;
+  top: -5.5rem;
+}
