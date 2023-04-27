@@ -29,13 +29,19 @@ let totalWalkedData = useState("totalWalkedData");
 
 // computed property to calculate percentage
 let percentage = computed(() => {
-  if (!totalStepsData.value || !totalWalkedData.value) return null;
 
+  if (!totalStepsData?.value || !totalWalkedData?.value) return null;
+
+  let totalWalkedStepsSum = totalWalkedData.value?.totalWalked.reduce(
+      (total, current) => total + current.steps,
+      0
+  );
   // math function to calculate percentage
   return Math.floor(
-    (totalWalkedData.value.totalWalked / totalStepsData.value.totalSteps) * 100
+    (totalWalkedStepsSum / totalStepsData.value.totalSteps) * 100
   );
 });
+
 
 // onMounted hook to fetch data
 onMounted(async () => {

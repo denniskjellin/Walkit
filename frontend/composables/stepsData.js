@@ -108,18 +108,18 @@ export const getTotalWalked = async () => {
     // Get all steps for the active destination
     const { data: stepsData, error: stepsError } = await supabase
       .from("steps")
-      .select("steps")
+      .select("steps, date")
       .eq("destination_id", destinationId);
 
     if (stepsError) throw stepsError;
 
     // Sumary of all steps added to the active destination
-    const totalSteps = stepsData.reduce(
-      (total, current) => total + current.steps,
-      0
-    );
+    // const totalSteps = stepsData.reduce(
+    //   (total, current) => total + current.steps,
+    //   0
+    // );
 
-    returnValue.totalWalked = totalSteps;
+    returnValue.totalWalked = stepsData;
   } catch (error) {
     returnValue.errorMsg = "Obs! Kunde inte hämta data.";
   }

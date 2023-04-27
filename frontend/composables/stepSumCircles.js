@@ -83,6 +83,7 @@ export const getAllSteps = async () => {
   } catch (error) {
     returnValue.errorMsg = "Obs! Kunde inte hämta data.";
   }
+
   return returnValue;
 };
 
@@ -200,3 +201,4 @@ export const getAllStepsWeekUser = async () => {
   console.log(returnValue.stepsCurrWeekUser, "stepsCurrWeekUser");
   return returnValue;
 };
+

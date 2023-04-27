@@ -100,12 +100,13 @@
   justify-content: center;
   align-items: center;
   background-color: $white;
-  width: 210px;
-  height: 210px;
+  width: 220px;
+  height: 220px;
   padding: 2rem;
   margin: 1rem;
   border-radius: 50%;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+
  
 
   @media screen and (min-width: 820px) {
@@ -114,11 +115,11 @@
 }
 
 .user-daily-steps {
-border: solid 1px $loli;
+  border: solid 1px $pear;
 }
 
 .all-daily-steps {
-border: solid 1px $pear;
+border: solid 1px $loli;
 }
 
 .all-week-steps {

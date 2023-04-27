@@ -4,7 +4,7 @@
     <SvgGoalprogIco class="homepage-svg" />
     <h2 class="h2-s">Avverkat:</h2>
     <!-- if got data show it, else show 'laddar'  -->
-    <p v-if="totalWalkedData">{{ numberToSweString(totalWalkedData.totalWalked) }} steg</p>
+    <p v-if="totalWalkedStepsSum">{{ numberToSweString(totalWalkedStepsSum) }} steg</p>
     <p v-else>Laddar...</p>
     <!-- if error msg, show -->
     <p
@@ -21,4 +21,13 @@
 <script setup>
 // import state variable
 let totalWalkedData = useState("totalWalkedData");
+
+let totalWalkedStepsSum = computed(() => {
+  return totalWalkedData.value?.totalWalked?.reduce(
+      (total, current) => total + current.steps,
+      0
+    );
+})
+   
+
 </script>
