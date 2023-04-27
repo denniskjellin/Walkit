@@ -138,3 +138,65 @@ export const getAllStepsWeek = async () => {
 
   return returnValue;
 };
+
+// function to get all user steps for current week (all-weekly-steps)
+export const getAllStepsWeekUser = async () => {
+  const supabase = useSupabaseClient();
+  const user = useSupabaseUser();
+  if (!user.value) {
+    throw new Error("User not logged in");
+  }
+
+  // Get the user ID
+  const { id: user_id } = user.value;
+  let returnValue = {
+    stepsCurrWeekUser: 0,
+    errorMsg: "",
+    weekStart: "",
+    currentWeekNumber: "",
+  };
+
+  // Get the current week number
+  const now = new Date(); // current date
+  const weekStart = 1; // 1 = Monday as start day (0 = Sunday)
+  const day = now.getDay(); // current day
+  const diffDay = now.getDate() - day + (day === 0 ? -6 : weekStart); // correct for day 0 (sunday)
+  const startOfWeek = new Date(now.setDate(diffDay)); // set the date to the first day of the week
+  const endOfWeek = new Date(now.setDate(startOfWeek.getDate() + 6));
+
+  // Get the current week number to write out on screen
+  let currentWeekNumber = getWeek(startOfWeek);
+  function getWeek(date) {
+    const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
+    const pastDaysOfYear = (date - firstDayOfYear) / 86400000;
+    return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+  }
+
+  try {
+    // Query the database for steps in the current week
+    const { data: stepsCurrWeekUser, error } = await supabase
+      .from("steps")
+      .select("steps")
+      .eq("user_id", user_id)
+      .gte("date", startOfWeek.toISOString())
+      .lte("date", endOfWeek.toISOString())
+      .order("date");
+
+    if (error) throw error;
+
+    // Sum all steps for the current week
+    let stepsSumUser = stepsCurrWeekUser.reduce(
+      (total, current) => total + current.steps,
+      0
+    );
+    // set return values
+    returnValue.stepsCurrWeekUser = stepsSumUser;
+    returnValue.errorMsg = "";
+    returnValue.currentWeekNumber = currentWeekNumber;
+  } catch (error) {
+    returnValue.errorMsg = "Obs! Kunde inte hämta data.";
+  }
+
+  console.log(returnValue.stepsCurrWeekUser, "stepsCurrWeekUser");
+  return returnValue;
+};
