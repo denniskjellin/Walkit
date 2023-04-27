@@ -23,7 +23,7 @@
   }
   
   
-  console.log(userData, "hey")
+
   // Logout the user
   const userLogout = async () => {
     // Sign out the user
