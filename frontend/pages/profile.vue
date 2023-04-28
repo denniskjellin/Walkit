@@ -3,7 +3,7 @@
   <ProfileHeroImg />
   <div class="profile-section-block user-info">
     <div class="container-circle-profile circle-profile">
-      <h2 class="h1-s forest">{{ userInitials(userData.full_name) }}</h2>
+      <h1 class="h1-s forest">{{ userInitials(userData.full_name) }}</h1>
     </div>
     <p>{{ userData.full_name }}</p>
     <p>{{ user.email }}</p>

@@ -53,3 +53,23 @@
   border: solid 10px $white;
   top: -5.5rem;
 }
+
+.content-circle-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $white;
+  width: 185px;
+  height: 185px;
+  padding: 2rem;
+  margin: 1rem;
+  border-radius: 50%;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+
+ 
+
+  @media screen and (min-width: 820px) {
+    margin: 2rem;
+  }
+}
