@@ -37,7 +37,6 @@ export const getUserSteps = async () => {
     // set return values
     returnValue.userSteps = stepsSum;
     returnValue.errorMsg = "";
-    //   console.log(returnValue.userSteps, "dagens steg!");
   } catch (error) {
     returnValue.errorMsg = "Obs! Kunde inte hämta data.";
   }
@@ -198,7 +197,57 @@ export const getAllStepsWeekUser = async () => {
     returnValue.errorMsg = "Obs! Kunde inte hämta data.";
   }
 
-  console.log(returnValue.stepsCurrWeekUser, "stepsCurrWeekUser");
   return returnValue;
 };
 
+// function to get all user steps for current month (all-monthly-steps) // showed and used in @SummaryCirclesProfile
+export const getUserMonthlySteps = async () => {
+  const supabase = useSupabaseClient();
+  const user = useSupabaseUser();
+  if (!user.value) {
+    throw new Error("User not logged in");
+  }
+
+  // Get the user ID
+  const { id: user_id } = user.value;
+  let returnValue = {
+    stepsCurrMonthUser: 0,
+    errorMsg: "",
+    month: "",
+  };
+
+  const now = new Date(); // current date
+  const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
+  const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+  // const currentMonth = now.toLocaleString("default", { month: "long" });
+  const currentMonth = now.toLocaleString("default", { month: "long" });
+  const capitalizedMonth =
+    currentMonth.charAt(0).toUpperCase() + currentMonth.slice(1);
+
+  try {
+    // Query the database for steps in the current month
+    const { data: stepsCurrMonthUser, error } = await supabase
+      .from("steps")
+      .select("steps, date")
+      .eq("user_id", user_id)
+      .gt("date", firstDay.toISOString().split("T")[0]) // greater than or equal to first day of current month
+      .lte("date", lastDay.toISOString().split("T")[0]); // less than or equal to last day of current month
+
+    if (error) throw error;
+
+    // Sum all steps for the current month
+    let stepsSumUser = stepsCurrMonthUser.reduce(
+      (total, current) => total + current.steps,
+      0
+    );
+
+    // set return values
+    returnValue.month = capitalizedMonth;
+    returnValue.stepsCurrMonthUser = stepsSumUser;
+    returnValue.errorMsg = "";
+  } catch (error) {
+    returnValue.errorMsg = "Obs! Kunde inte hämta data.";
+  }
+
+  return returnValue;
+};
