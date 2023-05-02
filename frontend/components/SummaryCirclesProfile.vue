@@ -51,7 +51,7 @@
           <p>Laddar...</p>
         </template>
       </div>
-      <div class="content-circle-profile all-daily-steps">
+      <div class="content-circle-profile all-profile-steps">
         <template
           v-if="
             userAllTimeStepsData?.stepsAllTimeUser ||
