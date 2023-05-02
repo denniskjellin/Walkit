@@ -1,6 +1,6 @@
 // Main block //
 .profile-section-block {
-  padding: 5rem 0;
+  padding: 2rem 0;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -32,11 +32,15 @@
   position: relative;
 }
 
-// Container for cirles with data, index.vue
+// Container for cirles with data, @SummaryCirclesProfile.vue
 .container-circle-profile {
   display: flex;
   flex-direction: column;
+}
 
+// section of circles with profile stats
+.profile-sum-circle {
+  background-color: $sand;
 }
 
 // Circle component, index.vue
@@ -67,9 +71,14 @@
   border-radius: 50%;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
 
- 
-
   @media screen and (min-width: 820px) {
     margin: 2rem;
   }
+}
+
+// svg icon in profile stats section
+.foot-ico {
+
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
 }

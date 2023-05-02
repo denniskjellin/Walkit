@@ -1,5 +1,6 @@
 <template>
-  <section class="section-block section-top-list">
+  <section class="profile-section-block profile-sum-circle">
+  <SvgFoot-ico class="foot-ico"/>
     <!-- error msg if statement -->
     <p
       v-if="
