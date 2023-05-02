@@ -2,12 +2,20 @@
   <section class="section-block section-top-list">
     <!-- error msg if statement -->
     <p
-      v-if="userDailyStepsData?.errorMsg || userMonthlyStepsData?.errorMsg"
+      v-if="
+        userDailyStepsData?.errorMsg ||
+        userMonthlyStepsData?.errorMsg ||
+        userAllTimeStepsData?.errorMsg
+      "
       class="error-box center"
       role="alert"
       aria-live="assertive"
     >
-      {{ userDailyStepsData.errorMsg || userMonthlyStepsData.errorMsg }}
+      {{
+        userDailyStepsData.errorMsg ||
+        userMonthlyStepsData.errorMsg ||
+        userAllTimeStepsData.errorMsg
+      }}
     </p>
 
     <div class="container-circle">
@@ -29,7 +37,12 @@
       </div>
 
       <div class="content-circle-profile all-daily-steps">
-        <template v-if="userMonthlyStepsData?.stepsCurrMonthUser">
+        <template
+          v-if="
+            userMonthlyStepsData?.stepsCurrMonthUser ||
+            userMonthlyStepsData?.stepsCurrMonthUser === 0
+          "
+        >
           <h3 class="p">Dina steg i {{ userMonthlyStepsData.month }}</h3>
           <p class="p-circle">{{ userMonthlyStepsData?.stepsCurrMonthUser }}</p>
           <!-- data of all users step of the day -->
@@ -38,13 +51,21 @@
           <p>Laddar...</p>
         </template>
       </div>
-      <!-- <div class="content-circle-profile all-week-steps">
-        <h3 class="p">Dina totalt</h3>
-        <template>
-          <h3 class="p"></h3>
-          <p class="p-circle"></p>
+      <div class="content-circle-profile all-daily-steps">
+        <template
+          v-if="
+            userAllTimeStepsData?.stepsAllTimeUser ||
+            userAllTimeStepsData?.stepsAllTimeUser === 0
+          "
+        >
+          <h3 class="p">Dina steg totalt</h3>
+          <p class="p-circle">{{ userAllTimeStepsData?.stepsAllTimeUser }}</p>
+          <!-- data of all users step of the day -->
         </template>
-      </div> -->
+        <template v-else>
+          <p>Laddar...</p>
+        </template>
+      </div>
     </div>
   </section>
 </template>
@@ -53,10 +74,12 @@
 // state variable
 let userDailyStepsData = useState("userDailyStepsState");
 let userMonthlyStepsData = useState("userMonthlyStepsState");
+let userAllTimeStepsData = useState("userAllTimeStepsState");
 
 // onMounted hook to fetch data
 onMounted(async () => {
   userDailyStepsData.value = await getUserSteps();
   userMonthlyStepsData.value = await getUserMonthlySteps();
+  userAllTimeStepsData.value = await getAllTimeStepsUser();
 });
 </script>

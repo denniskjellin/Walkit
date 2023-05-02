@@ -251,3 +251,45 @@ export const getUserMonthlySteps = async () => {
 
   return returnValue;
 };
+
+// get all steps ever for current user (all-time-steps)
+export const getAllTimeStepsUser = async () => {
+  const supabase = useSupabaseClient();
+  const user = useSupabaseUser();
+
+  // return values
+  let returnValue = {
+    stepsAllTimeUser: 0,
+    errorMsg: "",
+  };
+  if (!user.value) {
+    throw new Error("User not logged in");
+  }
+
+  // Get the user ID
+  const { id: user_id } = user.value;
+
+  // Query the database for steps in the current week
+  try {
+    const { data: stepsAllTimeUser, error } = await supabase
+      .from("steps")
+      .select("steps")
+      .eq("user_id", user_id);
+
+    if (error) throw error;
+
+    // Sum all steps for the user
+    let stepsSumUser = stepsAllTimeUser.reduce(
+      (total, current) => total + current.steps,
+      0
+    );
+
+    // set return values
+    returnValue.stepsAllTimeUser = stepsSumUser;
+    returnValue.errorMsg = "";
+  } catch (error) {
+    returnValue.errorMsg = "Obs! Kunde inte hämta data.";
+  }
+
+  return returnValue;
+};

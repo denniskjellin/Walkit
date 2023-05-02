@@ -35,7 +35,7 @@
       </div>
       <div class="content-circle user-daily-steps">
         <!-- data of logged in users step of the day -->
-        <template v-if="averageStepsPerDay !== null">
+        <template v-if="averageStepsPerDay !== null || averageStepsPerDay === 0">
           <h3 class="p">Allas steg i snitt / dag</h3>
           <p class="p-circle">
             {{ numberToSweString(averageStepsPerDay) }}

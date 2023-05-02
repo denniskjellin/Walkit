@@ -8,6 +8,7 @@
 <script setup>
 // const { auth } = useSupabaseAuthClient();
 const user = useSupabaseUser();
+getAllTimeStepsUser();
 
 // Logout the user
 const userLogout = async () => {

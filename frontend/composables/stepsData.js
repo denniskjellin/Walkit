@@ -113,12 +113,6 @@ export const getTotalWalked = async () => {
 
     if (stepsError) throw stepsError;
 
-    // Sumary of all steps added to the active destination
-    // const totalSteps = stepsData.reduce(
-    //   (total, current) => total + current.steps,
-    //   0
-    // );
-
     returnValue.totalWalked = stepsData;
   } catch (error) {
     returnValue.errorMsg = "Obs! Kunde inte hämta data.";
