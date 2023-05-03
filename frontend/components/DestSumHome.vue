@@ -16,7 +16,6 @@
     <p
       v-if="totalWalkedData?.errorMsg"
       class="error-box center"
-      role="alert"
       aria-live="assertive"
     >
       {{ totalWalkedData.errorMsg }}

@@ -1,7 +1,7 @@
 <template>
   <section class="toplist-wrapper" aria-label="toplista över mest steg">
     <SvgTopListIco class="top-list-ico" />
-    <h3 class="h2-s">Top 10</h3>
+    <h2 class="h2-s">Top 10</h2>
     <div class="toplist-header">
       <div>
         <span class="toplist-header-order">#</span>

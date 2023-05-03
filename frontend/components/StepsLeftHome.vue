@@ -10,7 +10,6 @@
       <p
         v-if="remainingStepsData?.errorMsg"
         class="error-box center"
-        role="alert"
         aria-live="assertive"
       >
         {{ remainingStepsData.errorMsg }}

@@ -3,6 +3,7 @@
     class="section-block section-percentage"
     aria-label="Procentuell progression mot destinationsmålet"
   >
+    <h2 class="visually-hidden">Procentuellt av målet som är uppnått</h2>
     <!-- writing out the % accomplished towards the destination -->
     <SvgPercentblockIco class="homepage-svg" />
     <template v-if="percentage">
