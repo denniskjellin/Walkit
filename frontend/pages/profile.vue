@@ -7,28 +7,27 @@
 </template>
 
 <script setup>
-// const { auth } = useSupabaseAuthClient();
-const user = useSupabaseUser();
-getAllTimeStepsUser();
+// // const { auth } = useSupabaseAuthClient();
+// const user = useSupabaseUser();
 
-// Logout the user
-const userLogout = async () => {
-  // Sign out the user
-  await auth.signOut();
+// // Logout the user
+// const userLogout = async () => {
+//   // Sign out the user
+//   await auth.signOut();
 
-  // Redirect to the login page if the user is not signed in
-  watchEffect(() => {
-    if (!user.value) {
-      return navigateTo("/login");
-    }
-  });
-  // Redirect to the home page if the user is signed in
-};
+//   // Redirect to the login page if the user is not signed in
+//   watchEffect(() => {
+//     if (!user.value) {
+//       return navigateTo("/login");
+//     }
+//   });
+//   // Redirect to the home page if the user is signed in
+// };
 
-definePageMeta({
-  middleware: "auth",
-  layout: "default",
-});
+// definePageMeta({
+//   middleware: "auth",
+//   layout: "default",
+// });
 </script>
 
 <style lang="scss" scoped></style>

@@ -23,21 +23,8 @@ export const getUser = async () => {
 
     if (error) throw error;
 
-    // returnValue.user = userFullName[0].full_name;
-
-    // get initials of the user
-    // const fullNameArray = returnValue.userFullName.split(" ");
-    // const firstName = fullNameArray[0];
-    // const lastName = fullNameArray[fullNameArray.length - 1];
-    // const initials = firstName[0] + lastName[0];
-    // returnValue.initials = initials.toUpperCase();
-
-    // console.log(returnValue.userFullName, "user full name");
-    // console.log(returnValue.initials, "user initials");
     return user[0];
   } catch (error) {
     console.log = "User initials not found";
   }
-
 };
-

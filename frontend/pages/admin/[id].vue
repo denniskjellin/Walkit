@@ -52,18 +52,7 @@
               required
             />
           </div>
-          <!-- <div class="input-section">
-            <label class="label-form" for="stepsGoal">Stegmål:</label>
-            <input
-              aria-label="Stegmål"
-              type="number"
-              v-model="stepsGoal"
-              class="input-form"
-              id="stepsGoal"
-              name="stepsGoal"
-              required
-            />
-          </div> -->
+
           <div class="input-section">
             <label class="label-form" for="km">Total distans/km:</label>
             <input

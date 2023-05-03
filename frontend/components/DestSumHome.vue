@@ -9,7 +9,7 @@
     <!-- if got data show it, else show 'laddar'  -->
 
     <template v-if="totalWalkedStepsSum || totalWalkedStepsSum === 0">
-      <p>{{ totalWalkedStepsSum }}</p>
+      <p>{{ numberToSweString(totalWalkedStepsSum) }} steg</p>
     </template>
     <p v-else>Laddar...</p>
     <!-- if error msg, show -->

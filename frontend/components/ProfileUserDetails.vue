@@ -1,10 +1,11 @@
 <template>
   <section class="profile-section-block user-info" aria-label="Användarinformation">
+    <h1 class="visually-hidden">Användarinformation</h1>
     <div class="container-circle-profile circle-profile">
-      <h1 class="h1-s forest">{{ userInitials(userData.full_name) }}</h1>
+      <h2 class="h1-s forest">{{ userInitials(userData?.full_name) }}</h2>
     </div>
-    <p>{{ userData.full_name }}</p>
-    <p>{{ user.email }}</p>
+    <p>{{ userData?.full_name }}</p>
+    <p>{{ user?.email }}</p>
   </section>
 </template>
 
