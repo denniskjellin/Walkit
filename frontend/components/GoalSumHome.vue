@@ -22,5 +22,5 @@
 </template>
 
 <script setup>
-let destinationSumData = await destinationSum(); //Läs på om useAsyncData
+let destinationSumData = await destinationSum();
 </script>
