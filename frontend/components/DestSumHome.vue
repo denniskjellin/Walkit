@@ -1,5 +1,8 @@
 <template>
-  <section class="section-block section-goalprog">
+  <section
+    class="section-block section-goalprog"
+    aria-label="Antal steg avverkade sektion"
+  >
     <!-- svg icon -->
     <SvgGoalprogIco class="homepage-svg" />
     <h2 class="h2-s">Avverkat:</h2>
@@ -24,7 +27,7 @@
 <script setup>
 // import state variable
 let totalWalkedData = useState("totalWalkedData");
-
+// import computed variable
 let totalWalkedStepsSum = computed(() => {
   return totalWalkedData.value?.totalWalked?.reduce(
     (total, current) => total + current.steps,

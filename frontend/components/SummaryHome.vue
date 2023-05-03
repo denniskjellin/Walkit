@@ -1,5 +1,8 @@
 <template>
-  <section class="section-block section-top-list">
+  <section
+    class="section-block section-top-list"
+    aria-label="Summering av steg statistik"
+  >
     <!-- error msg if statement -->
     <p
       v-if="
@@ -19,47 +22,58 @@
     </p>
 
     <div class="container-circle">
-      <div class="content-circle all-daily-steps">
+      <section
+        class="content-circle all-daily-steps"
+        aria-label="Allas steg idag"
+      >
         <template
           v-if="
             getAllStepsData?.allUserSteps || getAllStepsData?.allUserSteps === 0
           "
         >
           <!-- data of all users step of the day -->
-          <h3 class="p">Allas steg idag</h3>
+          <h2 class="p">Allas steg idag</h2>
           <p class="p-circle">
             {{ numberToSweString(getAllStepsData.allUserSteps) }}
           </p>
         </template>
         <p v-else>Laddar...</p>
-      </div>
-      <div class="content-circle user-daily-steps">
+      </section>
+      <section
+        class="content-circle user-daily-steps"
+        aria-label="Allas steg i snitt per dag"
+      >
         <!-- data of logged in users step of the day -->
-        <template v-if="averageStepsPerDay !== null || averageStepsPerDay === 0">
-          <h3 class="p">Allas steg i snitt / dag</h3>
+        <template
+          v-if="averageStepsPerDay !== null || averageStepsPerDay === 0"
+        >
+          <h2 class="p">Allas steg i snitt / dag</h2>
           <p class="p-circle">
             {{ numberToSweString(averageStepsPerDay) }}
           </p>
         </template>
         <p v-else>Laddar...{{ numberToSweString(averageStepsPerDay) }}</p>
-      </div>
+      </section>
 
-      <div class="content-circle all-week-steps">
+      <section
+        class="content-circle all-week-steps"
+        aria-label="Allas steg per vecka"
+      >
         <template
           v-if="
             getAllStepsWeekData?.stepsCurrWeek ||
             getAllStepsWeekData?.stepsCurrWeek === 0
           "
         >
-          <h3 class="p">
+          <h2 class="p">
             Allas steg vecka .{{ getAllStepsWeekData.currentWeekNumber }}
-          </h3>
+          </h2>
           <p class="p-circle">
             {{ numberToSweString(getAllStepsWeekData.stepsCurrWeek) }}
           </p>
         </template>
         <p v-else>Laddar...</p>
-      </div>
+      </section>
     </div>
     <ToplistHome />
   </section>

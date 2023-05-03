@@ -1,6 +1,6 @@
 <template>
   <div class="content-div">
-    <section class="section-block steps-left">
+    <section class="section-block steps-left" aria-label="Antal steg kvar till destinationen">
       <h2 v-if="remainingStepsData" class="h1-s bold confetti-h2">
         {{ numberToSweString(remainingStepsData.remainingSteps) }}<SvgConfetti class="confetti-icon" />
       </h2>

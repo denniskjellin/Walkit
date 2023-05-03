@@ -1,5 +1,5 @@
 <template>
     <div class="profile-hero">
-        <img class="profile-hero-img " src="~/assets/images/hero-profile.svg" alt="Grupp av människor vandrar på en skogsstig en solig dag." />
+        <img class="profile-hero-img " src="~/assets/images/hero-profile.svg" alt="" /> <!-- Hero image, empty alt since the image is decorative only -->
     </div>
 </template>

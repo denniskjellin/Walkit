@@ -1,6 +1,9 @@
 <template>
-  <section class="profile-section-block profile-sum-circle">
-  <SvgFoot-ico class="foot-ico"/>
+  <section
+    class="profile-section-block profile-sum-circle"
+    aria-label="Sammanfattning av steg statistik"
+  >
+    <SvgFoot-ico class="foot-ico" />
     <!-- error msg if statement -->
     <p
       v-if="
@@ -9,7 +12,6 @@
         userAllTimeStepsData?.errorMsg
       "
       class="error-box center"
-      role="alert"
       aria-live="assertive"
     >
       {{
@@ -20,14 +22,17 @@
     </p>
 
     <div class="container-circle">
-      <div class="content-circle-profile user-daily-steps">
+      <section
+        class="content-circle-profile user-daily-steps"
+        aria-label="Dina steg idag"
+      >
         <!-- data of logged in users step of the day -->
         <template
           v-if="
             userDailyStepsData?.userSteps || userDailyStepsData?.userSteps === 0
           "
         >
-          <h3 class="p">Dina steg idag</h3>
+          <h2 class="p">Dina steg idag</h2>
           <p class="p-circle">
             {{ numberToSweString(userDailyStepsData.userSteps) }}
           </p>
@@ -35,38 +40,44 @@
         <template v-else>
           <p>Laddar...</p>
         </template>
-      </div>
+      </section>
 
-      <div class="content-circle-profile all-daily-steps">
+      <section
+        class="content-circle-profile all-daily-steps"
+        aria-label="Dina steg nuvarande månad"
+      >
         <template
           v-if="
             userMonthlyStepsData?.stepsCurrMonthUser ||
             userMonthlyStepsData?.stepsCurrMonthUser === 0
           "
         >
-          <h3 class="p">Dina steg i {{ userMonthlyStepsData.month }}</h3>
+          <h2 class="p">Dina steg i {{ userMonthlyStepsData.month }}</h2>
           <p class="p-circle">{{ userMonthlyStepsData?.stepsCurrMonthUser }}</p>
           <!-- data of all users step of the day -->
         </template>
         <template v-else>
           <p>Laddar...</p>
         </template>
-      </div>
-      <div class="content-circle-profile all-profile-steps">
+      </section>
+      <section
+        class="content-circle-profile all-profile-steps"
+        aria-label="Dina steg totalt"
+      >
         <template
           v-if="
             userAllTimeStepsData?.stepsAllTimeUser ||
             userAllTimeStepsData?.stepsAllTimeUser === 0
           "
         >
-          <h3 class="p">Dina steg totalt</h3>
+          <h2 class="p">Dina steg totalt</h2>
           <p class="p-circle">{{ userAllTimeStepsData?.stepsAllTimeUser }}</p>
           <!-- data of all users step of the day -->
         </template>
         <template v-else>
           <p>Laddar...</p>
         </template>
-      </div>
+      </section>
     </div>
   </section>
 </template>

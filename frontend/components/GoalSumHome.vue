@@ -1,5 +1,8 @@
 <template>
-  <section class="section-block section-goal">
+  <section
+    class="section-block section-goal"
+    aria-label="Information om destinationsmålet"
+  >
     <SvgGoalblockIco class="homepage-svg" />
     <h2 class="h2-s">Målet:</h2>
     <!-- if got data, show it - else show 'laddar' -->

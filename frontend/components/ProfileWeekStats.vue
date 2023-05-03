@@ -1,11 +1,18 @@
 <template>
-  <div class="profile-section-block week-stats">
-    <div class="toplist-wrapper profile-weekly-stats">
+  <section
+    class="profile-section-block week-stats"
+    aria-label="Statistik för pågående vecka"
+  >
+    <h2 class="visually-hidden">Vecko statistik</h2>
+    <section
+      class="toplist-wrapper profile-weekly-stats"
+      aria-label="Steg per dag för pågående vecka"
+    >
       <SvgTopListIco class="top-list-ico" />
       <template v-if="getUserWeeklyStatsData">
-        <h3 class="h2-s">
+        <h2 class="h2-s">
           Dina steg v.{{ getUserWeeklyStatsData?.currentWeekNumber }}
-        </h3>
+        </h2>
         <div class="toplist-header">
           <div>Datum</div>
           <div class="toplist-header-steps">Antal steg</div>
@@ -32,8 +39,8 @@
       >
         {{ getUserWeeklyStatsData.errorMsg }}
       </p>
-    </div>
-  </div>
+    </section>
+  </section>
 </template>
 
 <script setup>

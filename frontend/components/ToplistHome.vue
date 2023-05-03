@@ -1,7 +1,7 @@
 <template>
-  <div class="toplist-wrapper">
-    <SvgTopListIco class="top-list-ico" /> 
-    <h3 class="h2-s">Top 10 </h3>
+  <section class="toplist-wrapper" aria-label="toplista över mest steg">
+    <SvgTopListIco class="top-list-ico" />
+    <h3 class="h2-s">Top 10</h3>
     <div class="toplist-header">
       <div>
         <span class="toplist-header-order">#</span>
@@ -22,11 +22,10 @@
         {{ item.steps }}
       </li>
     </ul>
-  </div>
+  </section>
 </template>
 
 <script setup>
-
 // state variables
 let getAllUsersData = useState("getAllUsersState");
 let getToplistStepsData = useState("getToplistStepsState");
