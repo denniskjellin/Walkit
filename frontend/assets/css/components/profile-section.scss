@@ -53,7 +53,6 @@
   width: 175px;
   height: 175px;
   border-radius: 50%;
-
   border: solid 10px $white;
   top: -5.5rem;
 }
@@ -78,12 +77,14 @@
 
 // svg icon in profile stats section
 .foot-ico {
-
   margin-bottom: 0.5rem;
   margin-top: 1rem;
 }
 
 // section with weekly stats for profile
+/*
+Steps per day for current week, has the same styling as toplist on index.vue, styling lives in @topListHome.scss
+*/
 .week-stats {
   background-color: $clay;
 }
