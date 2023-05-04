@@ -1,0 +1,39 @@
+.hover-accessibility {
+  position: relative;
+}
+
+.hover-accessibility::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background-color: $loli;
+  transition: width 0.3s ease-out, left 0.3s ease-out;
+  transform: translateX(-0%);
+}
+
+.hover-accessibility:hover::before {
+  width: 100%;
+  left: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .hover-accessibility::before {
+    content: none;
+    position: static;
+    bottom: auto;
+    left: auto;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    transition: none;
+    transform: none;
+  }
+
+  .hover-accessibility:hover::before {
+    width: 100%;
+    left: 0;
+  }
+}

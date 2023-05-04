@@ -1,7 +1,7 @@
 <!-- This component is imported in HeaderNavComponent, its extra CSS lies in HeaderNavComp.css -->
 <template>
   <!-- Fold out form add Steps -->
-  <div v-if="!isOpen" class="child">
+  <div v-if="!isOpen" class="child hover-accessibility">
     <button
       @click="($event) => (isOpen = !isOpen)"
       :aria-expanded="isOpen"
@@ -12,7 +12,7 @@
     <p class="menu-text">Lägg till</p>
   </div>
   <!-- If Add steps is open, show the close button -->
-  <div v-else class="child">
+  <div v-else class="child ">
     <button
       id="menu-button"
       @click="isOpen = !isOpen"

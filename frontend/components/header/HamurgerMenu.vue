@@ -1,6 +1,6 @@
 <template>
   <!-- Hamburger button and close button for menu -->
-  <div class="child" v-if="!isOpen">
+  <div class="child hover-accessibility" v-if="!isOpen">
     <button
       id="menu-button"
       @click="isOpen = !isOpen"

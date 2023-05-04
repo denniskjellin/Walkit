@@ -1,10 +1,10 @@
 <template>
   <header>
     <nav class="main-header">
-      <div class="profile-container">
+      <div class="profile-container hover-accessibility">
         <NuxtLink to="/profile" title="Profile page">
         <div class="child">
-          <div class="user-circle"><p>{{ userInitials(user.full_name) }}</p></div>
+          <div class="user-circle "><p>{{ userInitials(user.full_name) }}</p></div>
         </div>
         </NuxtLink>
         <p class="menu-text">{{ userFirst(user.full_name)}}</p>
