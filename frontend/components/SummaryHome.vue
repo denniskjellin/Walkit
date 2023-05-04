@@ -65,7 +65,7 @@
           "
         >
           <h2 class="p">
-            Allas steg vecka .{{ getAllStepsWeekData.currentWeekNumber }}
+            Allas steg vecka {{ getAllStepsWeekData.currentWeekNumber }}
           </h2>
           <p class="p-circle">
             {{ numberToSweString(getAllStepsWeekData.stepsCurrWeek) }}

@@ -19,6 +19,7 @@
         <input
           required
           class="input-add-steps-form"
+          min="0"
           id="steps"
           type="number"
           v-model="steps"
@@ -54,7 +55,8 @@
 const supabase = useSupabaseClient();
 
 // initiate variables
-const date = ref(null);
+const todayDate = new Date().toISOString().slice(0, 10); // set todays date as default
+const date = ref(todayDate);
 const steps = ref(0);
 const errorMsg = ref("");
 const successMsg = ref("");

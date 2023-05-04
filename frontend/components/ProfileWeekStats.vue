@@ -11,7 +11,7 @@
       <SvgTopListIco class="top-list-ico" />
       <template v-if="getUserWeeklyStatsData">
         <h2 class="h2-s">
-          Dina steg v.{{ getUserWeeklyStatsData?.currentWeekNumber }}
+          Dina steg vecka {{ getUserWeeklyStatsData?.currentWeekNumber }}
         </h2>
         <div class="toplist-header">
           <div>Datum</div>

@@ -36,15 +36,14 @@
     aria-labelledby="menu-label"
   >
     <div id="menu-label" class="sr-only">Huvudmeny</div>
-    <a aria-label="Min profil" href="#" id="profil-menu-item" class="nav-links"
+    <a aria-label="Min profil" href="/profile" id="profil-menu-item" class="nav-links"
       >Profil</a
     >
     <hr class="pink-line" />
     <a aria-label="Aktivitetslista" class="nav-links" href="#"
       >Aktivitetslista</a
     >
-    <hr class="pink-line" />
-    <a aria-label="Om" href="#" class="nav-links">Om</a>
+
     <hr class="pink-line" />
     <a href="#" class="nav-logout" @click="userLogout">Logga ut</a>
     <hr />
