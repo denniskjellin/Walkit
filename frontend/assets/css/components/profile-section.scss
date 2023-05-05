@@ -1,6 +1,6 @@
 // Main block //
 .profile-section-block {
-  padding: 2rem 0;
+  padding: 2rem 0rem;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -43,20 +43,6 @@
   background-color: $sand;
 }
 
-// Circle component, index.vue
-.circle-profile {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: $sand;
-  width: 175px;
-  height: 175px;
-  border-radius: 50%;
-  border: solid 10px $white;
-  top: -5.5rem;
-}
-
 .content-circle-profile {
   display: flex;
   flex-direction: column;
@@ -87,4 +73,5 @@ Steps per day for current week, has the same styling as toplist on index.vue, st
 */
 .week-stats {
   background-color: $clay;
+  padding: 6rem 0rem;
 }

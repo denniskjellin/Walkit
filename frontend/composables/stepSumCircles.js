@@ -158,7 +158,6 @@ export const getUserMonthlySteps = async () => {
   const now = new Date(); // current date
   const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
   const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
-  // const currentMonth = now.toLocaleString("default", { month: "long" });
   const currentMonth = now.toLocaleString("default", { month: "long" });
   const capitalizedMonth =
     currentMonth.charAt(0).toUpperCase() + currentMonth.slice(1);
