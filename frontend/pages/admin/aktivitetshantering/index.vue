@@ -1,7 +1,32 @@
 <!-- admin page-->
 <template>
   <div class="container main">
-    <div class="left-column"></div>
+    <div class="left-column">
+      <article>
+        <h1 class="h2-s">Aktiviteter</h1>
+        <!-- <p v-if="pending">Laddar...</p> -->
+        <section v-for="activities in activities" :key="activity.id" class="card">
+          <div class="card-container">
+            <h2>Aktiviteter</h2>
+            <p><span class="bold">Aktivitet:</span> {{ activities.activity }}</p>
+            <p><span class="bold">Stegvärde - 30 min:</span> {{ activities.step_value }}</p>
+
+            <NuxtLink
+              class="btn-primary btn-forest"
+              :to="`/admin/aktivitetshantering/${activities.id}`"
+            >
+              Redigera <i class="fas fa-edit"></i>
+            </NuxtLink>
+            <button
+              class="btn-primary btn-danger"
+              @click="deleteActivity(activities.id)"
+            >
+              Ta bort <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+        </section>
+      </article>
+    </div>
     <div class="right-column">
       <section>
         <h2 class="h2-s">Lägg till Aktivitet</h2>
@@ -110,6 +135,7 @@ const insertActivity = async () => {
       if (insertError) throw insertError;
       if (!insertError) {
         successMsg.value = "Aktivitet tillagd!";
+        activities = await fetchActivities();
       }
 
       setTimeout(() => {
@@ -125,6 +151,53 @@ const insertActivity = async () => {
     return [];
   }
 };
+
+const fetchActivities = async () => {
+  try {
+    let { data: activities, error } = await supabase
+      .from("activities")
+      .select("*");
+
+    if (error) throw error;
+    if (!error) {
+      return activities;
+    }
+  } catch (error) {
+    // set a custom error message
+    errorMsg.value = "Det gick inte att hämta aktiviteter just nu.";
+    return [];
+  }
+};
+
+// delete activity
+const deleteActivity = async (id) => {
+  try {
+    if (
+      confirm("Är du säker på att du vill radera? Detta går ej att ångra!") ==
+      true
+    ) {
+      const { error } = await supabase.from("activities").delete().eq("id", id);
+
+      if (error) throw error;
+      if (!error) {
+        successMsg.value = "Aktivitet borttagen!";
+        activities = await fetchActivities();
+      }
+
+      setTimeout(() => {
+        successMsg.value = "";
+      }, 2000);
+    }
+  } catch (error) {
+    // set a custom error message
+    errorMsg.value = "Det gick inte att ta bort aktivitet just nu.";
+    return [];
+  }
+};
+
+let activities = [];
+activities = await fetchActivities();
+console.log(activities);
 </script>
 
 <style lang="scss" scoped>

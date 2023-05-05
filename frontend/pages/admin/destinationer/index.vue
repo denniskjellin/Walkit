@@ -214,6 +214,7 @@ const fetchDestinations = async () => {
 let destinations = [];
 destinations = await fetchDestinations();
 
+
 // function for converting km to steps
 function kmToSteps(km) {
   return km * 1400;
