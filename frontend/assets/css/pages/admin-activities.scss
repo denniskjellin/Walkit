@@ -5,6 +5,7 @@
   justify-content: center;
   margin: 2rem 0rem; // margin from top and bottom
 
+
   .top-column {
     height: 300px;
     margin-bottom: 4rem;
@@ -27,7 +28,7 @@
     margin: 0.5rem;
 
     @media screen and (max-width: 767px) {
-      width: 360px;
+        width: 360px;
     }
 
     /* On mouse-over, add a deeper shadow */
@@ -36,7 +37,7 @@
     }
   }
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 767px) {
     .bottom-row {
       flex-direction: column;
     }
