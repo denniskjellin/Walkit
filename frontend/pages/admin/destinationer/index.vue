@@ -1,46 +1,6 @@
 <!-- admin page-->
 <template>
   <div class="container main">
-    <div class="left-column">
-      <article>
-        <h1 class="h2-s">Destinationer</h1>
-        <p v-if="pending">Laddar...</p>
-        <section
-          v-for="destination in destinations"
-          :key="destination.id"
-          class="card"
-          :class="destination.is_active ? 'background-active' : ''"
-        >
-          <!-- Cards with destination information  -->
-          <div class="card-container">
-            <h2>Destinations information</h2>
-            <p><span class="bold">Från:</span> {{ destination.from }}</p>
-            <p><span class="bold">Till:</span> {{ destination.to }}</p>
-            <p><span class="bold">Antal steg:</span> {{ destination.steps_goal }}</p>
-            <p><span class="bold">Total distans:</span> {{ destination.km }} km</p>
-            <p><span class="bold">Startdatum:</span> {{ destination.start }}</p>
-            <p v-if="destination.end !== null">
-              <span class="bold">Slutdatum:</span> {{ destination.end }}
-            </p>
-            <p v-else><span class="bold">Slutdatum:</span> ej bestämt</p>
-            <p v-if="destination.is_active"><span class="bold">Status:</span> <span class="success-box">Aktiv</span></p>
-            <p v-else><span class="bold">Status:</span> <span class="error-box">Inaktiv</span></p>
-            <NuxtLink
-              class="btn-primary btn-forest"
-              :to="`/admin/destinationer/${destination.id}`"
-            >
-              Redigera <i class="fas fa-edit"></i>
-            </NuxtLink>
-            <button
-              class="btn-primary btn-danger"
-              @click="hideDestination(destination.id)"
-            >
-              Ta bort <i class="fas fa-trash-alt"></i>
-            </button>
-          </div>
-        </section>
-      </article>
-    </div>
     <div class="right-column">
       <section>
         <h2 class="h2-s">Lägg till Destination</h2>
@@ -132,6 +92,46 @@
           </button>
         </form>
       </section>
+    </div>
+    <div class="left-column">
+      <article>
+        <h1 class="h2-s">Destinationer</h1>
+        <p v-if="pending">Laddar...</p>
+        <section
+          v-for="destination in destinations"
+          :key="destination.id"
+          class="card"
+          :class="destination.is_active ? 'background-active' : ''"
+        >
+          <!-- Cards with destination information  -->
+          <div class="card-container">
+            <h2>Destinations information</h2>
+            <p><span class="bold">Från:</span> {{ destination.from }}</p>
+            <p><span class="bold">Till:</span> {{ destination.to }}</p>
+            <p><span class="bold">Antal steg:</span> {{ destination.steps_goal }}</p>
+            <p><span class="bold">Total distans:</span> {{ destination.km }} km</p>
+            <p><span class="bold">Startdatum:</span> {{ destination.start }}</p>
+            <p v-if="destination.end !== null">
+              <span class="bold">Slutdatum:</span> {{ destination.end }}
+            </p>
+            <p v-else><span class="bold">Slutdatum:</span> ej bestämt</p>
+            <p v-if="destination.is_active"><span class="bold">Status:</span> <span class="success-box">Aktiv</span></p>
+            <p v-else><span class="bold">Status:</span> <span class="error-box">Inaktiv</span></p>
+            <NuxtLink
+              class="btn-primary btn-forest"
+              :to="`/admin/destinationer/${destination.id}`"
+            >
+              Redigera <i class="fas fa-edit"></i>
+            </NuxtLink>
+            <button
+              class="btn-primary btn-danger"
+              @click="hideDestination(destination.id)"
+            >
+              Ta bort <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+        </section>
+      </article>
     </div>
   </div>
 </template>
