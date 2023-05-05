@@ -161,6 +161,7 @@ const validateInput = () => {
   } else if (to.value.length < 2) {
     errorMsg.value = "Till: Behöver vara minst två tecken.";
     isValid = false;
+  } else if (km.value < 1) {
     errorMsg.value = "Total distans: Kan inte vara mindre än 1 km.";
     isValid = false;
   } else if (!start.value) {
@@ -176,6 +177,7 @@ const validateInput = () => {
 
   return isValid;
 };
+
 
 // function fetch destinations from Supabase
 const fetchDestinations = async () => {
