@@ -115,8 +115,8 @@
               <span class="bold">Slutdatum:</span> {{ destination.end }}
             </p>
             <p v-else><span class="bold">Slutdatum:</span> ej bestämt</p>
-            <p v-if="destination.is_active"><span class="bold">Status:</span> <span class="success-box">Aktiv</span></p>
-            <p v-else><span class="bold">Status:</span> <span class="error-box">Inaktiv</span></p>
+            <div class="textual" v-if="destination.is_active"><span class="bold">Status:</span> <span class="success-box">Aktiv</span></div>
+            <div class="textual" v-else><span class="bold">Status:</span> <span class="error-box">Inaktiv</span></div>
             <NuxtLink
               class="btn-primary btn-forest"
               :to="`/admin/destinationer/${destination.id}`"
