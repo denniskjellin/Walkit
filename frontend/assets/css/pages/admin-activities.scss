@@ -1,4 +1,44 @@
-.background-activities {
+.container-main-activities {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0rem; // margin from top and bottom
+
+  .top-column {
+    height: 300px;
+    margin-bottom: 4rem;
+  }
+
+  .bottom-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+  }
+
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    width: 275px;
     background-color: $white;
-    padding: 1rem;
+    margin: 0.5rem;
+
+    @media screen and (max-width: 767px) {
+      width: 360px;
+    }
+
+    /* On mouse-over, add a deeper shadow */
+    .card:hover {
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    .bottom-row {
+      flex-direction: column;
+    }
+  }
 }

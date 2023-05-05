@@ -1,79 +1,78 @@
 <!-- admin page-->
 <template>
-  <div class="container main">
-    <div class="left-column">
-      <article>
-        <h1 class="h2-s">Aktiviteter</h1>
-        <!-- <p v-if="pending">Laddar...</p> -->
-        <section v-for="activities in activities" :key="activity.id" class="card">
-          <div class="card-container">
-            <h2>Aktiviteter</h2>
-            <p><span class="bold">Aktivitet:</span> {{ activities.activity }}</p>
-            <p><span class="bold">Stegvärde - 30 min:</span> {{ activities.step_value }}</p>
+  <div class="container-main-activities">
+    <h1 class="h2-s">Lägg till Aktivitet</h1>
+    <div class="top-column">
+      <form class="form-admin" aria-label="Lägg till aktivitet">
+        <div class="input-section">
+          <label class="label-form" for="activity">Aktivitetsnamn:</label>
+          <input
+            aria-label="Aktivitetsnamn"
+            v-model="activity"
+            class="input-form"
+            type="text"
+            id="activity"
+            name="activity"
+            required
+          />
+        </div>
 
-            <NuxtLink
-              class="btn-primary btn-forest"
-              :to="`/admin/aktivitetshantering/${activities.id}`"
-            >
-              Redigera <i class="fas fa-edit"></i>
-            </NuxtLink>
-            <button
-              class="btn-primary btn-danger"
-              @click="deleteActivity(activities.id)"
-            >
-              Ta bort <i class="fas fa-trash-alt"></i>
-            </button>
-          </div>
-        </section>
-      </article>
-    </div>
-    <div class="right-column">
-      <section>
-        <h2 class="h2-s">Lägg till Aktivitet</h2>
-        <form class="form-admin" aria-label="Lägg till aktivitet">
-          <div class="input-section">
-            <label class="label-form" for="activity">Aktivitetsnamn:</label>
-            <input
-              aria-label="Aktivitetsnamn"
-              v-model="activity"
-              class="input-form"
-              type="text"
-              id="activity"
-              name="activity"
-              required
-            />
-          </div>
-
-          <div class="input-section">
-            <label class="label-form" for="step_value"
-              >Stegvärde per 30 minut:</label
-            >
-            <input
-              aria-label="Stegvärde per 30 minut"
-              v-model="step_value"
-              class="input-form"
-              type="number"
-              min="0"
-              id="step_value"
-              name="step_value"
-              required
-            />
-          </div>
-          <!-- error msg div, aria assertive  -->
-          <div v-if="errorMsg || successMsg" role="alert" aria-live="assertive">
-            <p v-if="errorMsg" class="error-box">{{ errorMsg }}</p>
-            <p v-if="successMsg" class="success-box steps">{{ successMsg }}</p>
-          </div>
-
-          <!-- add destination button -->
-          <button
-            @click.prevent="insertActivity"
-            class="btn-primary btn-forest"
-            aria-label="Lägg till destination"
+        <div class="input-section">
+          <label class="label-form" for="step_value"
+            >Stegvärde per 30 minut:</label
           >
-            Lägg till <i class="fas fa-plus"></i>
+          <input
+            aria-label="Stegvärde per 30 minut"
+            v-model="step_value"
+            class="input-form"
+            type="number"
+            min="0"
+            id="step_value"
+            name="step_value"
+            required
+          />
+        </div>
+        <!-- error msg div, aria assertive  -->
+        <div v-if="errorMsg || successMsg" role="alert" aria-live="assertive">
+          <p v-if="errorMsg" class="error-box">{{ errorMsg }}</p>
+          <p v-if="successMsg" class="success-box steps">{{ successMsg }}</p>
+        </div>
+
+        <!-- add destination button -->
+        <button
+          @click.prevent="insertActivity"
+          class="btn-primary btn-forest"
+          aria-label="Lägg till destination"
+        >
+          Lägg till <i class="fas fa-plus"></i>
+        </button>
+      </form>
+    </div>
+
+    <div class="bottom-row">
+      <!-- <p v-if="pending">Laddar...</p> -->
+      <section v-for="activities in activities" :key="activity.id" class="card">
+        <div class="card-container">
+          <h2>Aktiviteter</h2>
+          <p><span class="bold">Aktivitet:</span> {{ activities.activity }}</p>
+          <p>
+            <span class="bold">Stegvärde - 30 min:</span>
+            {{ activities.step_value }}
+          </p>
+
+          <NuxtLink
+            class="btn-primary btn-forest"
+            :to="`/admin/aktivitetshantering/${activities.id}`"
+          >
+            Redigera <i class="fas fa-edit"></i>
+          </NuxtLink>
+          <button
+            class="btn-primary btn-danger"
+            @click="deleteActivity(activities.id)"
+          >
+            Ta bort <i class="fas fa-trash-alt"></i>
           </button>
-        </form>
+        </div>
       </section>
     </div>
   </div>
