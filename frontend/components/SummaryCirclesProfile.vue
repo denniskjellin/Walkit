@@ -53,7 +53,7 @@
           "
         >
           <h2 class="p">Dina steg i {{ userMonthlyStepsData.month }}</h2>
-          <p class="p-circle">{{ userMonthlyStepsData?.stepsCurrMonthUser }}</p>
+          <p class="p-circle">{{ numberToSweString(userMonthlyStepsData?.stepsCurrMonthUser) }}</p>
           <!-- data of all users step of the day -->
         </template>
         <template v-else>
@@ -71,7 +71,7 @@
           "
         >
           <h2 class="p">Dina steg totalt</h2>
-          <p class="p-circle">{{ userAllTimeStepsData?.stepsAllTimeUser }}</p>
+          <p class="p-circle">{{ numberToSweString(userAllTimeStepsData?.stepsAllTimeUser) }}</p>
           <!-- data of all users step of the day -->
         </template>
         <template v-else>
