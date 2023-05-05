@@ -1,55 +1,55 @@
 // form styling
 .label-form {
-    display: block;
-    color: #4a5568;
-    font-weight: 600;
-    margin-bottom: 0.2rem;
+  display: block;
+  color: #4a5568;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.label-form-checkbox {
+  @extend .label-form;
+  display: unset;
+  color: #4a5568;
+  margin-right: 0.5rem;
+}
+
+.form-admin {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 400px;
+  background-color: $white;
+  border-radius: 10px;
+  padding: 2rem;
+  min-height: 300px;
+
+  @media only screen and (max-width: 767px) {
+    min-width: 350px;
+    max-width: 350px;
   }
-  
-  .label-form-checkbox {
-    @extend .label-form;
-    display: unset;
-    color: #4a5568;
-    margin-right: 0.5rem;
-  }
-  
-  .form-admin {
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    min-width: 400px;
-    background-color: $white;
-    border-radius: 10px;
-    padding: 2rem;
-    min-height: 300px;
-  
-    @media only screen and (max-width: 767px) {
-      min-width: 365px;
-      max-width: 365px;
-    }
-  }
-  
-  .input-form {
-    width: 100%;
-    color: #4a5568;
-    line-height: 1.25;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border-radius: 0.25rem;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
-    outline: none;
-  }
-  
-  .input-form[type="text"]:focus,
-  .input-form[type="password"]:focus,
-  .input-form[type="number"]:focus,
-  .input-form[type="date"]:focus {
-    border: 2px solid #555;
-  }
-  
-  .input-section {
-    margin-bottom: 0.2rem;
-  }
+}
+
+.input-form {
+  width: 100%;
+  color: #4a5568;
+  line-height: 1.25;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+
+.input-form[type="text"]:focus,
+.input-form[type="password"]:focus,
+.input-form[type="number"]:focus,
+.input-form[type="date"]:focus {
+  border: 2px solid #555;
+}
+
+.input-section {
+  margin-bottom: 0.2rem;
+}
