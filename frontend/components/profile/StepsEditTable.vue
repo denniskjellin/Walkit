@@ -15,7 +15,8 @@
         </h2>
         <div class="toplist-header">
           <div>Datum</div>
-          <div class="toplist-header-steps">Antal steg</div>
+          <div>Antal steg</div>
+          <div class="toplist-header-steps">Redigera</div>
         </div>
         <ul class="toplist-list">
           <li
@@ -42,7 +43,6 @@
       </p>
     </section>
   </section>
-  <p>{{ getUserWeeklyStatsData }}</p>
 </template>
 
 <script setup>
