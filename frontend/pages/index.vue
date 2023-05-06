@@ -1,10 +1,10 @@
 <!-- pages/index.vue -->
 <template>
-  <StepsLeftHome />
-  <PercentbarHome />
-  <GoalSumHome />
-  <DestSumHome />
-  <SummaryHome />
+  <HomeIndexStepsLeftHome />
+  <HomeIndexPercentbarHome />
+  <HomeIndexGoalSumHome />
+  <HomeIndexDestSumHome />
+  <HomeIndexSummaryHome />
 </template>
 
 <script setup>

@@ -74,7 +74,7 @@
         <p v-else>Laddar...</p>
       </section>
     </div>
-    <ToplistHome />
+    <HomeIndexToplistHome />
   </section>
 </template>
 
