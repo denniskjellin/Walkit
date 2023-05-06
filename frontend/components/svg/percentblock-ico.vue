@@ -1,6 +1,5 @@
 <template>
   <svg
-    class="percentblock-ico"
     width="40"
     height="50"
     viewBox="0 0 40 50"

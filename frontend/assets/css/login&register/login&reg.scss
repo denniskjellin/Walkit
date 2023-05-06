@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   padding: 0 1rem;
-  background: linear-gradient(to right, #A8ADA8, #4B6455, #374C3F);
+  background: linear-gradient(to right, #a8ada8, #4b6455, #374c3f);
 
   @media (min-width: 640px) {
     .sm\:px-6 {
@@ -42,6 +42,10 @@
 
 .input-section {
   margin-bottom: 1rem;
+}
+
+.checkbox-input {
+  margin-top: 1rem;
 }
 
 .password {

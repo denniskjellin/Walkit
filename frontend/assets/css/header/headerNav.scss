@@ -26,12 +26,38 @@
     }
   }
 
-  /* font awesome icons inside header */
-  .fas.fa-times,
-  .fas.fa-bars,
-  .fas.fa-plus,
-  .fas.fa-user {
-    font-size: 24px;
+  // /* profile icon inside header */
+  .user-circle {
+    border-radius: 50%;
+    background-color: $black;
+    color: $pear;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (min-width: 768px) {
+      margin-top: 1rem;
+    }
+
+    p {
+      font-size: 12px;
+    }
+  }
+
+  // styling of hamburger nav and add button for steps in navbar
+  .BtnHeader {
+    height: 30px;
+    width: 30px;
+
+    @media screen and (min-width: 768px) {
+      margin-top: 1rem;
+    }
+  }
+
+  .circle {
+    margin-right: 1rem;
   }
 
   @media screen and (min-width: 768px) {
@@ -40,6 +66,10 @@
       svg {
         height: 5rem;
       }
+    }
+
+    .circle {
+      margin-right: 0rem;
     }
   }
 }

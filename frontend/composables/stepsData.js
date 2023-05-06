@@ -1,4 +1,5 @@
-export const getRemainingSteps = async () => {
+// get remaining steps to reach destination
+export const getRemainingStepsData = async () => {
   const supabase = useSupabaseClient();
   let returnValue = {
     remainingSteps: 0,
@@ -49,16 +50,16 @@ export const getRemainingSteps = async () => {
     const remainingStepsValue = stepsGoal - totalSteps;
     returnValue.remainingSteps = remainingStepsValue;
   } catch (error) {
-    returnValue.errorMsg = "Kunde inte hämta antal steg";
+    returnValue.errorMsg = "Obs! Kunde inte hämta data.";
   }
 
   return returnValue;
 };
 
+// total amount of steps to reach destination
 export const getTotalSteps = async () => {
   const supabase = useSupabaseClient();
   let returnValue = {
-    // steps_goal: 0,
     totalSteps: 0,
     errorMsg: "",
   };
@@ -74,14 +75,14 @@ export const getTotalSteps = async () => {
 
     if (!destinationData[0]?.steps_goal) throw destinationError;
     returnValue.totalSteps = destinationData[0]?.steps_goal;
-
   } catch (error) {
-    returnValue.errorMsg = "Något gick fel.. :(";
+    returnValue.errorMsg = "Obs! Kunde inte hämta data.";
   }
 
   return returnValue;
 };
 
+// total amount of walked steps towards the active destination
 export const getTotalWalked = async () => {
   const supabase = useSupabaseClient();
   let returnValue = {
@@ -94,8 +95,7 @@ export const getTotalWalked = async () => {
     const { data: activeDestinations, error } = await supabase
       .from("destinations")
       .select("id")
-      .eq("is_active", true)
-      
+      .eq("is_active", true);
 
     if (error) throw error;
 
@@ -108,25 +108,49 @@ export const getTotalWalked = async () => {
     // Get all steps for the active destination
     const { data: stepsData, error: stepsError } = await supabase
       .from("steps")
-      .select("steps")
+      .select("steps, date")
       .eq("destination_id", destinationId);
 
     if (stepsError) throw stepsError;
 
-    // Sumary of all steps added to the active destination
-    const totalSteps = stepsData.reduce(
-      (total, current) => total + current.steps,
-      0
-    );
-
-    returnValue.totalWalked = totalSteps;
-    console.log(totalSteps, "totala steg boi")
+    returnValue.totalWalked = stepsData;
   } catch (error) {
-    returnValue.errorMsg = "Kunde inte hämta antal steg";
+    returnValue.errorMsg = "Obs! Kunde inte hämta data.";
   }
 
   return returnValue;
-}
+};
 
+// summary of destination
+export const destinationSum = async () => {
+  const supabase = useSupabaseClient();
 
+  let returnValue = {
+    to: "",
+    from: "",
+    steps_goal: 0,
+    is_active: false,
+    km: 0,
+    errorMsg: "",
+  };
 
+  try {
+    const { data: destinationSum, error } = await supabase
+      .from("destinations")
+      .select("to, from, steps_goal, is_active, km")
+      .eq("is_active", true);
+
+    if (error) throw error;
+
+    // set return values
+    returnValue.to = destinationSum[0].to;
+    returnValue.from = destinationSum[0].from;
+    returnValue.steps_goal = destinationSum[0].steps_goal;
+    returnValue.is_active = destinationSum[0].is_active;
+    returnValue.km = destinationSum[0].km;
+    returnValue.errorMsg = "";
+  } catch (error) {
+    returnValue.errorMsg = "Obs! Kunde inte hämta data.";
+  }
+  return returnValue;
+};

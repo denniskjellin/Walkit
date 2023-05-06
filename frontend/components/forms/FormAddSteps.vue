@@ -19,6 +19,7 @@
         <input
           required
           class="input-add-steps-form"
+          min="0"
           id="steps"
           type="number"
           v-model="steps"
@@ -54,11 +55,22 @@
 const supabase = useSupabaseClient();
 
 // initiate variables
-const date = ref(null);
+const todayDate = new Date().toISOString().slice(0, 10); // set todays date as default
+const date = ref(todayDate);
 const steps = ref(0);
 const errorMsg = ref("");
 const successMsg = ref("");
-let remainingStepsData = useState('remainingStepsData');
+let remainingStepsData = useState("remainingStepsState");
+let totalStepsData = useState("totalStepsData");
+let totalWalkedData = useState("totalWalkedData");
+let userDailyStepsData = useState("userDailyStepsState");
+let getAllStepsData = useState("getAllStepsState");
+let getAllStepsWeekData = useState("getAllStepsWeekState");
+let getAllUsersData = useState("getAllUsersState");
+let getToplistStepsData = useState("getToplistStepsState");
+let getUserMonthlyStepsData = useState("userMonthlyStepsState");
+let getAllTimeStepsUserData = useState("userAllTimeStepsState");
+let getUserWeeklyStatsData = useState("getUserWeeklyStatsState");
 
 // function to insert steps
 const insertSteps = async () => {
@@ -89,7 +101,7 @@ const insertSteps = async () => {
       errorMsg.value = "Det finns inga aktiva destinationer!";
       setTimeout(() => {
         errorMsg.value = "";
-      }, 8000);
+      }, 7000);
     }
 
     // Check if the steps value is valid
@@ -97,7 +109,7 @@ const insertSteps = async () => {
       errorMsg.value = "Antal steg måste vara 1 eller högre!";
       setTimeout(() => {
         errorMsg.value = "";
-      }, 8000);
+      }, 7000);
       return;
     }
 
@@ -108,7 +120,7 @@ const insertSteps = async () => {
       errorMsg.value = "Du kan inte lägga till steg för framtida datum!";
       setTimeout(() => {
         errorMsg.value = "";
-      }, 8000);
+      }, 7000);
       return;
     }
 
@@ -128,22 +140,32 @@ const insertSteps = async () => {
     if (stepsError) throw stepsError;
     successMsg.value = "Stegen har lagts till!";
 
-    
-    remainingStepsData.value  = await getRemainingSteps();
+    // Update the remaining steps
+    remainingStepsData.value = await getRemainingStepsData();
+    totalStepsData.value = await getTotalSteps();
+    totalWalkedData.value = await getTotalWalked();
+    userDailyStepsData.value = await getUserSteps();
+    getAllStepsData.value = await getAllSteps();
+    getAllStepsWeekData.value = await getAllStepsWeek();
+    getAllUsersData.value = await getAllUsers();
+    getToplistStepsData.value = await getToplistSteps();
+    getUserMonthlyStepsData.value = await getUserMonthlySteps();
+    getAllTimeStepsUserData.value = await getAllTimeStepsUser();
+    getUserWeeklyStatsData.value = await getUserWeeklyStats();
 
     setTimeout(() => {
       successMsg.value = "";
       errorMsg.value = "";
       date.value = null;
       steps.value = 0;
-    }, 2000);
+    }, 1000);
   } catch (error) {
     // set a custom error message
     errorMsg.value = "Ops, någonting gick fel!";
     setTimeout(() => {
       errorMsg.value = "";
       successMsg.value = "";
-    }, 8000);
+    }, 7000);
   }
 };
 </script>

@@ -1,11 +1,13 @@
 <template>
   <header>
     <nav class="main-header">
-      <div class="profile-container">
-        <NuxtLink to="/profile" title="Profile page"
-          ><i class="fas fa-user"></i>
+      <div class="profile-container hover-accessibility">
+        <NuxtLink to="/profile" title="Profile page">
+        <div class="child">
+          <div class="user-circle "><p>{{ userInitials(user.full_name) }}</p></div>
+        </div>
         </NuxtLink>
-        <p class="menu-text">Profil</p>
+        <p class="menu-text">{{ userFirst(user.full_name)}}</p>
       </div>
       <NuxtLink to="/" class="walkit-logo">
         <LogosLogoMain />
@@ -20,8 +22,24 @@
   </header>
 </template>
 
-<script>
+<script setup>
+
+const { data: user } = await useAsyncData("user", () => getUser());
+
+function userInitials(name) {
+  const names = name.split(" ");
+  return names[0].charAt(0) + names[1].charAt(0);
+}
+
+function userFirst(name) {
+  const names = name.split(" ");
+  return names[0];
+}
+
+
+
 
 </script>
 
 <style lang="css" scoped></style>
+

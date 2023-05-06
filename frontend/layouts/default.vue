@@ -1,6 +1,6 @@
 <template>
   <!-- content wrapper, pushes footer to bottom -->
-  <div class="wrapper">
+  <div class="wrapper body">
     <!--Import of Header Navigation-->
     <HeaderNav />
     <main>
@@ -12,8 +12,8 @@
   </div>
 </template>
 
-<script>
-/* Placeholder */
+<script setup>
+
 </script>
 
 <style scoped>

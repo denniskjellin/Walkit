@@ -1,9 +1,7 @@
 <!-- pages/register.vue -->
 <template>
   <!-- Register form -->
-  <div
-    class="main-container"
-  >
+  <div class="main-container">
     <div class="child-container">
       <div class="walkit-logo">
         <LogosLogoSec />
@@ -14,6 +12,18 @@
         <div v-if="errorMsg || successMsg" role="alert" aria-live="assertive">
           <p v-if="errorMsg" class="error-box">{{ errorMsg }}</p>
           <p v-if="successMsg" class="success-box">{{ successMsg }}</p>
+        </div>
+        <div class="input-section">
+          <label class="label-loginreg" for="email"> Namn: </label>
+          <input
+            class="input-loginreg"
+            v-model="full_name"
+            id="full_name"
+            type="text"
+            placeholder="Knowit Knowitsson"
+            aria-label="Namn"
+            required
+          />
         </div>
 
         <div class="input-section">
@@ -54,6 +64,19 @@
             required
           />
         </div>
+        <div class="input-section">
+          <input
+            class="checkbox-input"
+            type="checkbox"
+            id="gdpr-checkbox"
+            v-model="gdprChecked"
+            required
+          />
+          <label class="checkbox-label gdpr" for="gdpr-checkbox">
+            Jag godkänner och samtycker till att mina personuppgifter behandlas enligt
+            enligt GDPR.
+          </label>
+        </div>
         <div class="submit-button-container">
           <button type="submit" class="button-submit" aria-label="Registrera">
             <i class="fa fa-user-plus"></i> Skapa konto
@@ -74,15 +97,26 @@ import { useRouter } from "vue-router";
 /* initiate variabels */
 const user = useSupabaseUser();
 const email = ref("");
+const full_name = ref("");
 const password = ref("");
 const confirmPassword = ref("");
 const errorMsg = ref("");
 const successMsg = ref("");
 const { auth } = useSupabaseAuthClient();
 const router = useRouter();
+const gdprChecked = ref(false);
+
 
 /* function to register user */
 const userRegister = async () => {
+  if (!gdprChecked.value) {
+    errorMsg.value = "Du måste godkänna användarvillkoren och GDPR för att fortsätta.";
+    setTimeout(() => {
+      errorMsg.value = "";
+    }, 3000);
+    return;
+  }
+  
   if (password.value !== confirmPassword.value) {
     errorMsg.value = "Lösenorden matchar inte!";
     password.value = "";
@@ -96,7 +130,14 @@ const userRegister = async () => {
     const { error } = await auth.signUp({
       email: email.value,
       password: password.value,
+      options: {
+        data: {
+          full_name: full_name.value,
+        },
+      },
     });
+
+    full_name.value = "";
     email.value = "";
     password.value = "";
     confirmPassword.value = "";

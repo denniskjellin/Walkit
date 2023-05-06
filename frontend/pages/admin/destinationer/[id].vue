@@ -2,30 +2,40 @@
   <div class="container">
     <div class="left-column">
       <section>
-        <h1>Vald destination</h1>
+        <h1 class="h2-s">Vald destination</h1>
         <div
           class="card"
           :class="destination.is_active ? 'background-active' : ''"
         >
           <div class="card-container">
-            <p>Från: {{ destination.from }}</p>
-            <p>Till: {{ destination.to }}</p>
-            <p>Mål antal steg: {{ destination.steps_goal }}</p>
-            <p>Total distans: {{ destination.km }} km</p>
-            <p>Startdatum: {{ destination.start }}</p>
-            <p v-if="destination.end !== null">
-              Slutdatum: {{ destination.end }}
+            <p><span class="bold">Från:</span> {{ destination.from }}</p>
+            <p><span class="bold">Till:</span> {{ destination.to }}</p>
+            <p>
+              <span class="bold">Antal steg:</span> {{ destination.steps_goal }}
             </p>
-            <p v-else>Slutdatum: ej bestämt</p>
-            <p v-if="destination.is_active">Aktiv: Aktiv</p>
-            <p v-else>Aktiv: Inaktiv</p>
+            <p>
+              <span class="bold">Total distans:</span> {{ destination.km }} km
+            </p>
+            <p><span class="bold">Startdatum:</span> {{ destination.start }}</p>
+            <p v-if="destination.end !== null">
+              <span class="bold">Slutdatum:</span> {{ destination.end }}
+            </p>
+            <p v-else><span class="bold">Slutdatum:</span> ej bestämt</p>
+            <div class="textual" v-if="destination.is_active">
+              <span class="bold">Status:</span>
+              <span class="success-box">Aktiv</span>
+            </div>
+            <div class="textual" v-else>
+              <span class="bold">Status:</span>
+              <span class="error-box">Inaktiv</span>
+            </div>
           </div>
         </div>
       </section>
     </div>
     <div class="right-column">
       <section>
-        <h2>Redigera destination</h2>
+        <h2 class="h2-s">Redigera destination</h2>
         <form class="form-admin">
           <p v-if="pending">Laddar...</p>
           <div class="input-section">
@@ -52,18 +62,7 @@
               required
             />
           </div>
-          <!-- <div class="input-section">
-            <label class="label-form" for="stepsGoal">Stegmål:</label>
-            <input
-              aria-label="Stegmål"
-              type="number"
-              v-model="stepsGoal"
-              class="input-form"
-              id="stepsGoal"
-              name="stepsGoal"
-              required
-            />
-          </div> -->
+
           <div class="input-section">
             <label class="label-form" for="km">Total distans/km:</label>
             <input
@@ -139,7 +138,7 @@
 <script setup>
 const supabase = useSupabaseClient();
 const { id } = useRoute().params;
-const uri = "http://localhost:3000/admin/" + id;
+const uri = "http://localhost:3000/admin/destinationer/" + id;
 
 // fetch destinations from Supabase
 const { data: destination, error } = await supabase
@@ -232,10 +231,10 @@ const updateDestination = async () => {
     // clear success msg after 2 sec
     setTimeout(() => {
       successMsg.value = "";
-      router.push({ path: "/admin" }); // redirect to admin page
+      router.push({ path: "/admin/destinationer" }); // redirect to admin page
     }, 1000);
   } catch (error) {
-    errorMsg.value = error.message;
+    errorMsg.value = "Det gick inte att uppdatera destination just nu."
     pending.value = false;
   }
 };

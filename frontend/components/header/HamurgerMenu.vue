@@ -1,13 +1,13 @@
 <template>
   <!-- Hamburger button and close button for menu -->
-  <div class="child" v-if="!isOpen">
+  <div class="child hover-accessibility" v-if="!isOpen">
     <button
       id="menu-button"
       @click="isOpen = !isOpen"
       :aria-expanded="isOpen"
       :aria-label="isOpen ? 'Stäng meny' : 'Öppna meny'"
     >
-      <i class="fas fa-bars"></i>
+      <SvgHambBtnNav class="BtnHeader" />
     </button>
     <p class="menu-text">Meny</p>
   </div>
@@ -19,7 +19,7 @@
       :aria-expanded="isOpen"
       :aria-label="isOpen ? 'Stäng meny' : 'Öppna meny'"
     >
-      <i class="fas fa-times"></i>
+      <SvgCloseCrossHeader class="BtnHeader" />
     </button>
     <p class="menu-text">Stäng</p>
   </div>
@@ -36,15 +36,14 @@
     aria-labelledby="menu-label"
   >
     <div id="menu-label" class="sr-only">Huvudmeny</div>
-    <a aria-label="Min profil" href="#" id="profil-menu-item" class="nav-links"
+    <a aria-label="Min profil" href="/profile" id="profil-menu-item" class="nav-links"
       >Profil</a
     >
     <hr class="pink-line" />
     <a aria-label="Aktivitetslista" class="nav-links" href="#"
       >Aktivitetslista</a
     >
-    <hr class="pink-line" />
-    <a aria-label="Om" href="#" class="nav-links">Om</a>
+
     <hr class="pink-line" />
     <a href="#" class="nav-logout" @click="userLogout">Logga ut</a>
     <hr />
