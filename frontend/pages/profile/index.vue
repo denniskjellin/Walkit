@@ -2,7 +2,7 @@
 <template>
   <ProfileHeroImg />
   <ProfileUserDetails />
-  <SummaryCirclesProfile />
+  <ProfileSummaryCirclesProfile />
   <ProfileWeekStats />
 </template>
 
