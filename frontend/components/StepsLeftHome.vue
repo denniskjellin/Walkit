@@ -5,7 +5,7 @@
         {{ numberToSweString(remainingStepsData.remainingSteps) }}<SvgConfetti class="confetti-icon" />
       </h2>
       <p v-else>Laddar...</p>
-      <p class="bold">steg kvar mot {{ destinationSumData.to }}!</p>
+      <p class="bold">steg kvar till {{ destinationSumData.to }}!</p>
       <hr class="pink-line line-small" />
       <p
         v-if="remainingStepsData?.errorMsg"
