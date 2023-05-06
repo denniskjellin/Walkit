@@ -108,15 +108,25 @@
             <h2>Destinations information</h2>
             <p><span class="bold">Från:</span> {{ destination.from }}</p>
             <p><span class="bold">Till:</span> {{ destination.to }}</p>
-            <p><span class="bold">Antal steg:</span> {{ destination.steps_goal }}</p>
-            <p><span class="bold">Total distans:</span> {{ destination.km }} km</p>
+            <p>
+              <span class="bold">Antal steg:</span> {{ destination.steps_goal }}
+            </p>
+            <p>
+              <span class="bold">Total distans:</span> {{ destination.km }} km
+            </p>
             <p><span class="bold">Startdatum:</span> {{ destination.start }}</p>
             <p v-if="destination.end !== null">
               <span class="bold">Slutdatum:</span> {{ destination.end }}
             </p>
             <p v-else><span class="bold">Slutdatum:</span> ej bestämt</p>
-            <div class="textual" v-if="destination.is_active"><span class="bold">Status:</span> <span class="success-box">Aktiv</span></div>
-            <div class="textual" v-else><span class="bold">Status:</span> <span class="error-box">Inaktiv</span></div>
+            <div class="textual" v-if="destination.is_active">
+              <span class="bold">Status:</span>
+              <span class="success-box">Aktiv</span>
+            </div>
+            <div class="textual" v-else>
+              <span class="bold">Status:</span>
+              <span class="error-box">Inaktiv</span>
+            </div>
             <NuxtLink
               class="btn-primary btn-forest"
               :to="`/admin/destinationer/${destination.id}`"
@@ -178,7 +188,6 @@ const validateInput = () => {
   return isValid;
 };
 
-
 // function fetch destinations from Supabase
 const fetchDestinations = async () => {
   pending.value = true;
@@ -215,7 +224,6 @@ const fetchDestinations = async () => {
 
 let destinations = [];
 destinations = await fetchDestinations();
-
 
 // function for converting km to steps
 function kmToSteps(km) {
@@ -336,6 +344,14 @@ const hideDestination = async (id) => {
     errorMsg.value = "Det gick inte att ta bort destination just nu.";
   }
 };
+
+const user = useSupabaseUser();
+// Redirect to the login page if the user is not signed in
+watchEffect(() => {
+  if (!user.value) {
+    return navigateTo("/login");
+  }
+});
 
 definePageMeta({
   middleware: "auth",

@@ -199,7 +199,19 @@ const deleteActivity = async (id) => {
 
 let activities = [];
 activities = await fetchActivities();
-console.log(activities);
+
+const user = useSupabaseUser();
+// Redirect to the login page if the user is not signed in
+watchEffect(() => {
+  if (!user.value) {
+    return navigateTo("/login");
+  }
+});
+
+definePageMeta({
+  middleware: "auth",
+  layout: "default",
+});
 </script>
 
 <style lang="scss" scoped>

@@ -234,7 +234,7 @@ const updateDestination = async () => {
       router.push({ path: "/admin/destinationer" }); // redirect to admin page
     }, 1000);
   } catch (error) {
-    errorMsg.value = "Det gick inte att uppdatera destination just nu."
+    errorMsg.value = "Det gick inte att uppdatera destination just nu.";
     pending.value = false;
   }
 };
@@ -263,4 +263,17 @@ const checkActiveStatus = async () => {
     errorMsg.value = "Det gick inte att uppdatera destination just nu.";
   }
 };
+
+const user = useSupabaseUser();
+// Redirect to the login page if the user is not signed in
+watchEffect(() => {
+  if (!user.value) {
+    return navigateTo("/login");
+  }
+});
+
+definePageMeta({
+  middleware: "auth",
+  layout: "default",
+});
 </script>
