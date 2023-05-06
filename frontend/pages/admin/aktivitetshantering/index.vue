@@ -1,7 +1,7 @@
 <!-- admin page-->
 <template>
   <div class="container-main-activities">
-    <h1 class="h2-s">Lägg till Aktivitet</h1>
+    <h1 class="h2-s">Lägg till aktivitet</h1>
     <div class="top-column">
       <form class="form-admin" aria-label="Lägg till aktivitet">
         <div class="input-section">

@@ -8,17 +8,27 @@
           :class="destination.is_active ? 'background-active' : ''"
         >
           <div class="card-container">
-               <p><span class="bold">Från:</span> {{ destination.from }}</p>
+            <p><span class="bold">Från:</span> {{ destination.from }}</p>
             <p><span class="bold">Till:</span> {{ destination.to }}</p>
-            <p><span class="bold">Antal steg:</span> {{ destination.steps_goal }}</p>
-            <p><span class="bold">Total distans:</span> {{ destination.km }} km</p>
+            <p>
+              <span class="bold">Antal steg:</span> {{ destination.steps_goal }}
+            </p>
+            <p>
+              <span class="bold">Total distans:</span> {{ destination.km }} km
+            </p>
             <p><span class="bold">Startdatum:</span> {{ destination.start }}</p>
             <p v-if="destination.end !== null">
               <span class="bold">Slutdatum:</span> {{ destination.end }}
             </p>
             <p v-else><span class="bold">Slutdatum:</span> ej bestämt</p>
-       <div class="textual" v-if="destination.is_active"><span class="bold">Status:</span> <span class="success-box">Aktiv</span></div>
-            <div class="textual" v-else><span class="bold">Status:</span> <span class="error-box">Inaktiv</span></div>
+            <div class="textual" v-if="destination.is_active">
+              <span class="bold">Status:</span>
+              <span class="success-box">Aktiv</span>
+            </div>
+            <div class="textual" v-else>
+              <span class="bold">Status:</span>
+              <span class="error-box">Inaktiv</span>
+            </div>
           </div>
         </div>
       </section>
@@ -224,7 +234,7 @@ const updateDestination = async () => {
       router.push({ path: "/admin/destinationer" }); // redirect to admin page
     }, 1000);
   } catch (error) {
-    errorMsg.value = error.message;
+    errorMsg.value = "Det gick inte att uppdatera destination just nu."
     pending.value = false;
   }
 };
