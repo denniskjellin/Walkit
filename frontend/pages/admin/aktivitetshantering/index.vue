@@ -142,7 +142,7 @@ const insertActivity = async () => {
         activity.value = "";
         step_value.value = 0;
         // router.push("/admin/aktivitetshantering");
-      }, 2000);
+      }, 1000);
     }
   } catch (error) {
     // set a custom error message
@@ -186,7 +186,7 @@ const deleteActivity = async (id) => {
 
       setTimeout(() => {
         successMsg.value = "";
-      }, 2000);
+      }, 1000);
     }
   } catch (error) {
     // set a custom error message

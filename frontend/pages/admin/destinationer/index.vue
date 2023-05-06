@@ -268,7 +268,7 @@ const insertDestination = async (destination) => {
       // stepsGoal.value = 0;
       start.value = null;
       end.value = null;
-    }, 2000);
+    }, 1000);
   } catch (error) {
     // set a custom error message
     errorMsg.value = "Det gick inte att lägga till destination just nu.";

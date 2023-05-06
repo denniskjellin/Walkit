@@ -101,7 +101,7 @@ const insertSteps = async () => {
       errorMsg.value = "Det finns inga aktiva destinationer!";
       setTimeout(() => {
         errorMsg.value = "";
-      }, 8000);
+      }, 7000);
     }
 
     // Check if the steps value is valid
@@ -109,7 +109,7 @@ const insertSteps = async () => {
       errorMsg.value = "Antal steg måste vara 1 eller högre!";
       setTimeout(() => {
         errorMsg.value = "";
-      }, 8000);
+      }, 7000);
       return;
     }
 
@@ -120,7 +120,7 @@ const insertSteps = async () => {
       errorMsg.value = "Du kan inte lägga till steg för framtida datum!";
       setTimeout(() => {
         errorMsg.value = "";
-      }, 8000);
+      }, 7000);
       return;
     }
 
@@ -158,14 +158,14 @@ const insertSteps = async () => {
       errorMsg.value = "";
       date.value = null;
       steps.value = 0;
-    }, 2000);
+    }, 1000);
   } catch (error) {
     // set a custom error message
     errorMsg.value = "Ops, någonting gick fel!";
     setTimeout(() => {
       errorMsg.value = "";
       successMsg.value = "";
-    }, 8000);
+    }, 7000);
   }
 };
 </script>
