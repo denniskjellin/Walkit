@@ -3,7 +3,7 @@
   <div class="container main">
     <div class="right-column">
       <section>
-        <h2 class="h2-s">Lägg till Destination</h2>
+        <h1 class="h2-s">Skapa destination</h1>
         <form class="form-admin" aria-label="Lägg till destination">
           <div class="input-section">
             <label class="label-form" for="from">Från:</label>
@@ -95,7 +95,7 @@
     </div>
     <div class="left-column">
       <article>
-        <h1 class="h2-s">Destinationer</h1>
+        <h2 class="h2-s">Destinationer</h2>
         <p v-if="pending">Laddar...</p>
         <section
           v-for="destination in destinations"

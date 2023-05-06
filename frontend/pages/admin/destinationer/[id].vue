@@ -2,30 +2,30 @@
   <div class="container">
     <div class="left-column">
       <section>
-        <h1>Vald destination</h1>
+        <h1 class="h2-s">Vald destination</h1>
         <div
           class="card"
           :class="destination.is_active ? 'background-active' : ''"
         >
           <div class="card-container">
-            <p>Från: {{ destination.from }}</p>
-            <p>Till: {{ destination.to }}</p>
-            <p>Mål antal steg: {{ destination.steps_goal }}</p>
-            <p>Total distans: {{ destination.km }} km</p>
-            <p>Startdatum: {{ destination.start }}</p>
+               <p><span class="bold">Från:</span> {{ destination.from }}</p>
+            <p><span class="bold">Till:</span> {{ destination.to }}</p>
+            <p><span class="bold">Antal steg:</span> {{ destination.steps_goal }}</p>
+            <p><span class="bold">Total distans:</span> {{ destination.km }} km</p>
+            <p><span class="bold">Startdatum:</span> {{ destination.start }}</p>
             <p v-if="destination.end !== null">
-              Slutdatum: {{ destination.end }}
+              <span class="bold">Slutdatum:</span> {{ destination.end }}
             </p>
-            <p v-else>Slutdatum: ej bestämt</p>
-            <p v-if="destination.is_active">Aktiv: Aktiv</p>
-            <p v-else>Aktiv: Inaktiv</p>
+            <p v-else><span class="bold">Slutdatum:</span> ej bestämt</p>
+       <div class="textual" v-if="destination.is_active"><span class="bold">Status:</span> <span class="success-box">Aktiv</span></div>
+            <div class="textual" v-else><span class="bold">Status:</span> <span class="error-box">Inaktiv</span></div>
           </div>
         </div>
       </section>
     </div>
     <div class="right-column">
       <section>
-        <h2>Redigera destination</h2>
+        <h2 class="h2-s">Redigera destination</h2>
         <form class="form-admin">
           <p v-if="pending">Laddar...</p>
           <div class="input-section">
