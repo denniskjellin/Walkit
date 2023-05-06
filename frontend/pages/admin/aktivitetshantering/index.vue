@@ -155,7 +155,8 @@ const fetchActivities = async () => {
   try {
     let { data: activities, error } = await supabase
       .from("activities")
-      .select("*");
+      .select("*")
+      .order("activity", { ascending: true });
 
     if (error) throw error;
     if (!error) {
