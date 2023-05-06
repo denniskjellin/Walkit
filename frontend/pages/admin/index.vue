@@ -1,5 +1,6 @@
 <template>
   <div class="admin-page">
+    <ProfileHeroImg />
     <section class="section-block">
       <h1 class="h1-s">Kontrollpanel</h1>
       <div class="card-wrapper">
