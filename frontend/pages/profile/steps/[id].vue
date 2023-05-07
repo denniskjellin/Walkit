@@ -97,7 +97,7 @@ const updateSteps = async () => {
     }
     setTimeout(() => {
       successMsg.value = "";
-      router.push({ path: "/profile/steps" }); // redirect to admin page
+      router.push({ path: "/profile/" }); // redirect to admin page
     }, 1000);
   } catch (error) {
     errorMsg.value = "Det gick inte att uppdatera aktiviteten just nu.";
