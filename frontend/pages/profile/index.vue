@@ -4,6 +4,7 @@
   <ProfileUserDetails />
   <ProfileSummaryCirclesProfile />
   <ProfileWeekStats />
+  <!-- <ProfileStepsEditTable /> -->
 </template>
 
 <script setup>
