@@ -7,6 +7,7 @@
 <script setup lang="ts">
 import StepsEditTable from '~~/components/profile/StepsEditTable.vue';
 
+
 const user = useSupabaseUser();
 // Redirect to the login page if the user is not signed in
 watchEffect(() => {
