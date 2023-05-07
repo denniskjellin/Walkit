@@ -2,7 +2,7 @@
   <ProfileHeroImg />
   <ProfileUserDetails />
   <div class="container-main-activities">
-    <h2 class="h2-s">Redigerar stegvärde för: {{ steps.date }}</h2>
+    <h1 class="h2-s">Redigerar stegvärde för: {{ steps.date }}</h1>
     <form class="form-admin">
       <div class="input-section">
         <label class="label-form" for="step_value">Stegvärde:</label>
@@ -17,14 +17,14 @@
         />
       </div>
       <div class="input-section">
-        <label class="label-form" for="date_value">Datum:</label>
+        <label class="label-form" for="date">Datum:</label>
         <input
           aria-label="Datum"
           type="date"
-          v-model="date_value"
+          v-model="date"
           class="input-form"
-          id="date_value"
-          name="date_value"
+          id="date"
+          name="date"
           required
         />
       </div>
@@ -59,7 +59,7 @@ const { data: steps, error } = await supabase
 
 // variables to hold current values
 let step_value = ref(steps.steps);
-let date_value = ref(steps.date);
+let date = ref(steps.date);
 
 // success/error msg
 let errorMsg = ref("");
@@ -75,7 +75,7 @@ const updateSteps = async () => {
       .from("steps")
       .update({
         steps: step_value.value,
-        date: date_value.value,
+        date: date.value,
       })
       .eq("id", id);
 
@@ -86,20 +86,20 @@ const updateSteps = async () => {
     }
     setTimeout(() => {
       successMsg.value = "";
-      router.push({ path: "/profile" }); // redirect to admin page
+      router.push({ path: "/profile/steps" }); // redirect to admin page
     }, 1000);
   } catch (error) {
-    errorMsg.value = "Det gick inte att uppdatera stegen just nu.";
+    errorMsg.value = "Det gick inte att uppdatera aktiviteten just nu.";
   }
 };
 
 const validateInput = () => {
   let isValid = true;
   // check if input is empty
-  if (step_value.value === "") {
-    errorMsg.value = "Du måste ange ett stegvärde!";
+  if (step_value.value < 1) {
+    errorMsg.value = "Du måste ange minst ett steg!";
     isValid = false;
-  } else if (date_value.value === "") {
+  } else if (date.value === "") {
     errorMsg.value = "Du måste ange ett datum!";
     isValid = false;
   }
