@@ -3,7 +3,7 @@
     class="profile-section-block week-stats"
     aria-label="Statistik för pågående vecka"
   >
-    <h2 class="visually-hidden">Vecko statistik</h2>
+    <h2 class="visually-hidden">Redigera vecko statistik</h2>
     <section
       class="toplist-wrapper profile-weekly-stats"
       aria-label="Steg per dag för pågående vecka"
@@ -25,10 +25,12 @@
             :key="index"
           >
             {{ dailyStepData.date }}
-            <span>{{ numberToSweString(dailyStepData.steps) }}</span>
-            <NuxtLink :to="`/profile/steps/${dailyStepData.id}`">
-              Redigera <i class="fas fa-edit"></i>
-            </NuxtLink>
+            <template v-if="dailyStepData.steps !== 0">
+              <span>{{ numberToSweString(dailyStepData?.steps) }}</span>
+              <NuxtLink :to="`/profile/steps/${dailyStepData.id}`">
+                Redigera <i class="fas fa-edit"></i>
+              </NuxtLink>
+            </template>
           </li>
         </ul>
       </template>
