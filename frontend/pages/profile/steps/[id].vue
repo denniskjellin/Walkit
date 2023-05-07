@@ -66,6 +66,17 @@ let errorMsg = ref("");
 let successMsg = ref("");
 
 const updateSteps = async () => {
+  // Date check, if the selected date is in the future, throw an error
+  const currentDate = new Date();
+  const selectedDate = new Date(date.value);
+  if (selectedDate > currentDate) {
+    errorMsg.value = "Du kan inte lägga till steg för framtida datum!";
+    setTimeout(() => {
+      errorMsg.value = "";
+    }, 7000);
+    return;
+  }
+
   if (!validateInput()) {
     return;
   }
