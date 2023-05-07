@@ -2,7 +2,7 @@
   <ProfileHeroImg />
   <ProfileUserDetails />
   <div class="container-main-activities">
-    <h1 class="h2-s">Redigerar stegvärde för: {{ steps.date }}</h1>
+    <h2 class="h2-s">Redigera steg</h2>
     <form class="form-admin">
       <div class="input-section">
         <label class="label-form" for="step_value">Stegvärde:</label>
