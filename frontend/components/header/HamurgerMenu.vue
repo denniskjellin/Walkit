@@ -37,7 +37,7 @@
   >
     <div id="menu-label" class="sr-only">Huvudmeny</div>
     <NuxtLink class="nav-links" aria-label="Min profil" to="/profile">
-      Profil <i class="fas fa-user"></i>
+      Profil
     </NuxtLink>
     
     <hr class="pink-line" />
@@ -45,7 +45,7 @@
       >Mina steg</a
     > -->
     <NuxtLink class="nav-links" aria-label="Redigera steg" to="/profile/steps">
-      Mina steg <i class="fas fa-edit"></i>
+      Mina steg
     </NuxtLink>
 
     <hr class="pink-line" />
