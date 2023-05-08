@@ -3,8 +3,7 @@
   <ProfileHeroImg />
   <ProfileUserDetails />
   <ProfileSummaryCirclesProfile />
-  <!-- <ProfileWeekStats /> -->
-  <ProfileStepsEditTable />
+  <ProfileWeekStats />
 </template>
 
 <script setup>
