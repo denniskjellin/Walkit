@@ -16,7 +16,7 @@
         <div class="toplist-header">
           <div>Datum</div>
           <div>Antal steg</div>
-          <div class="toplist-header-steps">Redigera</div>
+          <div>Redigera</div>
         </div>
         <ul class="toplist-list">
           <li
