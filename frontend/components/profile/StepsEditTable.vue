@@ -6,21 +6,21 @@
     <h2 class="visually-hidden">Redigera vecko statistik</h2>
 
     <section
-      class="toplist-wrapper profile-weekly-stats"
+      class="datalist-wrapper profile-weekly-stats"
       aria-label="Steg per dag för pågående vecka"
     >
-      <SvgTopListIco class="top-list-ico" />
+      <SvgTopListIco class="datalist-ico" />
       <template v-if="userStepsEntryData">
         <h2 class="h2-s">Alla dina steg</h2>
 
-        <div class="toplist-header">
+        <div class="datalist-header">
           <div>Datum</div>
           <div>Antal steg</div>
           <div>Redigera</div>
         </div>
-        <ul class="toplist-list">
+        <ul class="datalist-list">
           <li
-            class="toplist-item"
+            class="datalist-item"
             v-for="(entry, index) in userStepsEntryData?.userStepsEntrys"
             :key="index"
           >

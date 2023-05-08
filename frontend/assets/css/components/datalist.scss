@@ -1,4 +1,4 @@
-.toplist-wrapper {
+.datalist-wrapper {
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
@@ -18,7 +18,7 @@
     padding: 2rem 3rem;
   }
 
-  .toplist-header {
+  .datalist-header {
     margin-top: 1rem;
     padding: 1rem 0;
     width: 100%;
@@ -32,7 +32,7 @@
     }
   }
 
-  .toplist-list {
+  .datalist-list {
     width: 75vw;
     padding: 2rem 5rem;
     max-width: 600px;
@@ -42,21 +42,21 @@
       padding: 2rem 0rem;
     }
 
-    .toplist-item {
+    .datalist-item {
       display: flex;
       justify-content: space-between;
       border-bottom: 1px solid gray;
       padding: 0.5rem 0;
       
 
-      .toplist-order {
+      .datalist-order {
         margin-right: 2rem;
         font-weight: 700;
       }
     }
   }
 
-  .top-list-ico {
+  .datalist-ico {
     margin: 1rem 0rem;
   }
 }
