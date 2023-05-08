@@ -1,11 +1,11 @@
 <template>
   <ProfileHeroImg />
   <ProfileUserDetails />
-  <StepsEditTable />
+  <ProfileStepsEditTable />
 </template>
 
 <script setup lang="ts">
-import StepsEditTable from '~~/components/profile/StepsEditTable.vue';
+
 
 
 const user = useSupabaseUser();
