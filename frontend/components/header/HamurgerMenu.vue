@@ -39,7 +39,7 @@
     <NuxtLink class="nav-links" aria-label="Min profil" to="/profile">
       Profil
     </NuxtLink>
-    
+
     <hr class="pink-line" />
     <!-- <a aria-label="Mina steg" href="/profile/steps" class="nav-links"
       >Mina steg</a
@@ -49,8 +49,11 @@
     </NuxtLink>
 
     <hr class="pink-line" />
-    <a aria-label="Aktivitetslista" class="nav-links" href="#"
+    <!-- <a aria-label="Aktivitetslista" class="nav-links" href="#"
       >Aktivitetslista</a
+    > -->
+    <NuxtLink class="nav-links" aria-label="Aktivitetslista" to="/activitylist">
+      Aktivitetslista</NuxtLink
     >
 
     <hr class="pink-line" />
