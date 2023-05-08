@@ -107,7 +107,7 @@ const updateSteps = async () => {
 const validateInput = () => {
   let isValid = true;
   // check if input is empty
-  if (step_value.value < 1) {
+  if (step_value.value < "") {
     errorMsg.value = "Du måste ange minst ett steg!";
     isValid = false;
   } else if (date.value === "") {

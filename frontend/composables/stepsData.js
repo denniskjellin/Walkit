@@ -154,3 +154,41 @@ export const destinationSum = async () => {
   }
   return returnValue;
 };
+
+export const getAllUserStepsEntry = async () => {
+  let returnValue = {
+    userStepsEntrys: [],
+    errorMsg: "",
+  };
+
+  try {
+    const supabase = useSupabaseClient();
+    const user = useSupabaseUser();
+    const { id: user_id } = user.value;
+
+    if (!user.value) {
+      throw new Error("User not logged in");
+    }
+
+    const { data: userStepsEntrys, error } = await supabase
+      .from("steps")
+      .select("steps, id, date, created_at")
+      .eq("user_id", user_id)
+      .order("created_at", { ascending: false });
+
+    if (error) throw error;
+
+    let allEntrysArray = [];
+    allEntrysArray = userStepsEntrys.map((step) => ({
+      ...step,
+      user_id,
+    }));
+
+    returnValue.userStepsEntrys = allEntrysArray;
+    returnValue.errorMsg = "";
+  } catch (error) {
+    returnValue.errorMsg = "Obs! Kunde inte hämta data.";
+  }
+
+  return returnValue;
+};

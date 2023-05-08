@@ -71,6 +71,7 @@ let getToplistStepsData = useState("getToplistStepsState");
 let getUserMonthlyStepsData = useState("userMonthlyStepsState");
 let getAllTimeStepsUserData = useState("userAllTimeStepsState");
 let getUserWeeklyStatsData = useState("getUserWeeklyStatsState");
+let userStepsEntryData = useState("userStepsEntryState");
 
 // function to insert steps
 const insertSteps = async () => {
@@ -152,6 +153,7 @@ const insertSteps = async () => {
     getUserMonthlyStepsData.value = await getUserMonthlySteps();
     getAllTimeStepsUserData.value = await getAllTimeStepsUser();
     getUserWeeklyStatsData.value = await getUserWeeklyStats();
+    userStepsEntryData.value = await getAllUserStepsEntry();
 
     setTimeout(() => {
       successMsg.value = "";
