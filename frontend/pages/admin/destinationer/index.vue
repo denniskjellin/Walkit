@@ -237,7 +237,6 @@ const insertDestination = async (destination) => {
 
     // Get the user ID
     const { id: user_id } = user.value;
-    console.log(user_id, "user id");
     if (!user.value) {
       throw new Error("User not logged in");
     }
