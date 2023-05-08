@@ -1,6 +1,6 @@
 <template>
   <section
-    class="section-block section-goalprog"
+    class="section-block section-mint"
     aria-label="Antal steg avverkade sektion"
   >
     <!-- svg icon -->

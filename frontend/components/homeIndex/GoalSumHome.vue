@@ -1,6 +1,6 @@
 <template>
   <section
-    class="section-block section-goal"
+    class="section-block section-pear"
     aria-label="Information om destinationsmålet"
   >
     <SvgGoalblockIco class="homepage-svg" />

@@ -1,6 +1,6 @@
 <template>
   <section
-    class="profile-section-block week-stats"
+    class="section-block week-stats"
     aria-label="Statistik för pågående vecka"
   >
     <h2 class="visually-hidden">Vecko statistik</h2>

@@ -1,6 +1,6 @@
 <template>
   <section
-    class="profile-section-block user-info"
+    class="section-block user-info"
     aria-label="Användarinformation"
   >
     <h1 class="visually-hidden">Användarinformation</h1>
