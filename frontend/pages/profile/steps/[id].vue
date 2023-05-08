@@ -40,6 +40,13 @@
       >
         Uppdatera <i class="fas fa-sync-alt"></i>
       </button>
+      <button
+        @click.prevent="deleteSteps"
+        class="btn-primary btn-danger btn-margin-top"
+        aria-label="Lägg till destination"
+      >
+        Ta bort <i class="fas fa-trash-alt"></i>
+      </button>
     </form>
   </div>
 </template>
@@ -122,6 +129,23 @@ const validateInput = () => {
   }
 
   return isValid;
+};
+
+// delete steps
+const deleteSteps = async () => {
+  try {
+    const { error } = await supabase.from("steps").delete().eq("id", id);
+    if (error) throw error;
+    if (!error) {
+      successMsg.value = "Steg borttagna!";
+    }
+    setTimeout(() => {
+      successMsg.value = "";
+      router.push({ path: "/profile/steps/" }); // redirect to admin page
+    }, 1000);
+  } catch (error) {
+    errorMsg.value = "Det gick inte att ta bort stegen just nu.";
+  }
 };
 
 const user = useSupabaseUser();
