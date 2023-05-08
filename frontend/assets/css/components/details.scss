@@ -1,0 +1,38 @@
+/* pink dash in navbar list */
+.pink-line {
+  width: 15%;
+  align-items: center;
+  height: 2px;
+  background-color: #ff00ff;
+  margin-bottom: 1rem;
+  margin: 0 auto;
+}
+
+.line-small {
+  width: 35px;
+}
+
+// icon
+.foot-ico {
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+}
+
+/* 
+  :: grey out div  ::after the fold out menu is opened
+  */
+.grey-out {
+  position: fixed;
+  top: 4.6rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 0; /* Make sure the grey-out div is on top of other elements */
+}
+
+@media (min-width: 768px) {
+  .grey-out {
+    top: 5rem;
+  }
+}
