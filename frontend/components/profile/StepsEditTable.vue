@@ -57,9 +57,9 @@ const getAllUserStepsEntrys = async () => {
   try {
     const { data: userSteps, error } = await supabase
       .from("steps")
-      .select("id, steps, date")
+      .select("id, steps, date, created_at")
       .eq("user_id", user_id)
-      .order("date", { ascending: false });
+      .order("created_at", { ascending: false });
     if (error) {
       throw new Error((errorMsg.value = "Ops, något gick fel!"));
     }
