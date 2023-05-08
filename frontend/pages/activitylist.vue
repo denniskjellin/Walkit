@@ -1,13 +1,7 @@
 <template>
-    <div>
-        <h1>Aktivitetslista</h1>
-    </div>
+  <ActivityHeroImg />
 </template>
 
-<script setup>
+<script setup></script>
 
-</script>
-
-<style scoped>
-
-</style>
+<style scoped></style>

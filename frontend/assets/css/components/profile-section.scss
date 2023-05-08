@@ -8,23 +8,11 @@
   align-items: center;
 }
 
-// div for hero-img, placed in component @ProfileHeroImg.vue
-.profile-hero {
-  width: 100vw;
-}
-
 // set color $forest on text located in variables.scss
 .forest {
   color: $forest;
 }
 
-// img class, images located in component @ProfileHeroImg.vue
-.profile-hero-img {
-  width: 100%;
-  max-height: 500px;
-  min-height: 220px;
-  object-fit: cover;
-}
 // user info top section
 .user-info {
   background-color: $white;
