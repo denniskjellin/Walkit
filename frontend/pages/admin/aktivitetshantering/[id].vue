@@ -2,7 +2,7 @@
   <div class="container-main-activities">
     <h1 class="h2-s">Redigerar: {{ activities.activity }}</h1>
     <div class="top-column">
-      <form class="form-admin" aria-label="Lägg till aktivitet">
+      <form class="form" aria-label="Lägg till aktivitet">
         <div class="input-section">
           <label class="label-form" for="activity">Aktivitetsnamn:</label>
           <input

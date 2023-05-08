@@ -36,7 +36,7 @@
     <div class="right-column">
       <section>
         <h2 class="h2-s">Redigera destination</h2>
-        <form class="form-admin">
+        <form class="form">
           <p v-if="pending">Laddar...</p>
           <div class="input-section">
             <label class="label-form" for="from">Från:</label>

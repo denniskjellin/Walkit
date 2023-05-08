@@ -3,7 +3,7 @@
   <ProfileUserDetails />
   <div class="container-main-activities">
     <h2 class="h2-s">Redigera steg</h2>
-    <form class="form-admin">
+    <form class="form">
       <div class="input-section">
         <label class="label-form" for="step_value">Stegvärde:</label>
         <input

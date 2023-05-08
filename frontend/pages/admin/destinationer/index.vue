@@ -4,7 +4,7 @@
     <div class="right-column">
       <section>
         <h1 class="h2-s">Skapa destination</h1>
-        <form class="form-admin" aria-label="Lägg till destination">
+        <form class="form" aria-label="Lägg till destination">
           <div class="input-section">
             <label class="label-form" for="from">Från:</label>
             <input
