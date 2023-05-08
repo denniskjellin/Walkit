@@ -1,8 +1,6 @@
 <template>
   <ActivityHeroImg />
-  <section class="section-block section-top-list">
-    <h1>hey</h1>
-  </section>
+  <ActivityIntro />
 </template>
 
 <script setup></script>
