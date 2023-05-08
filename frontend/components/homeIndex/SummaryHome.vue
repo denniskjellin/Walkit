@@ -55,7 +55,7 @@
       </section>
 
       <section
-        class="content-circle all-week-steps"
+        class="content-circle circle-br-clay"
         aria-label="Allas steg per vecka"
       >
         <template

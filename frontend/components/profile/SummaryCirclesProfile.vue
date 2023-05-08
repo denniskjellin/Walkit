@@ -1,6 +1,6 @@
 <template>
   <section
-    class="section-block profile-sum-circle"
+    class="section-block circle-bg-sand"
     aria-label="Sammanfattning av steg statistik"
   >
     <SvgFoot-ico class="foot-ico" />
@@ -61,7 +61,7 @@
         </template>
       </section>
       <section
-        class="content-circle all-profile-steps"
+        class="content-circle circle-br-clay"
         aria-label="Dina steg totalt"
       >
         <template

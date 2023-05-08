@@ -8,7 +8,7 @@
   }
 }
 
-// Circle component, index.vue
+// Circle component with styling
 .content-circle {
   display: flex;
   flex-direction: column;
@@ -26,6 +26,7 @@
   }
 }
 
+// circles with different border colors
 .circle-br-pear {
   border: solid 1px $pear;
 }
@@ -34,28 +35,22 @@
   border: solid 1px $loli;
 }
 
-.all-week-steps,
-.all-profile-steps {
+.circle-br-clay {
   border: solid 1px $clay;
 }
 
-// for <p> in circle
+// p tag inside circles
 .p-circle {
   font-weight: 700;
   font-size: 1.5rem;
 }
 
-// Container for cirles with data, @SummaryCirclesProfile.vue
-.container-circle-profile {
-  display: flex;
-  flex-direction: column;
-}
-
-// section of circles with profile stats
-.profile-sum-circle {
+.circle-bg-sand {
   background-color: $sand;
 }
 
+
+// circle for profile initials
 .circle-profile {
   position: absolute;
   display: flex;

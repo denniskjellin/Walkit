@@ -4,7 +4,7 @@
     aria-label="Användarinformation"
   >
     <h1 class="visually-hidden">Användarinformation</h1>
-    <div class="container-circle-profile circle-profile">
+    <div class="container-circle circle-profile">
       <NuxtLink aria-label="Min profil" to="/profile/steps">
         <h2 class="h1-s forest">{{ userInitials(userData?.full_name) }}</h2>
       </NuxtLink>
