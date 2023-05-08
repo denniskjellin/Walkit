@@ -36,16 +36,25 @@
     aria-labelledby="menu-label"
   >
     <div id="menu-label" class="sr-only">Huvudmeny</div>
-    <a aria-label="Min profil" href="/profile" id="profil-menu-item" class="nav-links"
-      >Profil</a
-    >
+    <NuxtLink class="nav-links" aria-label="Min profil" to="/profile">
+      Profil <i class="fas fa-user"></i>
+    </NuxtLink>
+    
+    <hr class="pink-line" />
+    <!-- <a aria-label="Mina steg" href="/profile/steps" class="nav-links"
+      >Mina steg</a
+    > -->
+    <NuxtLink class="nav-links" aria-label="Redigera steg" to="/profile/steps">
+      Mina steg <i class="fas fa-edit"></i>
+    </NuxtLink>
+
     <hr class="pink-line" />
     <a aria-label="Aktivitetslista" class="nav-links" href="#"
       >Aktivitetslista</a
     >
 
     <hr class="pink-line" />
-    <a href="#" class="nav-logout" @click="userLogout">Logga ut</a>
+    <NuxtLink class="nav-logout" @click="userLogout">Logga ut</NuxtLink>
     <hr />
   </div>
 </template>
