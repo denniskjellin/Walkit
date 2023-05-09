@@ -32,9 +32,15 @@
           </li>
         </ul>
         <template v-if="lastPage > 1">
-          <button @click="decreecePage">&lt</button>
-          <p>{{ page }}</p>
-          <button @click="increesePage">></button>
+          <div class="container-pagination">
+            <button @click="decreecePage">
+              <i class="fas fa-angle-left"></i>
+            </button>
+            <p>{{ page }}</p>
+            <button @click="increesePage">
+              <i class="fas fa-angle-right"></i>
+            </button>
+          </div>
         </template>
       </template>
       <p v-else>Laddar...</p>

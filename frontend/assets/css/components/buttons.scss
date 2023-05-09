@@ -42,3 +42,11 @@
   margin-top: 0.5rem;
 }
 
+// pagination button
+.container-pagination  {
+  display: flex;
+}
+
+.container-pagination > button {
+  margin: 0px 10px;
+}
