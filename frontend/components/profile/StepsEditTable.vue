@@ -31,6 +31,11 @@
             </NuxtLink>
           </li>
         </ul>
+        <template v-if="lastPage > 1">
+          <button @click="decreecePage">&lt</button>
+          <p>{{ page }}</p>
+          <button @click="increesePage">></button>
+        </template>
       </template>
       <p v-else>Laddar...</p>
       <!-- error msg div, aria assertive  -->
@@ -49,8 +54,28 @@
 
 <script setup>
 let userStepsEntryData = useState("userStepsEntryState");
+let lastPage = useState("lastPageState", () => 1);
+let page = useState("pageState", () => 1);
+
+async function increesePage() {
+  if (page.value < lastPage.value) {
+    page.value++;
+
+    userStepsEntryData.value = await getAllUserStepsEntry(page.value);
+  }
+}
+
+async function decreecePage() {
+  if (page.value > 1) {
+    page.value--;
+
+    userStepsEntryData.value = await getAllUserStepsEntry(page.value);
+  }
+}
 
 onMounted(async () => {
-  userStepsEntryData.value = await getAllUserStepsEntry();
+  userStepsEntryData.value = await getAllUserStepsEntry(page.value);
+  const lengthData = await getNumberUserStepsEntry();
+  lastPage.value = lengthData.userNumberStepsEntrys;
 });
 </script>

@@ -1,3 +1,6 @@
+// size = number of steps per page
+let size = 10;
+
 // get remaining steps to reach destination
 export const getRemainingStepsData = async () => {
   const supabase = useSupabaseClient();
@@ -155,9 +158,51 @@ export const destinationSum = async () => {
   return returnValue;
 };
 
-export const getAllUserStepsEntry = async () => {
+export const getAllUserStepsEntry = async (page = 1) => {
+  let from = page * size - size;
+  let to = page * size - 1;
+
   let returnValue = {
     userStepsEntrys: [],
+    errorMsg: "",
+  };
+
+  try {
+    const supabase = useSupabaseClient();
+    const user = useSupabaseUser();
+    const { id: user_id } = user.value;
+
+    if (!user.value) {
+      throw new Error("User not logged in");
+    }
+
+    const { data: userStepsEntrys, error } = await supabase
+      .from("steps")
+      .select("steps, id, date, created_at")
+      .range(from, to)
+      .eq("user_id", user_id)
+      .order("created_at", { ascending: false });
+
+    if (error) throw error;
+
+    let allEntrysArray = [];
+    allEntrysArray = userStepsEntrys.map((step) => ({
+      ...step,
+      user_id,
+    }));
+
+    returnValue.userStepsEntrys = allEntrysArray;
+    returnValue.errorMsg = "";
+  } catch (error) {
+    returnValue.errorMsg = "Obs! Kunde inte hämta data.";
+  }
+
+  return returnValue;
+};
+
+export const getNumberUserStepsEntry = async () => {
+  let returnValue = {
+    userNumberStepsEntrys: 0,
     errorMsg: "",
   };
 
@@ -178,13 +223,9 @@ export const getAllUserStepsEntry = async () => {
 
     if (error) throw error;
 
-    let allEntrysArray = [];
-    allEntrysArray = userStepsEntrys.map((step) => ({
-      ...step,
-      user_id,
-    }));
-
-    returnValue.userStepsEntrys = allEntrysArray;
+    returnValue.userNumberStepsEntrys = Math.ceil(
+      userStepsEntrys.length / size
+    );
     returnValue.errorMsg = "";
   } catch (error) {
     returnValue.errorMsg = "Obs! Kunde inte hämta data.";
