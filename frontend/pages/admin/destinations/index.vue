@@ -129,7 +129,7 @@
             </div>
             <NuxtLink
               class="btn-primary btn-forest"
-              :to="`/admin/destinationer/${destination.id}`"
+              :to="`/admin/destinations/${destination.id}`"
             >
               Redigera <i class="fas fa-edit"></i>
             </NuxtLink>

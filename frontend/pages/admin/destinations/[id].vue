@@ -138,7 +138,7 @@
 <script setup>
 const supabase = useSupabaseClient();
 const { id } = useRoute().params;
-const uri = "http://localhost:3000/admin/destinationer/" + id;
+const uri = "http://localhost:3000/admin/destinations/" + id;
 
 // fetch destinations from Supabase
 const { data: destination, error } = await supabase
@@ -231,7 +231,7 @@ const updateDestination = async () => {
     // clear success msg after 2 sec
     setTimeout(() => {
       successMsg.value = "";
-      router.push({ path: "/admin/destinationer" }); // redirect to admin page
+      router.push({ path: "/admin/destinations" }); // redirect to admin page
     }, 1000);
   } catch (error) {
     errorMsg.value = "Det gick inte att uppdatera destination just nu.";

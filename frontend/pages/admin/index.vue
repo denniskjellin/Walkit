@@ -4,14 +4,14 @@
     <section class="section-block">
       <h1 class="h1-s">Kontrollpanel</h1>
       <div class="card-wrapper">
-        <NuxtLink to="/admin/destinationer">
+        <NuxtLink to="/admin/destinations">
           <div class="card">
             <h2 class="h2-s">Destinationer</h2>
             <span><SvgGoalblockIco class="icon-card" /></span>
           </div>
         </NuxtLink>
 
-        <NuxtLink to="/admin/aktivitetshantering">
+        <NuxtLink to="/admin/activitys">
           <div class="card">
             <h2 class="h2-s">Aktivitetslista</h2>
             <span><SvgGoalprogIco class="icon-card" /></span>
