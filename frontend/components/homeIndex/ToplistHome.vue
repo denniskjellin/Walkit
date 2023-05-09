@@ -1,22 +1,22 @@
 <template>
-  <section class="toplist-wrapper" aria-label="toplista över mest steg">
-    <SvgTopListIco class="top-list-ico" />
+  <section class="datalist-wrapper" aria-label="toplista över mest steg">
+    <SvgTopListIco class="datalist-ico" />
     <h2 class="h2-s">Top 10</h2>
-    <div class="toplist-header">
+    <div class="datalist-header">
       <div>
-        <span class="toplist-header-order">#</span>
+        <span class="datalist-header-order">#</span>
         Namn
       </div>
-      <div class="toplist-header-steps">Antal steg</div>
+      <div class="datalist-header-steps">Antal steg</div>
     </div>
-    <ul class="toplist-list">
+    <ul class="datalist-list">
       <li
-        class="toplist-item"
+        class="datalist-item"
         v-for="(item, index) in topList"
         :key="`toplist-${index}`"
       >
         <div>
-          <span class="toplist-order">{{ index + 1 }}</span>
+          <span class="datalist-order">{{ index + 1 }}</span>
           {{ item.full_name }}
         </div>
         {{ item.steps }}

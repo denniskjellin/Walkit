@@ -7,11 +7,31 @@
   justify-content: center;
   align-items: center;
 
-   // svg icon
-   .homepage-svg {
+  // svg icon
+  .homepage-svg {
     margin-bottom: 1.5rem;
   }
 }
+
+.section-block-start {
+  padding: 5rem 20rem;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+
+  p {
+    //max width per character
+    max-width: 80ch;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 3rem 2rem;
+  }
+    
+  }
+
 
 // Section block for step count index.page//
 .steps-left {
@@ -31,7 +51,6 @@
     top: -0.5rem;
     right: -1.2rem;
   }
-  
 }
 
 // Section block for percentage index.page//
@@ -42,8 +61,6 @@
     font-weight: 500;
     margin-bottom: 1rem;
   }
-
- 
 
   // progress bar
   .progress {
@@ -69,66 +86,33 @@
 }
 
 // Section block for goal index.page//
-.section-goal {
+.section-pear {
   background-color: $pear;
 }
 
 // Section block for goal progress index.page//
-.section-goalprog {
+.section-mint {
   background-color: $mint;
 }
 
 // Section block for goal progress index.page//
-.section-top-list {
+.section-sand {
   background-color: $sand;
 }
 
-// Container for cirles with data, index.vue
-.container-circle {
-  display: flex;
-  flex-direction: column;
-
-  @media screen and (min-width: 768px) {
-    flex-direction: row;
-  }
+// Section block forest
+.section-forest {
+  background-color: $forest;
 }
 
-// Circle component, index.vue
-.content-circle {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.section-big-bg-clay {
+  background-color: $clay;
+  padding: 6rem 0rem;
+}
+
+// CUSTOM: user info top section
+.user-info {
   background-color: $white;
-  width: 185px;
-  height: 185px;
-  margin: 1rem;
-  border-radius: 50%;
-  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
-
- 
-
-  @media screen and (min-width: 820px) {
-    margin: 2rem;
-  }
-}
-
-.user-daily-steps {
-  border: solid 1px $pear;
-}
-
-.all-daily-steps {
-border: solid 1px $loli;
-}
-
-.all-week-steps, .all-profile-steps {
-border: solid 1px $clay;
-}
-
-
-
-// for <p> in circle
-.p-circle {
-  font-weight: 700;
-  font-size: 1.5rem;
+  padding: 5.7rem 0rem 2.5rem 0rem;
+  position: relative;
 }

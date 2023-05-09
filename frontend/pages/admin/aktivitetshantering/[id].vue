@@ -2,7 +2,7 @@
   <div class="container-main-activities">
     <h1 class="h2-s">Redigerar: {{ activities.activity }}</h1>
     <div class="top-column">
-      <form class="form-admin" aria-label="Lägg till aktivitet">
+      <form class="form" aria-label="Lägg till aktivitet">
         <div class="input-section">
           <label class="label-form" for="activity">Aktivitetsnamn:</label>
           <input
@@ -53,7 +53,7 @@
           Aktivitetskort för {{ activities.activity }}
         </h2>
         <div class="card-container">
-            <h2>Nuvarande:</h2>
+          <h2>Nuvarande:</h2>
           <p><span class="bold">Aktivitet:</span> {{ activities.activity }}</p>
           <p>
             <span class="bold">Stegvärde - 30 min:</span>
@@ -137,4 +137,17 @@ const updateActivity = async () => {
     errorMsg.value = "Det gick inte att uppdatera aktiviteten just nu.";
   }
 };
+
+const user = useSupabaseUser();
+// Redirect to the login page if the user is not signed in
+watchEffect(() => {
+  if (!user.value) {
+    return navigateTo("/login");
+  }
+});
+
+definePageMeta({
+  middleware: "auth",
+  layout: "default",
+});
 </script>

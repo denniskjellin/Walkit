@@ -1,6 +1,6 @@
 <template>
   <section
-    class="section-block section-top-list"
+    class="section-block section-sand"
     aria-label="Summering av steg statistik"
   >
     <!-- error msg if statement -->
@@ -22,7 +22,7 @@
 
     <div class="container-circle">
       <section
-        class="content-circle all-daily-steps"
+        class="content-circle circle-br-loli"
         aria-label="Allas steg idag"
       >
         <template
@@ -39,7 +39,7 @@
         <p v-else>Laddar...</p>
       </section>
       <section
-        class="content-circle user-daily-steps"
+        class="content-circle circle-br-pear"
         aria-label="Allas steg i snitt per dag"
       >
         <!-- data of logged in users step of the day -->
@@ -55,7 +55,7 @@
       </section>
 
       <section
-        class="content-circle all-week-steps"
+        class="content-circle circle-br-clay"
         aria-label="Allas steg per vecka"
       >
         <template
@@ -74,7 +74,7 @@
         <p v-else>Laddar...</p>
       </section>
     </div>
-    <ToplistHome />
+    <HomeIndexToplistHome />
   </section>
 </template>
 

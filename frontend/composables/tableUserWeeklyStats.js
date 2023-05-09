@@ -35,7 +35,7 @@ export const getUserWeeklyStats = async () => {
     // Query the database for steps taken by the current user in the current week
     const { data: allStepsCurrWeek, error } = await supabase
       .from("steps")
-      .select("steps, user_id, date")
+      .select("id, steps, user_id, date")
       .gte("date", startOfWeek.toISOString())
       .lte("date", endOfWeek.toISOString())
       .order("date");
@@ -57,9 +57,9 @@ export const getUserWeeklyStats = async () => {
     const stepsByDate = stepsCurrWeekCurrentUser.reduce((acc, curr) => {
       const date = curr.date.split("T")[0];
       if (!acc[date]) {
-        acc[date] = 0;
+        acc[date] = [];
       }
-      acc[date] += curr.steps;
+      acc[date].push({ id: curr.id, steps: curr.steps });
       return acc;
     }, {});
 
@@ -70,8 +70,13 @@ export const getUserWeeklyStats = async () => {
     // while start is less than the endOfWeek date, add one day to start and push date and steps to dailySteps array, split date to only get the date and not the time
     while (start <= endOfWeek) {
       const date = start.toISOString().split("T")[0];
-      const steps = stepsByDate[date] || 0;
-      dailySteps.push({ date, steps });
+      const stepsArray = stepsByDate[date] || [];
+      const steps = stepsArray.reduce(
+        (total, current) => total + current.steps,
+        0
+      );
+      const id = stepsArray.length > 0 ? stepsArray[0].id : null;
+      dailySteps.push({ id, date, steps });
       start.setDate(start.getDate() + 1);
     }
 

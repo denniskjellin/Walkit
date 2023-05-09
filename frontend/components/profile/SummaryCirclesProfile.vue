@@ -1,6 +1,6 @@
 <template>
   <section
-    class="profile-section-block profile-sum-circle"
+    class="section-block circle-bg-sand"
     aria-label="Sammanfattning av steg statistik"
   >
     <SvgFoot-ico class="foot-ico" />
@@ -23,7 +23,7 @@
 
     <div class="container-circle">
       <section
-        class="content-circle-profile user-daily-steps"
+        class="content-circle circle-br-pear"
         aria-label="Dina steg idag"
       >
         <!-- data of logged in users step of the day -->
@@ -43,7 +43,7 @@
       </section>
 
       <section
-        class="content-circle-profile all-daily-steps"
+        class="content-circle circle-br-loli"
         aria-label="Dina steg nuvarande månad"
       >
         <template
@@ -61,7 +61,7 @@
         </template>
       </section>
       <section
-        class="content-circle-profile all-profile-steps"
+        class="content-circle circle-br-clay"
         aria-label="Dina steg totalt"
       >
         <template

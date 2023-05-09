@@ -1,14 +1,18 @@
 <template>
-  <section class="profile-section-block user-info" aria-label="Användarinformation">
+  <section
+    class="section-block user-info"
+    aria-label="Användarinformation"
+  >
     <h1 class="visually-hidden">Användarinformation</h1>
-    <div class="container-circle-profile circle-profile">
-      <h2 class="h1-s forest">{{ userInitials(userData?.full_name) }}</h2>
+    <div class="container-circle circle-profile">
+      <NuxtLink aria-label="Min profil" to="/profile/steps">
+        <h2 class="h1-s forest">{{ userInitials(userData?.full_name) }}</h2>
+      </NuxtLink>
     </div>
     <p>{{ userData?.full_name }}</p>
     <p>{{ user?.email }}</p>
   </section>
 </template>
-
 
 <script setup>
 // const { auth } = useSupabaseAuthClient();

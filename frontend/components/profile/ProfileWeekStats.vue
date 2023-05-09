@@ -1,25 +1,25 @@
 <template>
   <section
-    class="profile-section-block week-stats"
+    class="section-block section-big-bg-clay"
     aria-label="Statistik för pågående vecka"
   >
     <h2 class="visually-hidden">Vecko statistik</h2>
     <section
-      class="toplist-wrapper profile-weekly-stats"
+      class="datalist-wrapper profile-weekly-stats"
       aria-label="Steg per dag för pågående vecka"
     >
-      <SvgTopListIco class="top-list-ico" />
+      <SvgTopListIco class="datalist-ico" />
       <template v-if="getUserWeeklyStatsData">
         <h2 class="h2-s">
           Dina steg vecka {{ getUserWeeklyStatsData?.currentWeekNumber }}
         </h2>
-        <div class="toplist-header">
+        <div class="datalist-header">
           <div>Datum</div>
-          <div class="toplist-header-steps">Antal steg</div>
+          <div class="datalist-header-steps">Antal steg</div>
         </div>
-        <ul class="toplist-list">
+        <ul class="datalist-list">
           <li
-            class="toplist-item"
+            class="datalist-item"
             v-for="(dailyStepData, index) in getUserWeeklyStatsData?.dailySteps"
             :key="index"
           >

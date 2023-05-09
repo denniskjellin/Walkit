@@ -36,7 +36,7 @@
     <div class="right-column">
       <section>
         <h2 class="h2-s">Redigera destination</h2>
-        <form class="form-admin">
+        <form class="form">
           <p v-if="pending">Laddar...</p>
           <div class="input-section">
             <label class="label-form" for="from">Från:</label>
@@ -234,7 +234,7 @@ const updateDestination = async () => {
       router.push({ path: "/admin/destinationer" }); // redirect to admin page
     }, 1000);
   } catch (error) {
-    errorMsg.value = "Det gick inte att uppdatera destination just nu."
+    errorMsg.value = "Det gick inte att uppdatera destination just nu.";
     pending.value = false;
   }
 };
@@ -263,4 +263,17 @@ const checkActiveStatus = async () => {
     errorMsg.value = "Det gick inte att uppdatera destination just nu.";
   }
 };
+
+const user = useSupabaseUser();
+// Redirect to the login page if the user is not signed in
+watchEffect(() => {
+  if (!user.value) {
+    return navigateTo("/login");
+  }
+});
+
+definePageMeta({
+  middleware: "auth",
+  layout: "default",
+});
 </script>
