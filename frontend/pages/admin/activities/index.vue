@@ -63,7 +63,7 @@
 
           <NuxtLink
             class="btn-primary btn-forest"
-            :to="`/admin/aktivitetshantering/${activities.id}`"
+            :to="`/admin/activities/${activities.id}`"
           >
             Redigera <i class="fas fa-edit"></i>
           </NuxtLink>

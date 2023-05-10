@@ -68,7 +68,7 @@
 <script setup>
 const supabase = useSupabaseClient();
 const { id } = useRoute().params;
-const uri = "http://localhost:3000/admin/activitys/" + id;
+const uri = "http://localhost:3000/admin/activities/" + id;
 const router = useRouter();
 
 // fetch activities from Supabase
@@ -131,7 +131,7 @@ const updateActivity = async () => {
     }
     setTimeout(() => {
       successMsg.value = "";
-      router.push({ path: "/admin/activitys" }); // redirect to admin page
+      router.push({ path: "/admin/activities" }); // redirect to admin page
     }, 1000);
   } catch (error) {
     errorMsg.value = "Det gick inte att uppdatera aktiviteten just nu.";

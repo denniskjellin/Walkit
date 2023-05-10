@@ -52,7 +52,7 @@
     <!-- <a aria-label="Aktivitetslista" class="nav-links" href="#"
       >Aktivitetslista</a
     > -->
-    <NuxtLink class="nav-links" aria-label="Aktivitetslista" to="/activitylist">
+    <NuxtLink class="nav-links" aria-label="Aktivitetslista" to="/activities">
       Aktivitetslista</NuxtLink
     >
 
