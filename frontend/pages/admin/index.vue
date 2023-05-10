@@ -11,7 +11,7 @@
           </div>
         </NuxtLink>
 
-        <NuxtLink to="/admin/activitys">
+        <NuxtLink to="/admin/activities">
           <div class="card">
             <h2 class="h2-s">Aktivitetslista</h2>
             <span><SvgGoalprogIco class="icon-card" /></span>
