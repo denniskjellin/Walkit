@@ -50,7 +50,6 @@
     </div>
 
     <div class="bottom-row">
-      <!-- <p v-if="pending">Laddar...</p> -->
       <section v-for="activities in activities" :key="activity.id" class="card">
         <h2 class="visually-hidden">
           Aktivitetskort för {{ activities.activity }}
