@@ -7,6 +7,7 @@
         <div class="input-section">
           <label class="label-form" for="activity">Aktivitetsnamn:</label>
           <input
+          placeholder="T.ex. promenad"
             aria-label="Aktivitetsnamn"
             v-model="activity"
             class="input-form"
@@ -50,7 +51,6 @@
     </div>
 
     <div class="bottom-row">
-      <!-- <p v-if="pending">Laddar...</p> -->
       <section v-for="activities in activities" :key="activity.id" class="card">
         <h2 class="visually-hidden">
           Aktivitetskort för {{ activities.activity }}
@@ -64,7 +64,7 @@
 
           <NuxtLink
             class="btn-primary btn-forest"
-            :to="`/admin/aktivitetshantering/${activities.id}`"
+            :to="`/admin/activities/${activities.id}`"
           >
             Redigera <i class="fas fa-edit"></i>
           </NuxtLink>

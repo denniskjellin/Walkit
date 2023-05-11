@@ -52,7 +52,7 @@
     <!-- <a aria-label="Aktivitetslista" class="nav-links" href="#"
       >Aktivitetslista</a
     > -->
-    <NuxtLink class="nav-links" aria-label="Aktivitetslista" to="/activitylist">
+    <NuxtLink class="nav-links" aria-label="Aktivitetslista" to="/activities">
       Aktivitetslista</NuxtLink
     >
 
@@ -105,7 +105,13 @@ export default {
         }, 200);
       }
     },
+
+    // close menu if route changes
+    $route() {
+      this.isOpen = false;
+    },
   },
+
   // close menu if click outside of menu
   methods: {
     closeMenu(e) {

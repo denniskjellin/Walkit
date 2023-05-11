@@ -19,7 +19,7 @@
           <span class="datalist-order">{{ index + 1 }}</span>
           {{ item.full_name }}
         </div>
-        {{ item.steps }}
+        {{ numberToSweString(item.steps) }}
       </li>
     </ul>
   </section>

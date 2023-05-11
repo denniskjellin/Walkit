@@ -18,8 +18,8 @@
   width: 100vw;
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  align-items: start;
+  justify-content: flex-start;
+  align-items: flex-start;
 
   p {
     //max width per character
@@ -107,7 +107,7 @@
 
 .section-big-bg-clay {
   background-color: $clay;
-  padding: 6rem 0rem;
+  padding: 5rem 0rem;
 }
 
 // CUSTOM: user info top section

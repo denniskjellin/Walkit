@@ -11,6 +11,15 @@
             <p><span class="bold">Från:</span> {{ destination.from }}</p>
             <p><span class="bold">Till:</span> {{ destination.to }}</p>
             <p>
+              <span class="bold">Start kordination:</span><br />
+              {{ destination.start_cordinations }}
+            </p>
+            <p>
+              <span class="bold">Slut kordination:</span><br />
+              {{ destination.end_cordinations }}
+            </p>
+  
+            <p>
               <span class="bold">Antal steg:</span> {{ destination.steps_goal }}
             </p>
             <p>
@@ -62,6 +71,38 @@
               required
             />
           </div>
+
+          <div class="input-section">
+            <label class="label-form" for="start-cordinations"
+              >Start kordination:</label
+            >
+            <input
+              placeholder="[36.190522, 27.940551]"
+              aria-label="Start kordination"
+              v-model="start_cordinations"
+              class="input-form"
+              type="text"
+              id="start-cordinations"
+              name="start-cordinations"
+              required
+            />
+          </div>
+          <div class="input-section">
+            <label class="label-form" for="end-cordinations"
+              >Slut kordination:</label
+            >
+            <input
+              placeholder="[62.357112, 17.31843]"
+              aria-label="Slut kordination"
+              v-model="end_cordinations"
+              class="input-form"
+              type="text"
+              id="end-cordinations"
+              name="end-cordinations"
+              required
+            />
+          </div>
+
 
           <div class="input-section">
             <label class="label-form" for="km">Total distans/km:</label>
@@ -138,7 +179,7 @@
 <script setup>
 const supabase = useSupabaseClient();
 const { id } = useRoute().params;
-const uri = "http://localhost:3000/admin/destinationer/" + id;
+const uri = "http://localhost:3000/admin/destinations/" + id;
 
 // fetch destinations from Supabase
 const { data: destination, error } = await supabase
@@ -154,6 +195,8 @@ const stepsGoal = ref(destination.steps_goal);
 const km = ref(destination.km);
 const start = ref(destination.start);
 const end = ref(destination.end);
+const start_cordinations = ref(destination.start_cordinations);
+const end_cordinations = ref(destination.end_cordinations);
 const isActive = ref(destination.is_active);
 const pending = ref(false);
 const router = useRouter();
@@ -165,6 +208,7 @@ const errorMsg = ref("");
 // validation check for form inputs
 const validateInput = () => {
   let isValid = true;
+  const coordinateRegex = /^\[[-+]?\d+(\.\d+)?,\s*[-+]?\d+(\.\d+)?\]$/;
 
   if (from.value.length < 2) {
     errorMsg.value = "Från: Behöver vara minst två tecken.";
@@ -172,9 +216,14 @@ const validateInput = () => {
   } else if (to.value.length < 2) {
     errorMsg.value = "Till: Behöver vara minst två tecken.";
     isValid = false;
-    // } else if (stepsGoal.value < 1) {
-    //   errorMsg.value = "Stegmål: Kan inte vara mindre än 1.";
-    //   isValid = false;
+  } else if (!coordinateRegex.test(start_cordinations.value)) {
+    errorMsg.value =
+      "Start kordination: Felaktig format. Använd formatet [latitud,longitud].";
+    isValid = false;
+  } else if (!coordinateRegex.test(end_cordinations.value)) {
+    errorMsg.value =
+      "Slut kordination: Felaktig format. Använd formatet [latitud,longitud].";
+    isValid = false;
   } else if (km.value < 1) {
     errorMsg.value = "Total distans: Kan inte vara mindre än 1 km.";
     isValid = false;
@@ -213,6 +262,8 @@ const updateDestination = async () => {
       .update({
         from: from.value,
         to: to.value,
+        start_cordinations: start_cordinations.value,
+        end_cordinations: end_cordinations.value,
         steps_goal: stepsGoal,
         km: km.value,
         start: start.value,
@@ -231,7 +282,7 @@ const updateDestination = async () => {
     // clear success msg after 2 sec
     setTimeout(() => {
       successMsg.value = "";
-      router.push({ path: "/admin/destinationer" }); // redirect to admin page
+      router.push({ path: "/admin/destinations" }); // redirect to admin page
     }, 1000);
   } catch (error) {
     errorMsg.value = "Det gick inte att uppdatera destination just nu.";

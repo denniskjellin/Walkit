@@ -1,5 +1,6 @@
 <!-- pages/index.vue -->
 <template>
+  <Map />
   <HomeIndexStepsLeftHome />
   <HomeIndexPercentbarHome />
   <HomeIndexGoalSumHome />
