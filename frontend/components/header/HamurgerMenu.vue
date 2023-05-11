@@ -105,7 +105,13 @@ export default {
         }, 200);
       }
     },
+
+    // close menu if route changes
+    $route() {
+      this.isOpen = false;
+    },
   },
+
   // close menu if click outside of menu
   methods: {
     closeMenu(e) {

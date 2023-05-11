@@ -26,6 +26,10 @@ export default defineNuxtConfig({
           content:
             "Walkit - logga dina steg och ta dig närmre din destination.",
         },
+        {
+          name: "theme-color",
+          content: "#e4e1db",
+        }
       ],
       htmlAttrs: {
         // setting language for html document
