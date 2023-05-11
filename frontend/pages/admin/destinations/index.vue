@@ -9,6 +9,7 @@
             <label class="label-form" for="from">Från:</label>
             <input
               aria-label="Från"
+              placeholder="land, stad, etc."
               v-model="from"
               class="input-form"
               type="text"
@@ -20,12 +21,58 @@
           <div class="input-section">
             <label class="label-form" for="to">Till:</label>
             <input
+              placeholder="land, stad, etc."
               aria-label="Till"
               v-model="to"
               class="input-form"
               type="text"
               id="to"
               name="to"
+              required
+            />
+          </div>
+          <div class="input-section">
+            <label class="label-form" for="start-cordinations"
+              >Start kordination:</label
+            >
+            <input
+              placeholder="[36.190522, 27.940551]"
+              aria-label="Start kordination"
+              v-model="start_cordinations"
+              class="input-form"
+              type="text"
+              id="start-cordinations"
+              name="start-cordinations"
+              required
+            />
+          </div>
+          <div class="input-section">
+            <label class="label-form" for="end-cordinations"
+              >Slut kordination:</label
+            >
+            <input
+              placeholder="[62.357112, 17.31843]"
+              aria-label="Slut kordination"
+              v-model="end_cordinations"
+              class="input-form"
+              type="text"
+              id="end-cordinations"
+              name="end-cordinations"
+              required
+            />
+          </div>
+          <div class="input-section">
+            <label class="label-form" for="current-cordinations"
+              >Progress kordination:</label
+            >
+            <input
+              placeholder="[36.190522, 27.940551]"
+              aria-label="Progress kordination"
+              v-model="current_cordinations"
+              class="input-form"
+              type="text"
+              id="current-cordinations"
+              name="current-cordinations"
               required
             />
           </div>
@@ -109,6 +156,18 @@
             <p><span class="bold">Från:</span> {{ destination.from }}</p>
             <p><span class="bold">Till:</span> {{ destination.to }}</p>
             <p>
+              <span class="bold">Start kordination:</span><br />
+              {{ destination.start_cordinations }}
+            </p>
+            <p>
+              <span class="bold">Slut kordination:</span><br />
+              {{ destination.end_cordinations }}
+            </p>
+            <p>
+              <span class="bold">Progress kordination:</span><br />
+              {{ destination.current_cordinations }}
+            </p>
+            <p>
               <span class="bold">Antal steg:</span> {{ destination.steps_goal }}
             </p>
             <p>
@@ -158,18 +217,35 @@ const stepsGoal = ref(0);
 const km = ref(0);
 const start = ref(null);
 const end = ref(null);
+const start_cordinations = ref("");
+const end_cordinations = ref("");
+const current_cordinations = ref("");
+
 const isActive = ref(false);
 const pending = ref(false);
 
 // validation check for form inputs
 const validateInput = () => {
   let isValid = true;
+  const coordinateRegex = /^\[[-+]?\d+(\.\d+)?,\s*[-+]?\d+(\.\d+)?\]$/;
 
   if (from.value.length < 2) {
     errorMsg.value = "Från: Behöver vara minst två tecken.";
     isValid = false;
   } else if (to.value.length < 2) {
     errorMsg.value = "Till: Behöver vara minst två tecken.";
+    isValid = false;
+  } else if (!coordinateRegex.test(start_cordinations.value)) {
+    errorMsg.value =
+      "Start kordination: Felaktig format. Använd formatet [latitud,longitud].";
+    isValid = false;
+  } else if (!coordinateRegex.test(end_cordinations.value)) {
+    errorMsg.value =
+      "Slut kordination: Felaktig format. Använd formatet [latitud,longitud].";
+    isValid = false;
+  } else if (!coordinateRegex.test(current_cordinations.value)) {
+    errorMsg.value =
+      "Progress kordination: Felaktig format. Använd formatet [latitud,longitud]..";
     isValid = false;
   } else if (km.value < 1) {
     errorMsg.value = "Total distans: Kan inte vara mindre än 1 km.";
@@ -249,6 +325,9 @@ const insertDestination = async (destination) => {
         {
           from: from.value,
           to: to.value,
+          start_cordinations: start_cordinations.value,
+          end_cordinations: end_cordinations.value,
+          current_cordinations: current_cordinations.value,
           steps_goal: stepsGoal,
           km: km.value,
           start: start.value,
