@@ -7,6 +7,7 @@
         <div class="input-section">
           <label class="label-form" for="activity">Aktivitetsnamn:</label>
           <input
+          placeholder="T.ex. promenad"
             aria-label="Aktivitetsnamn"
             v-model="activity"
             class="input-form"
