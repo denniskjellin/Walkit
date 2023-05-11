@@ -29,7 +29,6 @@ const fetchDestinations = async () => {
     if (error) throw error;
   } catch (error) {
     // Set a custom error message
-
     destinationsData.errorMsg = "Kunde inte hämta destinationer";
     destinationsData.fail = true;
 
@@ -39,29 +38,31 @@ const fetchDestinations = async () => {
 let destinationsData = [];
 destinationsData = await fetchDestinations();
 
-let mapDataError = false;
+// Leaflet map
 let map;
+
+// error handling
+let mapDataError = false;
 let errorMsg = false;
+
 // Parse JSON values and check for emptiness
-let currentLocation = destinationsData?.[0]?.current_cordinations
-  ? JSON.parse(destinationsData[0]?.current_cordinations)
-  : false;
 let startLocation = destinationsData?.[0]?.start_cordinations
   ? JSON.parse(destinationsData[0].start_cordinations)
   : false;
 let endLocation = destinationsData?.[0]?.end_cordinations
   ? JSON.parse(destinationsData[0].end_cordinations)
   : false;
-
-if (!currentLocation || !startLocation || !endLocation) {
+// check if startLocation and endLocation is empty
+if (!startLocation || !endLocation) {
   mapDataError = true;
 }
 
+// Leaflet map
 onMounted(() => {
   if (!mapDataError) {
     map = L.map("map", {
-      center: currentLocation,
-      zoom: 5,
+      center: endLocation,
+      zoom: 12,
     });
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 15,
@@ -81,15 +82,11 @@ onMounted(() => {
       shadowSize: [41, 41],
     });
 
+    // start marker and end marker with polygon line (startLocation and endLocation is parsed JSON)
     let startMarker = L.marker(startLocation).addTo(map);
     let endMarker = L.marker(endLocation, { icon: greenIcon }).addTo(map);
-    let currentMarker = L.circle(currentLocation, {
-      color: "red",
-      fillColor: "#f03",
-      fillOpacity: 0.5,
-      radius: 500,
-    }).addTo(map);
 
+    // polygon line
     let destinationLine = L.polygon([startLocation, endLocation], {
       color: "#ff00ff",
       fillColor: "#f03",

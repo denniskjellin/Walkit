@@ -62,21 +62,6 @@
             />
           </div>
           <div class="input-section">
-            <label class="label-form" for="current-cordinations"
-              >Progress kordination:</label
-            >
-            <input
-              placeholder="[36.190522, 27.940551]"
-              aria-label="Progress kordination"
-              v-model="current_cordinations"
-              class="input-form"
-              type="text"
-              id="current-cordinations"
-              name="current-cordinations"
-              required
-            />
-          </div>
-          <div class="input-section">
             <label class="label-form" for="km">Total distans/km:</label>
             <input
               aria-label="Distans i Km"
@@ -163,10 +148,7 @@
               <span class="bold">Slut kordination:</span><br />
               {{ destination.end_cordinations }}
             </p>
-            <p>
-              <span class="bold">Progress kordination:</span><br />
-              {{ destination.current_cordinations }}
-            </p>
+  
             <p>
               <span class="bold">Antal steg:</span> {{ destination.steps_goal }}
             </p>
@@ -219,7 +201,7 @@ const start = ref(null);
 const end = ref(null);
 const start_cordinations = ref("");
 const end_cordinations = ref("");
-const current_cordinations = ref("");
+
 
 const isActive = ref(false);
 const pending = ref(false);
@@ -242,10 +224,6 @@ const validateInput = () => {
   } else if (!coordinateRegex.test(end_cordinations.value)) {
     errorMsg.value =
       "Slut kordination: Felaktig format. Använd formatet [latitud,longitud].";
-    isValid = false;
-  } else if (!coordinateRegex.test(current_cordinations.value)) {
-    errorMsg.value =
-      "Progress kordination: Felaktig format. Använd formatet [latitud,longitud]..";
     isValid = false;
   } else if (km.value < 1) {
     errorMsg.value = "Total distans: Kan inte vara mindre än 1 km.";
@@ -327,7 +305,6 @@ const insertDestination = async (destination) => {
           to: to.value,
           start_cordinations: start_cordinations.value,
           end_cordinations: end_cordinations.value,
-          current_cordinations: current_cordinations.value,
           steps_goal: stepsGoal,
           km: km.value,
           start: start.value,
