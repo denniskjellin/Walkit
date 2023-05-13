@@ -40,7 +40,7 @@
     <div class="add-steps-form__submit input-label-container">
       <!-- call inserSteps when button is pushed, @btn styling inside button components -->
       <button
-        @click.prevent="insertSteps"
+        @click.prevent="insertSteps()"
         class="btn-primary btn-forest"
         aria-label="Lägg till steg"
       >
@@ -48,6 +48,48 @@
       </button>
     </div>
   </form>
+  <div>
+    <form class="add-steps-form">
+      <div class="input-label-container">
+        <label for="activity">Välj aktivitet</label>
+        <select
+          class="input-add-steps-form"
+          name="activity"
+          id="activity"
+          v-model="activityValue"
+        >
+          <option
+            v-for="(item, index) in activityListData?.activities"
+            :key="index"
+            :value="item.step_value"
+          >
+            {{ item.activity }}
+          </option>
+        </select>
+      </div>
+      <div class="input-label-container">
+        <label class="label-add-steps-form" for="minutes">Antal minuter</label>
+        <input
+          required
+          class="input-add-steps-form"
+          min="0"
+          id="minutes"
+          type="number"
+          v-model="activityMinutes"
+          aria-label="Antal minuter"
+        />
+      </div>
+      
+
+      <button
+        @click.prevent="insertActivitySteps()"
+        class="btn-primary btn-forest"
+        aria-label="Lägg till steg"
+      >
+        Lägg till
+      </button>
+    </form>
+  </div>
 </template>
 
 <script setup>
@@ -55,11 +97,18 @@
 const supabase = useSupabaseClient();
 
 // initiate variables
+let updatedStepsValue = "";
 const todayDate = new Date().toISOString().slice(0, 10); // set todays date as default
+
+// ref variables
 const date = ref(todayDate);
 const steps = ref(0);
 const errorMsg = ref("");
 const successMsg = ref("");
+let activityValue = ref(0);
+let activityMinutes = ref(0);
+
+// state variables
 let remainingStepsData = useState("remainingStepsState");
 let totalStepsData = useState("totalStepsData");
 let totalWalkedData = useState("totalWalkedData");
@@ -72,11 +121,76 @@ let getUserMonthlyStepsData = useState("userMonthlyStepsState");
 let getAllTimeStepsUserData = useState("userAllTimeStepsState");
 let getUserWeeklyStatsData = useState("getUserWeeklyStatsState");
 let userStepsEntryData = useState("userStepsEntryState");
+let activityListData = useState("activityListState");
+
+// paginatian variables
 let lastPage = useState("lastPageState", () => 1);
 let page = useState("pageState", () => 1);
 
+// insert steps function
+async function insertSteps() {
+  let successfull = await insertStepsToDatabase(date.value, steps.value);
+
+  if (successfull) {
+    successMsg.value = "Stegen har lagts till!";
+
+    setTimeout(() => {
+      successMsg.value = "";
+      errorMsg.value = "";
+      date = null;
+      steps = 0;
+    }, 1000);
+
+    // Update the remaining steps
+    updateStateVariables();
+  } else {
+    errorMsg.value = "Ops, någonting gick fel!";
+
+    setTimeout(() => {
+      errorMsg.value = "";
+      successMsg.value = "";
+    }, 7000);
+  }
+}
+
+async function insertActivitySteps() {
+  let calculatedActivitySteps = calculateSteps(
+    activityValue.value,
+    activityMinutes.value
+  );
+  let successfull = await insertStepsToDatabase(
+    date.value,
+    calculatedActivitySteps
+  );
+
+  if (successfull) {
+    successMsg.value = "Stegen har lagts till!";
+
+    setTimeout(() => {
+      successMsg.value = "";
+      errorMsg.value = "";
+      date = null;
+      steps = 0;
+    }, 1000);
+
+    // Update the remaining steps
+    updateStateVariables();
+  } else {
+    errorMsg.value = "Ops, någonting gick fel!";
+
+    setTimeout(() => {
+      errorMsg.value = "";
+      successMsg.value = "";
+    }, 7000);
+  }
+}
+
+function calculateSteps(activityValue, activityMinutes) {
+  return Math.round((activityValue / 30) * activityMinutes);
+}
+
 // function to insert steps
-const insertSteps = async () => {
+async function insertStepsToDatabase(date, steps) {
   try {
     const user = useSupabaseUser();
     if (!user.value) {
@@ -108,7 +222,7 @@ const insertSteps = async () => {
     }
 
     // Check if the steps value is valid
-    if (steps.value < 1) {
+    if (steps < 1) {
       errorMsg.value = "Antal steg måste vara 1 eller högre!";
       setTimeout(() => {
         errorMsg.value = "";
@@ -118,7 +232,7 @@ const insertSteps = async () => {
 
     // Date check, if the selected date is in the future, throw an error
     const currentDate = new Date();
-    const selectedDate = new Date(date.value);
+    const selectedDate = new Date(date);
     if (selectedDate > currentDate) {
       errorMsg.value = "Du kan inte lägga till steg för framtida datum!";
       setTimeout(() => {
@@ -132,8 +246,8 @@ const insertSteps = async () => {
       .from("steps")
       .insert([
         {
-          date: date.value,
-          steps: steps.value,
+          date: date,
+          steps: steps,
           user_id,
           destination_id: destinationId,
         },
@@ -141,38 +255,36 @@ const insertSteps = async () => {
 
     // Reset the form if success
     if (stepsError) throw stepsError;
-    successMsg.value = "Stegen har lagts till!";
 
-    // Update the remaining steps
-    remainingStepsData.value = await getRemainingStepsData();
-    totalStepsData.value = await getTotalSteps();
-    totalWalkedData.value = await getTotalWalked();
-    userDailyStepsData.value = await getUserSteps();
-    getAllStepsData.value = await getAllSteps();
-    getAllStepsWeekData.value = await getAllStepsWeek();
-    getAllUsersData.value = await getAllUsers();
-    getToplistStepsData.value = await getToplistSteps();
-    getUserMonthlyStepsData.value = await getUserMonthlySteps();
-    getAllTimeStepsUserData.value = await getAllTimeStepsUser();
-    getUserWeeklyStatsData.value = await getUserWeeklyStats();
-    userStepsEntryData.value = await getAllUserStepsEntry(page.value);
-
-    const lengthData = await getNumberUserStepsEntry();
-    lastPage.value = lengthData.userNumberStepsEntrys;
-
-    setTimeout(() => {
-      successMsg.value = "";
-      errorMsg.value = "";
-      date.value = null;
-      steps.value = 0;
-    }, 1000);
+    return true;
   } catch (error) {
     // set a custom error message
-    errorMsg.value = "Ops, någonting gick fel!";
-    setTimeout(() => {
-      errorMsg.value = "";
-      successMsg.value = "";
-    }, 7000);
+
+    return false;
   }
-};
+}
+
+// insert steps by activity to Supabase
+
+async function updateStateVariables() {
+  remainingStepsData.value = await getRemainingStepsData();
+  totalStepsData.value = await getTotalSteps();
+  totalWalkedData.value = await getTotalWalked();
+  userDailyStepsData.value = await getUserSteps();
+  getAllStepsData.value = await getAllSteps();
+  getAllStepsWeekData.value = await getAllStepsWeek();
+  getAllUsersData.value = await getAllUsers();
+  getToplistStepsData.value = await getToplistSteps();
+  getUserMonthlyStepsData.value = await getUserMonthlySteps();
+  getAllTimeStepsUserData.value = await getAllTimeStepsUser();
+  getUserWeeklyStatsData.value = await getUserWeeklyStats();
+  userStepsEntryData.value = await getAllUserStepsEntry(page.value);
+
+  const lengthData = await getNumberUserStepsEntry();
+  lastPage.value = lengthData.userNumberStepsEntrys;
+}
+
+onMounted(async () => {
+  activityListData.value = await getAllActivities();
+});
 </script>
