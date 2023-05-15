@@ -1,95 +1,115 @@
 <template>
-  <form class="add-steps-form">
-    <div class="input-group">
-      <h2 class="h2-s">Registrera steg</h2>
-      <div class="input-label-container">
-        <label class="label-add-steps-form" for="date">Datum</label>
-        <input
-          required
-          class="input-add-steps-form"
-          id="date"
-          ref="test"
-          type="date"
-          v-model="date"
-          aria-label="Datum"
-        />
-      </div>
-      <div class="input-label-container">
-        <label class="label-add-steps-form" for="steps">Antal steg</label>
-        <input
-          required
-          class="input-add-steps-form"
-          min="0"
-          id="steps"
-          type="number"
-          v-model="steps"
-          aria-label="Antal steg"
-        />
-      </div>
-    </div>
-    <!-- success msg div, aria assertive - screenread reads this msg when if it triggers -->
-    <div v-if="errorMsg || successMsg" role="alert" aria-live="assertive">
-      <p v-if="errorMsg" class="error-box steps">
-        {{ errorMsg }}
-      </p>
-      <p v-if="successMsg" class="success-box steps">
-        {{ successMsg }}
-      </p>
-    </div>
-
-    <div class="add-steps-form__submit input-label-container">
-      <!-- call inserSteps when button is pushed, @btn styling inside button components -->
-      <button
-        @click.prevent="insertSteps()"
-        class="btn-primary btn-forest"
-        aria-label="Lägg till steg"
-      >
-        Lägg till <i class="fas fa-plus"></i>
-      </button>
-    </div>
-  </form>
-  <div>
+  {{ hasActiveDestinationBool }}
+  <template v-if="hasActiveDestinationBool">
     <form class="add-steps-form">
-      <div class="input-label-container">
-        <label for="activity">Välj aktivitet</label>
-        <select
-          class="input-add-steps-form"
-          name="activity"
-          id="activity"
-          v-model="activityValue"
-        >
-          <option
-            v-for="(item, index) in activityListData?.activities"
-            :key="index"
-            :value="item.step_value"
-          >
-            {{ item.activity }}
-          </option>
-        </select>
+      <div class="input-group">
+        <h2 class="h2-s">Registrera steg</h2>
+        <div class="input-label-container">
+          <label class="label-add-steps-form" for="date">Datum</label>
+          <input
+            required
+            class="input-add-steps-form"
+            id="date"
+            ref="test"
+            type="date"
+            v-model="date"
+            aria-label="Datum"
+          />
+        </div>
+        <div class="input-label-container">
+          <label class="label-add-steps-form" for="steps">Antal steg</label>
+          <input
+            required
+            class="input-add-steps-form"
+            min="0"
+            id="steps"
+            type="number"
+            v-model="steps"
+            aria-label="Antal steg"
+          />
+        </div>
       </div>
-      <div class="input-label-container">
-        <label class="label-add-steps-form" for="minutes">Antal minuter</label>
-        <input
-          required
-          class="input-add-steps-form"
-          min="0"
-          id="minutes"
-          type="number"
-          v-model="activityMinutes"
-          aria-label="Antal minuter"
-        />
+      <!-- success msg div, aria assertive - screenread reads this msg when if it triggers -->
+      <div v-if="errorMsg || successMsg" role="alert" aria-live="assertive">
+        <p v-if="errorMsg" class="error-box steps">
+          {{ errorMsg }}
+        </p>
+        <p v-if="successMsg" class="success-box steps">
+          {{ successMsg }}
+        </p>
       </div>
-      
 
-      <button
-        @click.prevent="insertActivitySteps()"
-        class="btn-primary btn-forest"
-        aria-label="Lägg till steg"
-      >
-        Lägg till
-      </button>
+      <div class="add-steps-form__submit input-label-container">
+        <!-- call inserSteps when button is pushed, @btn styling inside button components -->
+        <button
+          @click.prevent="insertSteps()"
+          class="btn-primary btn-forest"
+          aria-label="Lägg till steg"
+        >
+          Lägg till <i class="fas fa-plus"></i>
+        </button>
+      </div>
     </form>
-  </div>
+    <div>
+      <form class="add-steps-form">
+        <div class="input-label-container">
+          <label for="activity">Välj aktivitet</label>
+          <select
+            class="input-add-steps-form"
+            name="activity"
+            id="activity"
+            v-model="activityValue"
+          >
+            <option
+              v-for="(item, index) in activityListData?.activities"
+              :key="index"
+              :value="item.step_value"
+            >
+              {{ item.activity }}
+            </option>
+          </select>
+        </div>
+        <div class="input-label-container">
+          <label class="label-add-steps-form" for="minutes"
+            >Antal minuter</label
+          >
+          <input
+            required
+            class="input-add-steps-form"
+            min="0"
+            id="minutes"
+            type="number"
+            v-model="activityMinutes"
+            aria-label="Antal minuter"
+          />
+        </div>
+        <!-- success msg div, aria assertive - screenread reads this msg when if it triggers -->
+        <div
+          v-if="activityInsertStepsError || activityInsertStepsSuccess"
+          role="alert"
+          aria-live="assertive"
+        >
+          <p v-if="activityInsertStepsError" class="error-box steps">
+            {{ activityInsertStepsError }}
+          </p>
+          <p v-if="activityInsertStepsSuccess" class="success-box steps">
+            {{ activityInsertStepsSuccess }}
+          </p>
+        </div>
+
+        <div class="add-steps-form__submit input-label-container">
+          <button
+            @click.prevent="insertActivitySteps()"
+            class="btn-primary btn-forest"
+            aria-label="Lägg till steg"
+          >
+            Lägg till <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </template>
+  <p v-else>laddar</p>
 </template>
 
 <script setup>
@@ -101,12 +121,19 @@ let updatedStepsValue = "";
 const todayDate = new Date().toISOString().slice(0, 10); // set todays date as default
 
 // ref variables
-const date = ref(todayDate);
-const steps = ref(0);
-const errorMsg = ref("");
-const successMsg = ref("");
+let date = ref(todayDate);
+let steps = ref(0);
 let activityValue = ref(0);
 let activityMinutes = ref(0);
+let hasActiveDestinationBool = ref(false);
+
+// error
+let errorMsg = ref("");
+let activityInsertStepsError = ref("");
+
+// success
+let successMsg = ref("");
+let activityInsertStepsSuccess = ref("");
 
 // state variables
 let remainingStepsData = useState("remainingStepsState");
@@ -127,8 +154,35 @@ let activityListData = useState("activityListState");
 let lastPage = useState("lastPageState", () => 1);
 let page = useState("pageState", () => 1);
 
+// function to validate steps and date
+function validateSteps(steps, date) {
+  // check if steps is a positive number
+  if (steps < 1) {
+    return "Antal steg måste vara 1 eller högre!";
+  }
+
+  // check if date is in the future
+  if (new Date(date) > new Date()) {
+    return "Du kan inte lägga till steg för framtida datum!";
+  }
+
+  return "";
+}
+
 // insert steps function
 async function insertSteps() {
+  let validatorMessage = validateSteps(steps.value, date.value);
+
+  if (validatorMessage != "") {
+    errorMsg.value = validatorMessage;
+
+    setTimeout(() => {
+      errorMsg.value = "";
+    }, 7000);
+
+    return;
+  }
+
   let successfull = await insertStepsToDatabase(date.value, steps.value);
 
   if (successfull) {
@@ -137,8 +191,8 @@ async function insertSteps() {
     setTimeout(() => {
       successMsg.value = "";
       errorMsg.value = "";
-      date = null;
-      steps = 0;
+      date.value = null;
+      steps.value = 0;
     }, 1000);
 
     // Update the remaining steps
@@ -158,17 +212,29 @@ async function insertActivitySteps() {
     activityValue.value,
     activityMinutes.value
   );
+
+  let validatorMessage = validateSteps(calculatedActivitySteps, date.value);
+
+  if (validatorMessage != "") {
+    activityInsertStepsError.value = validatorMessage;
+
+    setTimeout(() => {
+      activityInsertStepsError.value = "";
+    }, 7000);
+
+    return;
+  }
   let successfull = await insertStepsToDatabase(
     date.value,
     calculatedActivitySteps
   );
 
   if (successfull) {
-    successMsg.value = "Stegen har lagts till!";
+    activityInsertStepsSuccess.value = "Stegen har lagts till!";
 
     setTimeout(() => {
-      successMsg.value = "";
-      errorMsg.value = "";
+      activityInsertStepsSuccess.value = "";
+      activityInsertStepsError.value = "";
       date = null;
       steps = 0;
     }, 1000);
@@ -176,11 +242,11 @@ async function insertActivitySteps() {
     // Update the remaining steps
     updateStateVariables();
   } else {
-    errorMsg.value = "Ops, någonting gick fel!";
+    activityInsertStepsError.value = "Ops, någonting gick fel!";
 
     setTimeout(() => {
-      errorMsg.value = "";
-      successMsg.value = "";
+      activityInsertStepsError.value = "";
+      activityInsertStepsSuccess.value = "";
     }, 7000);
   }
 }
@@ -188,6 +254,22 @@ async function insertActivitySteps() {
 function calculateSteps(activityValue, activityMinutes) {
   return Math.round((activityValue / 30) * activityMinutes);
 }
+
+async function hasActiveDestination() {
+  const { data: activeDestinations, error } = await supabase
+    .from("destinations")
+    .select("*")
+    .eq("is_active", true);
+
+  if (activeDestinations.length <= 0) {
+    console.log("no active destinations");
+    hasActiveDestinationBool.value = false;
+  } else if (activeDestinations.length > 0) {
+    console.log(activeDestinations, "bu");
+    hasActiveDestinationBool.value = true;
+  }
+}
+hasActiveDestination();
 
 // function to insert steps
 async function insertStepsToDatabase(date, steps) {
@@ -219,26 +301,6 @@ async function insertStepsToDatabase(date, steps) {
       setTimeout(() => {
         errorMsg.value = "";
       }, 7000);
-    }
-
-    // Check if the steps value is valid
-    if (steps < 1) {
-      errorMsg.value = "Antal steg måste vara 1 eller högre!";
-      setTimeout(() => {
-        errorMsg.value = "";
-      }, 7000);
-      return;
-    }
-
-    // Date check, if the selected date is in the future, throw an error
-    const currentDate = new Date();
-    const selectedDate = new Date(date);
-    if (selectedDate > currentDate) {
-      errorMsg.value = "Du kan inte lägga till steg för framtida datum!";
-      setTimeout(() => {
-        errorMsg.value = "";
-      }, 7000);
-      return;
     }
 
     // Insert the steps
@@ -283,6 +345,16 @@ async function updateStateVariables() {
   const lengthData = await getNumberUserStepsEntry();
   lastPage.value = lengthData.userNumberStepsEntrys;
 }
+
+const props = defineProps(["visible"]);
+console.log(props.visible);
+
+watch(
+  () => props.visible,
+  (newValue, oldValue) => {
+    hasActiveDestination();
+  }
+);
 
 onMounted(async () => {
   activityListData.value = await getAllActivities();
