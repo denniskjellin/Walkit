@@ -20,10 +20,7 @@
   color: #b91c1c;
   padding: 0.5rem;
   margin-bottom: 0.5rem;
-
-  @media screen and (max-width: 768px) {
-    max-width: 300px;
-  }
+  width: 100%;
 }
 
 .textual {

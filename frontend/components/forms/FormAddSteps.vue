@@ -1,5 +1,4 @@
 <template>
-  {{ hasActiveDestinationBool }}
   <template v-if="hasActiveDestinationBool">
     <form class="add-steps-form">
       <div class="input-group">
@@ -16,100 +15,124 @@
             aria-label="Datum"
           />
         </div>
-        <div class="input-label-container">
-          <label class="label-add-steps-form" for="steps">Antal steg</label>
-          <input
-            required
-            class="input-add-steps-form"
-            min="0"
-            id="steps"
-            type="number"
-            v-model="steps"
-            aria-label="Antal steg"
-          />
-        </div>
-      </div>
-      <!-- success msg div, aria assertive - screenread reads this msg when if it triggers -->
-      <div v-if="errorMsg || successMsg" role="alert" aria-live="assertive">
-        <p v-if="errorMsg" class="error-box steps">
-          {{ errorMsg }}
-        </p>
-        <p v-if="successMsg" class="success-box steps">
-          {{ successMsg }}
-        </p>
-      </div>
-
-      <div class="add-steps-form__submit input-label-container">
-        <!-- call inserSteps when button is pushed, @btn styling inside button components -->
-        <button
-          @click.prevent="insertSteps()"
-          class="btn-primary btn-forest"
-          aria-label="Lägg till steg"
-        >
-          Lägg till <i class="fas fa-plus"></i>
-        </button>
-      </div>
-    </form>
-    <div>
-      <form class="add-steps-form">
-        <div class="input-label-container">
-          <label for="activity">Välj aktivitet</label>
-          <select
-            class="input-add-steps-form"
-            name="activity"
-            id="activity"
-            v-model="activityValue"
-          >
-            <option
-              v-for="(item, index) in activityListData?.activities"
-              :key="index"
-              :value="item.step_value"
-            >
-              {{ item.activity }}
-            </option>
-          </select>
-        </div>
-        <div class="input-label-container">
-          <label class="label-add-steps-form" for="minutes"
-            >Antal minuter</label
-          >
-          <input
-            required
-            class="input-add-steps-form"
-            min="0"
-            id="minutes"
-            type="number"
-            v-model="activityMinutes"
-            aria-label="Antal minuter"
-          />
-        </div>
-        <!-- success msg div, aria assertive - screenread reads this msg when if it triggers -->
-        <div
-          v-if="activityInsertStepsError || activityInsertStepsSuccess"
-          role="alert"
-          aria-live="assertive"
-        >
-          <p v-if="activityInsertStepsError" class="error-box steps">
-            {{ activityInsertStepsError }}
-          </p>
-          <p v-if="activityInsertStepsSuccess" class="success-box steps">
-            {{ activityInsertStepsSuccess }}
-          </p>
-        </div>
-
-        <div class="add-steps-form__submit input-label-container">
+        <div class="container-flex">
           <button
-            @click.prevent="insertActivitySteps()"
-            class="btn-primary btn-forest"
+            class="tab"
+            :class="tab === 'steps' ? 'active' : ''"
+            @click.prevent="tab = 'steps'"
+          >
+            Lägg till steg
+          </button>
+          <button
+            class="tab"
+            :class="tab === 'activity' ? 'active' : ''"
+            @click.prevent="tab = 'activity'"
+          >
+            Lägg till aktivitet
+          </button>
+        </div>
+
+        <!-- Steg -->
+        <template v-if="tab === 'steps'">
+          <div class="input-label-container">
+            <label class="label-add-steps-form" for="steps">Antal steg</label>
+            <input
+              required
+              class="input-add-steps-form"
+              min="0"
+              id="steps"
+              type="number"
+              v-model="steps"
+              aria-label="Antal steg"
+            />
+          </div>
+
+          <!-- success msg div, aria assertive - screenread reads this msg when if it triggers -->
+          <div v-if="errorMsg || successMsg" role="alert" aria-live="assertive" class="full-width">
+            <p v-if="errorMsg" class="error-box steps">
+              {{ errorMsg }}
+            </p>
+            <p v-if="successMsg" class="success-box steps">
+              {{ successMsg }}
+            </p>
+          </div>
+
+          <!-- call inserSteps when button is pushed, @btn styling inside button components -->
+          <button
+            @click.prevent="insertSteps()"
+            class="btn-primary btn-forest btn-margin"
             aria-label="Lägg till steg"
           >
             Lägg till <i class="fas fa-plus"></i>
           </button>
-        </div>
-      </form>
-    </div>
+        </template>
+
+        <!-- end Steg -->
+
+        <!-- Aktivitet -->
+        <template v-if="tab === 'activity'">
+          <div class="input-label-container">
+            <label for="activity">Välj aktivitet</label>
+            <select
+              class="input-add-steps-form"
+              name="activity"
+              id="activity"
+              v-model="activityValue"
+              aria-label="Välj aktivitet"
+            >
+              <option
+                v-for="(item, index) in activityListData?.activities"
+                :key="index"
+                :value="item.step_value"
+              >
+                {{ item.activity }}
+              </option>
+            </select>
+          </div>
+          <div class="input-label-container">
+            <label class="label-add-steps-form" for="minutes"
+              >Antal minuter</label
+            >
+            <input
+              required
+              class="input-add-steps-form"
+              min="0"
+              id="minutes"
+              type="number"
+              v-model="activityMinutes"
+              aria-label="Antal minuter"
+            />
+          </div>
+          <div
+            v-if="activityInsertStepsError || activityInsertStepsSuccess"
+            role="alert"
+            aria-live="assertive"
+            class="full-width"
+          >
+            <p v-if="activityInsertStepsError" class="error-box steps">
+              {{ activityInsertStepsError }}
+            </p>
+            <p v-if="activityInsertStepsSuccess" class="success-box steps">
+              {{ activityInsertStepsSuccess }}
+            </p>
+          </div>
+
+          <button
+            @click.prevent="insertActivitySteps()"
+            class="btn-primary btn-forest btn-margin"
+            aria-label="Lägg till steg"
+          >
+            Lägg till <i class="fas fa-plus"></i>
+          </button>
+        </template>
+
+        <!-- end Aktivitet -->
+      </div>
+    </form>
   </template>
-  <p v-else>laddar</p>
+  <div v-else class="container">
+    <p class="error-box">Finns ingen aktiv destination att logga steg emot.</p>
+  </div>
 </template>
 
 <script setup>
@@ -122,6 +145,7 @@ const todayDate = new Date().toISOString().slice(0, 10); // set todays date as d
 
 // ref variables
 let date = ref(todayDate);
+let tab = ref("steps");
 let steps = ref(0);
 let activityValue = ref(0);
 let activityMinutes = ref(0);
@@ -155,10 +179,19 @@ let lastPage = useState("lastPageState", () => 1);
 let page = useState("pageState", () => 1);
 
 // function to validate steps and date
-function validateSteps(steps, date) {
-  // check if steps is a positive number
-  if (steps < 1) {
-    return "Antal steg måste vara 1 eller högre!";
+function validateSteps() {
+  if (tab.value === "activity") {
+    if (activityMinutes.value < 1) {
+      return "Antal minuter måste vara 1 eller högre!";
+    }
+    if (activityValue.value === 0) {
+      return "Välj en aktivitet!";
+    }
+  } else if (tab.value === "steps") {
+    // check if steps is a positive number
+    if (steps.value < 1) {
+      return "Antal steg måste vara 1 eller högre!";
+    }
   }
 
   // check if date is in the future
@@ -177,7 +210,7 @@ async function insertSteps() {
     errorMsg.value = validatorMessage;
 
     setTimeout(() => {
-      errorMsg.value = "";
+      // errorMsg.value = "";
     }, 7000);
 
     return;
@@ -358,5 +391,6 @@ watch(
 
 onMounted(async () => {
   activityListData.value = await getAllActivities();
+
 });
 </script>
