@@ -48,7 +48,12 @@
           </div>
 
           <!-- success msg div, aria assertive - screenread reads this msg when if it triggers -->
-          <div v-if="errorMsg || successMsg" role="alert" aria-live="assertive" class="full-width">
+          <div
+            v-if="errorMsg || successMsg"
+            role="alert"
+            aria-live="assertive"
+            class="full-width"
+          >
             <p v-if="errorMsg" class="error-box steps">
               {{ errorMsg }}
             </p>
@@ -150,6 +155,7 @@ let steps = ref(0);
 let activityValue = ref(0);
 let activityMinutes = ref(0);
 let hasActiveDestinationBool = ref(false);
+let calculatedActivitySteps = ref(0);
 
 // error
 let errorMsg = ref("");
@@ -187,6 +193,9 @@ function validateSteps() {
     if (activityValue.value === 0) {
       return "Välj en aktivitet!";
     }
+    if (calculatedActivitySteps.value === 0) {
+      return "Antal minuter var för lågt!";
+    }
   } else if (tab.value === "steps") {
     // check if steps is a positive number
     if (steps.value < 1) {
@@ -195,7 +204,7 @@ function validateSteps() {
   }
 
   // check if date is in the future
-  if (new Date(date) > new Date()) {
+  if (new Date(date.value) > new Date()) {
     return "Du kan inte lägga till steg för framtida datum!";
   }
 
@@ -204,13 +213,13 @@ function validateSteps() {
 
 // insert steps function
 async function insertSteps() {
-  let validatorMessage = validateSteps(steps.value, date.value);
+  let validatorMessage = validateSteps();
 
   if (validatorMessage != "") {
     errorMsg.value = validatorMessage;
 
     setTimeout(() => {
-      // errorMsg.value = "";
+      errorMsg.value = "";
     }, 7000);
 
     return;
@@ -224,8 +233,9 @@ async function insertSteps() {
     setTimeout(() => {
       successMsg.value = "";
       errorMsg.value = "";
-      date.value = null;
+      date.value = todayDate;
       steps.value = 0;
+      calculatedActivitySteps.value = 0;
     }, 1000);
 
     // Update the remaining steps
@@ -241,12 +251,12 @@ async function insertSteps() {
 }
 
 async function insertActivitySteps() {
-  let calculatedActivitySteps = calculateSteps(
+  calculatedActivitySteps.value = calculateSteps(
     activityValue.value,
     activityMinutes.value
   );
 
-  let validatorMessage = validateSteps(calculatedActivitySteps, date.value);
+  let validatorMessage = validateSteps();
 
   if (validatorMessage != "") {
     activityInsertStepsError.value = validatorMessage;
@@ -257,9 +267,10 @@ async function insertActivitySteps() {
 
     return;
   }
+  console.log(date.value, "date value");
   let successfull = await insertStepsToDatabase(
     date.value,
-    calculatedActivitySteps
+    calculatedActivitySteps.value
   );
 
   if (successfull) {
@@ -268,8 +279,9 @@ async function insertActivitySteps() {
     setTimeout(() => {
       activityInsertStepsSuccess.value = "";
       activityInsertStepsError.value = "";
-      date = null;
-      steps = 0;
+      date.value = todayDate;
+      steps.value = 0;
+      calculatedActivitySteps.value = 0;
     }, 1000);
 
     // Update the remaining steps
@@ -306,6 +318,7 @@ hasActiveDestination();
 async function insertStepsToDatabase(date, steps) {
   try {
     const user = useSupabaseUser();
+
     if (!user.value) {
       throw new Error("User not logged in");
     }
@@ -388,6 +401,5 @@ watch(
 
 onMounted(async () => {
   activityListData.value = await getAllActivities();
-
 });
 </script>
