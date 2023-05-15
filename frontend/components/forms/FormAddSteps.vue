@@ -295,10 +295,8 @@ async function hasActiveDestination() {
     .eq("is_active", true);
 
   if (activeDestinations.length <= 0) {
-    console.log("no active destinations");
     hasActiveDestinationBool.value = false;
   } else if (activeDestinations.length > 0) {
-    console.log(activeDestinations, "bu");
     hasActiveDestinationBool.value = true;
   }
 }
@@ -380,7 +378,6 @@ async function updateStateVariables() {
 }
 
 const props = defineProps(["visible"]);
-console.log(props.visible);
 
 watch(
   () => props.visible,
