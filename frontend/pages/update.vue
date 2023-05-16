@@ -34,7 +34,6 @@
       <div class="input-label-container">
         <button type="submit" class="btn-primary btn-forest">
           Uppdatera lösenord <i class="fas fa-undo"></i>
-
         </button>
       </div>
     </form>
@@ -72,23 +71,9 @@ const updatePassword = async () => {
     successMsg.value = "Lösenordet har uppdaterats.";
     setTimeout(() => {
       router.push("/profile");
-    }, 1000);	
+    }, 1000);
   }
 };
-
-
-const user = useSupabaseUser();
-// Redirect to the login page if the user is not signed in
-watchEffect(() => {
-  if (!user.value) {
-    return navigateTo("/login");
-  }
-});
-
-definePageMeta({
-  middleware: "auth",
-  layout: "default",
-});
 </script>
 
 <style lang="scss" scoped></style>
