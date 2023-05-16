@@ -56,9 +56,9 @@
           >Registrera</NuxtLink
         >
       </div>
-      <div class="register-section">
+      <div class="register-section bottom">
         <p>Glömt lösenord?</p>
-        <NuxtLink to="/reset" aria-label="Återställ lösenord"
+        <NuxtLink to="/recover" aria-label="Återställ lösenord"
           >Återställ lösenord</NuxtLink
         >
       </div>

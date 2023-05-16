@@ -1,6 +1,7 @@
 <template>
   <header>
     <nav class="main-header">
+      <template v-if="user?.full_name">
       <div class="profile-container hover-accessibility">
         <NuxtLink to="/profile" title="Profile page">
         <div class="child">
@@ -9,6 +10,8 @@
         </NuxtLink>
         <p class="menu-text">{{ userFirst(user.full_name)}}</p>
       </div>
+    </template>
+    <p v-else></p>
       <NuxtLink to="/" class="walkit-logo">
         <LogosLogoMain />
       </NuxtLink>

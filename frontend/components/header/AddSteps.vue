@@ -32,7 +32,7 @@
     :class="{ hidden: !isOpen, block: !isOpen }"
   >
     <!-- Adding steps form component -->
-    <FormsFormAddSteps />
+    <FormsFormAddSteps :visible="isOpen" />
   </div>
 
   <!-- This is the grey-out div, addition css in HeaderNavComp -->
