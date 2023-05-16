@@ -25,6 +25,7 @@
     >
       {{ totalStepsData.errorMsg }}
     </p>
+    
   </section>
 </template>
 

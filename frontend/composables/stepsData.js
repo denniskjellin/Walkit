@@ -89,7 +89,7 @@ export const getTotalSteps = async () => {
 export const getTotalWalked = async () => {
   const supabase = useSupabaseClient();
   let returnValue = {
-    totalWalked: 0,
+    totalWalked: [],
     errorMsg: "",
   };
 
