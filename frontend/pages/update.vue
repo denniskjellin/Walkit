@@ -75,6 +75,20 @@ const updatePassword = async () => {
     }, 1000);	
   }
 };
+
+
+const user = useSupabaseUser();
+// Redirect to the login page if the user is not signed in
+watchEffect(() => {
+  if (!user.value) {
+    return navigateTo("/login");
+  }
+});
+
+definePageMeta({
+  middleware: "auth",
+  layout: "default",
+});
 </script>
 
 <style lang="scss" scoped></style>
