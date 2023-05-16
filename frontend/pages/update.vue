@@ -69,7 +69,9 @@ const updatePassword = async () => {
     errorMsg.value = "Gick ej att uppdatera lösenordet.";
   } else {
     successMsg.value = "Lösenordet har uppdaterats.";
-    router.push("/profile");
+    setTimeout(() => {
+      router.push("/profile");
+    }, 1000);	
   }
 };
 </script>
