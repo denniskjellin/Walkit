@@ -136,7 +136,7 @@
     </form>
   </template>
   <div v-else class="container">
-    <p class="error-box">Finns ingen aktiv destination att logga steg emot.</p>
+    <p class="error-box-index">Finns ingen aktiv destination att logga steg emot.</p>
   </div>
 </template>
 
