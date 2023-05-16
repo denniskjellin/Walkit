@@ -78,12 +78,6 @@ const updatePassword = async () => {
 
 
 const user = useSupabaseUser();
-// Redirect to the login page if the user is not signed in
-// watchEffect(() => {
-//   if (!user.value) {
-//     return navigateTo("/login");
-//   }
-// });
 
 definePageMeta({
   middleware: "auth",
