@@ -7,7 +7,7 @@
         <div class="input-section">
           <label class="label-form" for="activity">Aktivitetsnamn:</label>
           <input
-          placeholder="T.ex. promenad"
+            placeholder="T.ex. promenad"
             aria-label="Aktivitetsnamn"
             v-model="activity"
             class="input-form"
@@ -33,13 +33,12 @@
             required
           />
         </div>
-        <!-- error msg div, aria assertive  -->
+
         <div v-if="errorMsg || successMsg" role="alert" aria-live="assertive">
           <p v-if="errorMsg" class="error-box">{{ errorMsg }}</p>
           <p v-if="successMsg" class="success-box steps">{{ successMsg }}</p>
         </div>
 
-        <!-- add destination button -->
         <button
           @click.prevent="insertActivity"
           class="btn-primary btn-forest"
@@ -49,35 +48,37 @@
         </button>
       </form>
     </div>
-
-    <div class="bottom-row">
-      <section v-for="activities in activities" :key="activity.id" class="card">
-        <h2 class="visually-hidden">
-          Aktivitetskort för {{ activities.activity }}
-        </h2>
-        <div class="card-container">
-          <p><span class="bold">Aktivitet:</span> {{ activities.activity }}</p>
-          <p>
-            <span class="bold">Stegvärde - 30 min:</span>
-            {{ activities.step_value }}
-          </p>
-
-          <NuxtLink
-            class="btn-primary btn-forest"
-            :to="`/admin/activities/${activities.id}`"
-          >
-            Redigera <i class="fas fa-edit"></i>
-          </NuxtLink>
-          <button
-            class="btn-primary btn-danger"
-            @click="deleteActivity(activities.id)"
-          >
-            Ta bort <i class="fas fa-trash-alt"></i>
-          </button>
-        </div>
-      </section>
-    </div>
   </div>
+  <section class="section-block section-big-bg-clay">
+    <section class="datalist-wrapper profile-weekly-stats">
+      <h2 class="h2-s">Aktiviteter</h2>
+      <div class="input-section search-activity-section">
+        <lable for="search">Filtrera</lable>
+        <input id="search" v-model="s" type="text" class="input-form" />
+      </div>
+      <div class="datalist-header header-activity activity-item">
+        <span>Aktivitet</span>
+        <span>Antal steg</span>
+        <span>Redigera</span>
+      </div>
+  
+      <ul class="datalist-list">
+        <li
+          class="datalist-item activity-item"
+          v-for="activity in filteredActivities"
+          :key="activity.id"
+        >
+          <span>{{ activity.activity }}</span>
+          <span>{{ numberToSweString(activity.step_value) }}</span>
+          <span>
+            <NuxtLink :to="`/admin/activities/${activity.id}`">
+              Redigera <i class="fas fa-edit"></i>
+            </NuxtLink>
+          </span>
+        </li>
+      </ul>
+    </section>
+  </section>
 </template>
 
 <script setup>
@@ -88,6 +89,8 @@ const successMsg = ref("");
 // form inputs
 const activity = ref("");
 const step_value = ref(0);
+
+const s = ref("");
 
 // validation check for form inputs
 const validateInput = () => {
@@ -104,7 +107,7 @@ const validateInput = () => {
   if (!isValid) {
     setTimeout(() => {
       errorMsg.value = "";
-    }, 14000); 
+    }, 14000);
   }
 
   return isValid;
@@ -197,8 +200,8 @@ const deleteActivity = async (id) => {
   }
 };
 
-let activities = [];
-activities = await fetchActivities();
+let activities = ref([]);
+activities.value = await fetchActivities();
 
 const user = useSupabaseUser();
 // Redirect to the login page if the user is not signed in
@@ -211,6 +214,14 @@ watchEffect(() => {
 definePageMeta({
   middleware: "auth",
   layout: "default",
+});
+
+let filteredActivities = computed(() => {
+  let filteredList = activities.value.filter((activity) => {
+    return activity.activity.toLowerCase().includes(s.value.toLowerCase());
+  });
+
+  return filteredList;
 });
 </script>
 
