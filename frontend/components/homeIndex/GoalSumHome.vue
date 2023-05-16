@@ -15,7 +15,7 @@
     <!-- check for error -->
     <p
       v-if="destinationSumData?.errorMsg"
-      class="error-box center"
+      class="error-box-index"
       role="alert"
       aria-live="assertive"
     >

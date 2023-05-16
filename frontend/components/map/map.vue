@@ -1,8 +1,8 @@
 <template>
   <template v-if="!destinationsData.length">
     <div class="container">
-      <p role="alert" aria-live="assertive" class="error-box">
-        {{ errorMsg ? errorMsg : "Kunde ej läsa in karta." }}
+      <p role="alert" aria-live="assertive" class="error-box-index">
+        {{ errorMsg ? errorMsg : "Obs! Kunde ej läsa in karta." }}
       </p>
     </div>
   </template>
