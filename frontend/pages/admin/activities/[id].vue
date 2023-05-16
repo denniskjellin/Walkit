@@ -45,6 +45,13 @@
         >
           Uppdatera <i class="fas fa-sync-alt"></i>
         </button>
+        <button
+          @click.prevent="deleteActivity"
+          class="btn-primary btn-danger btn-margin-top"
+          aria-label="Lägg till destination"
+        >
+          Ta bort <i class="fas fa-trash-alt"></i>
+        </button>
       </form>
     </div>
     <div class="bottom-row">
@@ -115,11 +122,13 @@ const updateActivity = async () => {
       return;
     }
 
-    // update activity
+    const formattedActivity =
+      activity.value.charAt(0).toUpperCase() + activity.value.slice(1); // Convert the first character to uppercase
+
     const { data, error } = await supabase
       .from("activities")
       .update({
-        activity: activity.value,
+        activity: formattedActivity,
         step_value: step_value.value,
       })
       .eq("id", id);
@@ -136,6 +145,24 @@ const updateActivity = async () => {
   } catch (error) {
     errorMsg.value = "Det gick inte att uppdatera aktiviteten just nu.";
   }
+};
+
+// delete activity
+const deleteActivity = async () => {
+  const { data, error } = await supabase
+    .from("activities")
+    .delete()
+    .eq("id", id);
+
+  // check for error else push success msg
+  if (error) throw error;
+  if (!error) {
+    successMsg.value = "Aktivitet borttagen!";
+  }
+  setTimeout(() => {
+    successMsg.value = "";
+    router.push({ path: "/admin/activities" }); // redirect to admin page
+  }, 1000);
 };
 
 const user = useSupabaseUser();

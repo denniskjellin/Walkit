@@ -61,7 +61,7 @@
         <span>Antal steg</span>
         <span>Redigera</span>
       </div>
-  
+
       <ul class="datalist-list">
         <li
           class="datalist-item activity-item"
@@ -114,6 +114,7 @@ const validateInput = () => {
 };
 
 // insert activity to supabase activities table
+// insert activity to supabase activities table
 const insertActivity = async () => {
   try {
     const user = useSupabaseUser();
@@ -125,12 +126,15 @@ const insertActivity = async () => {
     }
 
     if (validateInput()) {
+      const formattedActivity =
+        activity.value.charAt(0).toUpperCase() + activity.value.slice(1); // Convert the first character to uppercase
+
       // insert activity to supabase
       const { data: activityData, error: insertError } = await supabase
         .from("activities")
         .insert([
           {
-            activity: activity.value,
+            activity: formattedActivity,
             step_value: step_value.value,
             added_by: user_id,
           },
@@ -146,7 +150,6 @@ const insertActivity = async () => {
         successMsg.value = "";
         activity.value = "";
         step_value.value = 0;
-        // router.push("/admin/aktivitetshantering");
       }, 1000);
     }
   } catch (error) {
