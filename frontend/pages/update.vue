@@ -33,7 +33,8 @@
       </div>
       <div class="input-label-container">
         <button type="submit" class="btn-primary btn-forest">
-          Uppdatera lösenord
+          Uppdatera lösenord <i class="fas fa-undo"></i>
+
         </button>
       </div>
     </form>
