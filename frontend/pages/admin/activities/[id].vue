@@ -1,74 +1,58 @@
 <template>
   <div class="container-main-activities">
-    <h1 class="h2-s">Redigerar: {{ activities.activity }}</h1>
-    <div class="top-column">
-      <form class="form" aria-label="Lägg till aktivitet">
-        <div class="input-section">
-          <label class="label-form" for="activity">Aktivitetsnamn:</label>
-          <input
-            aria-label="Aktivitetsnamn"
-            v-model="activity"
-            class="input-form"
-            type="text"
-            id="activity"
-            name="activity"
-            required
-          />
-        </div>
+    <h1 class="h2-s">{{ activities.activity }}</h1>
 
-        <div class="input-section">
-          <label class="label-form" for="step_value"
-            >Stegvärde per 30 minut:</label
-          >
-          <input
-            aria-label="Stegvärde per 30 minut"
-            v-model="step_value"
-            class="input-form"
-            type="number"
-            min="0"
-            id="step_value"
-            name="step_value"
-            required
-          />
-        </div>
-        <!-- error msg div, aria assertive  -->
-        <div v-if="errorMsg || successMsg" role="alert" aria-live="assertive">
-          <p v-if="errorMsg" class="error-box">{{ errorMsg }}</p>
-          <p v-if="successMsg" class="success-box steps">{{ successMsg }}</p>
-        </div>
+    <form class="form" aria-label="Lägg till aktivitet">
+      <div class="input-section">
+        <label class="label-form" for="activity">Aktivitetsnamn:</label>
+        <input
+          aria-label="Aktivitetsnamn"
+          v-model="activity"
+          class="input-form"
+          type="text"
+          id="activity"
+          name="activity"
+          required
+        />
+      </div>
 
-        <!-- add destination button -->
-        <button
-          @click.prevent="updateActivity"
-          class="btn-primary btn-forest"
-          aria-label="Lägg till destination"
+      <div class="input-section">
+        <label class="label-form" for="step_value"
+          >Stegvärde per 30 minut:</label
         >
-          Uppdatera <i class="fas fa-sync-alt"></i>
-        </button>
-        <button
-          @click.prevent="deleteActivity"
-          class="btn-primary btn-danger btn-margin-top"
-          aria-label="Lägg till destination"
-        >
-          Ta bort <i class="fas fa-trash-alt"></i>
-        </button>
-      </form>
-    </div>
-    <div class="bottom-row">
-      <section class="card">
-        <h2 class="visually-hidden">
-          Aktivitetskort för {{ activities.activity }}
-        </h2>
-        <div class="card-container">
-          <h2>Nuvarande:</h2>
-          <p><span class="bold">Aktivitet:</span> {{ activities.activity }}</p>
-          <p>
-            <span class="bold">Stegvärde - 30 min:</span>
-            {{ activities.step_value }}
-          </p>
-        </div>
-      </section>
-    </div>
+        <input
+          aria-label="Stegvärde per 30 minut"
+          v-model="step_value"
+          class="input-form"
+          type="number"
+          min="0"
+          id="step_value"
+          name="step_value"
+          required
+        />
+      </div>
+      <!-- error msg div, aria assertive  -->
+      <div v-if="errorMsg || successMsg" role="alert" aria-live="assertive">
+        <p v-if="errorMsg" class="error-box">{{ errorMsg }}</p>
+        <p v-if="successMsg" class="success-box steps">{{ successMsg }}</p>
+      </div>
+
+      <!-- add destination button -->
+      <button
+        @click.prevent="updateActivity"
+        class="btn-primary btn-forest"
+        aria-label="Lägg till destination"
+      >
+        Uppdatera <i class="fas fa-sync-alt"></i>
+      </button>
+      <button
+        @click.prevent="deleteActivity"
+        class="btn-primary btn-danger btn-margin-top"
+        aria-label="Lägg till destination"
+      >
+        Ta bort <i class="fas fa-trash-alt"></i>
+      </button>
+    </form>
   </div>
 </template>
 
