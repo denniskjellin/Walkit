@@ -87,9 +87,6 @@ const userLogin = async () => {
   } catch (error) {
     // set a custom error message
     errorMsg.value = "Felaktigt användarnamn eller lösenord!";
-    setTimeout(() => {
-      errorMsg.value = "";
-    }, 8000);
   }
 };
 /* watch on change */

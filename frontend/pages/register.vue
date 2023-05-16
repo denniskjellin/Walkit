@@ -73,8 +73,8 @@
             required
           />
           <label class="checkbox-label gdpr" for="gdpr-checkbox">
-            Jag godkänner och samtycker till att mina personuppgifter behandlas enligt
-            enligt GDPR.
+            Jag godkänner och samtycker till att mina personuppgifter behandlas
+            enligt enligt GDPR.
           </label>
         </div>
         <div class="submit-button-container">
@@ -103,27 +103,20 @@ const confirmPassword = ref("");
 const errorMsg = ref("");
 const successMsg = ref("");
 const { auth } = useSupabaseAuthClient();
-const router = useRouter();
 const gdprChecked = ref(false);
-
 
 /* function to register user */
 const userRegister = async () => {
   if (!gdprChecked.value) {
-    errorMsg.value = "Du måste godkänna användarvillkoren och GDPR för att fortsätta.";
-    setTimeout(() => {
-      errorMsg.value = "";
-    }, 3000);
+    errorMsg.value =
+      "Du måste godkänna användarvillkoren och GDPR för att fortsätta.";
     return;
   }
-  
+
   if (password.value !== confirmPassword.value) {
     errorMsg.value = "Lösenorden matchar inte!";
     password.value = "";
     confirmPassword.value = "";
-    setTimeout(() => {
-      errorMsg.value = "";
-    }, 3000);
     return;
   }
   try {
@@ -144,15 +137,12 @@ const userRegister = async () => {
     if (error) throw error;
 
     // show success message for 2 seconds before redirecting to login page
-    successMsg.value = "Du har registrerat dig!";
-    setTimeout(() => {
-      router.push("/login");
-    }, 2000);
+    successMsg.value =
+      "Kontot har skapats! Kontrollera din e-post för att verifiera ditt konto.";
+    errorMsg.value = "";
   } catch (error) {
-    errorMsg.value = error.message;
-    setTimeout(() => {
-      errorMsg.value = "";
-    }, 3000);
+    errorMsg.value = "Något gick fel, vänligen försök igen.";
+    successMsg.value = "";
   }
 };
 
