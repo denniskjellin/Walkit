@@ -10,7 +10,7 @@
         getAllStepsData?.errorMsg ||
         getAllStepsWeekData?.errorMsg
       "
-      class="error-box center"
+      class="error-box-index"
       aria-live="assertive"
     >
       {{

@@ -19,7 +19,7 @@
     <!-- error msg if statement -->
     <p
       v-if="totalStepsData?.errorMsg"
-      class="error-box center"
+      class="error-box-index"
       role="alert"
       aria-live="assertive"
     >

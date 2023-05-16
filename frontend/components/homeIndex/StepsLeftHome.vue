@@ -9,7 +9,7 @@
       <hr class="pink-line line-small" />
       <p
         v-if="remainingStepsData?.errorMsg"
-        class="error-box center"
+        class="error-box-index"
         aria-live="assertive"
       >
         {{ remainingStepsData.errorMsg }}

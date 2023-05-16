@@ -15,23 +15,28 @@
           {{ successMsg }}
         </div>
         <div class="input-section">
-          <label for="email"> E-post </label>
+          <label class="label-form" for="email"> E-post </label>
           <input
             v-model="email"
             id="email"
+            class="input-form"
             type="email"
             placeholder="Knowit@gmail.com"
             aria-label="E-post adress"
             required
+        
           />
         </div>
+        <div class="add-steps-form__submit input-label-container">
         <button
           type="submit"
           class="button-submit"
           aria-label="Återställ lösenord"
         >
-          Återställ lösenord
+          Återställ lösenord <i class="fas fa-paper-plane"></i>
+
         </button>
+      </div>
       </form>
     </div>
   </div>
@@ -61,6 +66,8 @@ const resetPassword = async () => {
     successMsg.value = "Lösenordet har återställts. Vänligen kolla din e-post.";
   }
 };
+
+
 
 // define page meta
 definePageMeta({
