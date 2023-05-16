@@ -220,7 +220,7 @@ async function insertSteps() {
 
     setTimeout(() => {
       errorMsg.value = "";
-    }, 7000);
+    }, 14000);
 
     return;
   }
@@ -246,7 +246,7 @@ async function insertSteps() {
     setTimeout(() => {
       errorMsg.value = "";
       successMsg.value = "";
-    }, 7000);
+    }, 14000);
   }
 }
 
@@ -263,7 +263,7 @@ async function insertActivitySteps() {
 
     setTimeout(() => {
       activityInsertStepsError.value = "";
-    }, 7000);
+    }, 14000);
 
     return;
   }
@@ -292,7 +292,7 @@ async function insertActivitySteps() {
     setTimeout(() => {
       activityInsertStepsError.value = "";
       activityInsertStepsSuccess.value = "";
-    }, 7000);
+    }, 14000);
   }
 }
 
@@ -344,7 +344,7 @@ async function insertStepsToDatabase(date, steps) {
       errorMsg.value = "Det finns inga aktiva destinationer!";
       setTimeout(() => {
         errorMsg.value = "";
-      }, 7000);
+      }, 14000);
     }
 
     // Insert the steps

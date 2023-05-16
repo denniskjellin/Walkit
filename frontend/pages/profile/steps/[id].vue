@@ -80,7 +80,7 @@ const updateSteps = async () => {
     errorMsg.value = "Du kan inte lägga till steg för framtida datum!";
     setTimeout(() => {
       errorMsg.value = "";
-    }, 7000);
+    }, 14000);
     return;
   }
 
@@ -125,7 +125,7 @@ const validateInput = () => {
   if (!isValid) {
     setTimeout(() => {
       errorMsg.value = "";
-    }, 7000); // 7 seconds
+    }, 14000); 
   }
 
   return isValid;

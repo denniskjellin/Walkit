@@ -101,7 +101,7 @@ const validateInput = () => {
   if (!isValid) {
     setTimeout(() => {
       errorMsg.value = "";
-    }, 7000); // 7 seconds
+    }, 14000); // 7 seconds
   }
 
   return isValid;
