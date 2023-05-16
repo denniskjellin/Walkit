@@ -76,13 +76,6 @@ const updatePassword = async () => {
   }
 };
 
-
-const user = useSupabaseUser();
-
-definePageMeta({
-  middleware: "auth",
-  layout: "default",
-});
 </script>
 
 <style lang="scss" scoped></style>
