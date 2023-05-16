@@ -85,7 +85,10 @@ watchEffect(() => {
   }
 });
 
-
+definePageMeta({
+  middleware: "auth",
+  layout: "default",
+});
 </script>
 
 <style lang="scss" scoped></style>
