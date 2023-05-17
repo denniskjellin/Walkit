@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="main-container"
-  >
+  <div class="main-container">
     <div class="child-container">
       <div class="walkit-logo">
         <LogosLogoSec />
@@ -24,19 +22,17 @@
             placeholder="Knowit@gmail.com"
             aria-label="E-post adress"
             required
-        
           />
         </div>
         <div class="add-steps-form__submit input-label-container">
-        <button
-          type="submit"
-          class="button-submit"
-          aria-label="Återställ lösenord"
-        >
-          Återställ lösenord <i class="fas fa-paper-plane"></i>
-
-        </button>
-      </div>
+          <button
+            type="submit"
+            class="button-submit"
+            aria-label="Återställ lösenord"
+          >
+            Återställ lösenord <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
       </form>
     </div>
   </div>
@@ -66,8 +62,6 @@ const resetPassword = async () => {
     successMsg.value = "Lösenordet har återställts. Vänligen kolla din e-post.";
   }
 };
-
-
 
 // define page meta
 definePageMeta({

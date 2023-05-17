@@ -1,6 +1,9 @@
 <!-- admin page-->
 <template>
   <div class="container main">
+    <div>
+        <NuxtLink to="/admin">Tillbaka</NuxtLink>
+        </div>
     <div class="right-column">
       <section>
         <h1 class="h2-s">Skapa destination</h1>
@@ -123,6 +126,7 @@
             Lägg till <i class="fas fa-plus"></i>
           </button>
         </form>
+ 
       </section>
     </div>
     <div class="left-column">
@@ -148,7 +152,7 @@
               <span class="bold">Slut kordination:</span><br />
               {{ destination.end_cordinations }}
             </p>
-  
+
             <p>
               <span class="bold">Antal steg:</span> {{ destination.steps_goal }}
             </p>
@@ -202,7 +206,6 @@ const end = ref(null);
 const start_cordinations = ref("");
 const end_cordinations = ref("");
 
-
 const isActive = ref(false);
 const pending = ref(false);
 
@@ -236,7 +239,7 @@ const validateInput = () => {
   if (!isValid) {
     setTimeout(() => {
       errorMsg.value = "";
-    }, 14000); 
+    }, 14000);
   }
 
   return isValid;
