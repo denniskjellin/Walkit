@@ -63,7 +63,7 @@ See personal statistics about your steps, steps taken today, current month and t
 ## My steps
 Perform CRUD-operation on your step entrys.
 
-## Acttivities
+## Activities
 See what amount of steps different activities yield per 30 minutes.
 
 ***
