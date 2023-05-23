@@ -17,14 +17,14 @@
         />
       </div>
       <div class="input-section">
-        <label class="label-form" for="date">Datum:</label>
+        <label class="label-form" for="dateInput">Datum:</label>
         <input
           aria-label="Datum"
           type="date"
-          v-model="date"
+          v-model="dateInput"
           class="input-form"
-          id="date"
-          name="date"
+          id="dateInput"
+          name="dateInput"
           required
         />
       </div>
@@ -66,7 +66,7 @@ const { data: steps, error } = await supabase
 
 // variables to hold current values
 let step_value = ref(steps.steps);
-let date = ref(steps.date);
+let dateInput = ref(steps.date);
 
 // success/error msg
 let errorMsg = ref("");
@@ -93,7 +93,7 @@ const updateSteps = async () => {
       .from("steps")
       .update({
         steps: step_value.value,
-        date: date.value,
+        date: dateInput.value,
       })
       .eq("id", id);
 
