@@ -86,6 +86,17 @@ To add steps to the database simply press the 'Add' button in the header. Select
 ## Att steps by activity
 To add steps by a activity, select the activity in the options-list and add amount of minutes that you performed the activity, the same date rules apply here.
 
+## Routes
+| Route | Beskrivning |
+| :---         | :---           | 
+| /admin   |   Admin page    | 
+| /admin/destinations | Handle destinations |
+| /admin/activities | Handle activities |
+| / | Home page |
+| /profile | Profile page |
+| /profile/steps | Profile steps |
+| /activities | Activity list |
+
 
 
 
