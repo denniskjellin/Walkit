@@ -25,6 +25,6 @@ export const getUser = async () => {
 
     return user[0];
   } catch (error) {
-    console.log = "User initials not found";
+    throw error;
   }
 };
