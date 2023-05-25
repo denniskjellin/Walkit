@@ -54,6 +54,11 @@
       </button>
     </form>
   </div>
+  <div class="back-container">
+    <NuxtLink class="back-btn" to="/admin/activities"
+      ><i class="fas fa-arrow-left"></i> Tillbaka</NuxtLink
+    >
+  </div>
 </template>
 
 <script setup>

@@ -1,9 +1,7 @@
 <!-- admin page-->
 <template>
   <div class="container main">
-    <div>
-        <NuxtLink to="/admin">Tillbaka</NuxtLink>
-        </div>
+    <div></div>
     <div class="right-column">
       <section>
         <h1 class="h2-s">Skapa destination</h1>
@@ -126,7 +124,11 @@
             Lägg till <i class="fas fa-plus"></i>
           </button>
         </form>
- 
+        <div class="back-container">
+          <NuxtLink class="back-btn" to="/admin"
+            ><i class="fas fa-arrow-left"></i> Tillbaka</NuxtLink
+          >
+        </div>
       </section>
     </div>
     <div class="left-column">

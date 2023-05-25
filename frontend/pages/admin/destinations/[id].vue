@@ -41,6 +41,11 @@
           </div>
         </div>
       </section>
+      <div class="back-container">
+          <NuxtLink class="back-btn" to="/admin/destinations"
+            ><i class="fas fa-arrow-left"></i> Tillbaka</NuxtLink
+          >
+        </div>
     </div>
     <div class="right-column">
       <section>
@@ -172,7 +177,9 @@
           </div>
         </form>
       </section>
+      
     </div>
+    
   </div>
 </template>
 

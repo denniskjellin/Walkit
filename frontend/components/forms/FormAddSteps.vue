@@ -267,7 +267,7 @@ async function insertActivitySteps() {
 
     return;
   }
-  console.log(date.value, "date value");
+
   let successfull = await insertStepsToDatabase(
     date.value,
     calculatedActivitySteps.value
@@ -281,6 +281,8 @@ async function insertActivitySteps() {
       activityInsertStepsError.value = "";
       date.value = todayDate;
       steps.value = 0;
+      activityValue.value = 0;
+      activityMinutes.value = 0;
       calculatedActivitySteps.value = 0;
     }, 1000);
 

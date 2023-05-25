@@ -70,3 +70,16 @@ border-bottom: 2px $loli solid;
 font-weight: 600;
 }
 
+.back-container {
+  margin-top: 1rem;
+
+  .back-btn {
+    text-decoration: underline;
+    letter-spacing: 0.5px;
+  }
+
+  .back-btn:hover {
+    color: $forest;
+    transition: color 0.2s ease-in-out;
+  }
+}

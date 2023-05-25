@@ -47,6 +47,11 @@
           Lägg till <i class="fas fa-plus"></i>
         </button>
       </form>
+      <div class="back-container">
+          <NuxtLink class="back-btn" to="/admin"
+            ><i class="fas fa-arrow-left"></i> Tillbaka</NuxtLink
+          >
+        </div>
     </div>
   </div>
   <section class="section-block section-big-bg-clay">
