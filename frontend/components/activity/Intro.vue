@@ -2,7 +2,7 @@
   <div class="section-block-start section-sand">
     <h1 class="h1-s">Aktivitetsslista</h1>
     <p>
-    Här hittar du en översikt över olika aktiviteter och hur många steg de
+      Här hittar du en översikt över olika aktiviteter och hur många steg de
       motsvarar per 30 minuter. Listan är till för att hjälpa dig att hålla koll
       på din fysiska aktivitet och ge dig en uppfattning om hur mycket du rör på
       dig under olika aktiviteter. Oavsett om du är ute efter att öka din
