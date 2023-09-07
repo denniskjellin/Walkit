@@ -181,7 +181,7 @@ export const getAllUserStepsEntry = async (page = 1) => {
       .select("steps, id, date, created_at")
       .range(from, to)
       .eq("user_id", user_id)
-      .order("created_at", { ascending: false });
+      .order("date", { ascending: false });
 
     if (error) throw error;
 
