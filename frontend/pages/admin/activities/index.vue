@@ -48,10 +48,10 @@
         </button>
       </form>
       <div class="back-container">
-          <NuxtLink class="back-btn" to="/admin"
-            ><i class="fas fa-arrow-left"></i> Tillbaka</NuxtLink
-          >
-        </div>
+        <NuxtLink class="back-btn" to="/admin"
+          ><i class="fas fa-arrow-left"></i> Tillbaka</NuxtLink
+        >
+      </div>
     </div>
   </div>
   <section class="section-block section-big-bg-clay">
@@ -97,7 +97,7 @@ const step_value = ref(0);
 
 const s = ref("");
 
-// validation check for form inputs
+// validation check for form inputs.
 const validateInput = () => {
   let isValid = true;
 
