@@ -63,6 +63,8 @@ onMounted(() => {
     map = L.map("map", {
       center: endLocation,
       zoom: 12,
+      maxZoom: 15, // max zoom value
+      minZoom: 3, // min zoom value
     });
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 15,
@@ -71,9 +73,20 @@ onMounted(() => {
     }).addTo(map);
 
     // end marker = greenIcon
-    let greenIcon = new L.Icon({
-      iconUrl:
-        "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
+    // change iconUrl to any other svg placed in the public folder
+    let finishIcon = new L.Icon({
+      iconUrl: "./end.svg",
+      shadowUrl:
+        "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41],
+    });
+
+    // change iconUrl to any other svg placed in the public folder
+    let startIcon = new L.Icon({
+      iconUrl: './start.svg',
       shadowUrl:
         "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
       iconSize: [25, 41],
@@ -83,8 +96,8 @@ onMounted(() => {
     });
 
     // start marker and end marker with polygon line (startLocation and endLocation is parsed JSON)
-    let startMarker = L.marker(startLocation).addTo(map);
-    let endMarker = L.marker(endLocation, { icon: greenIcon }).addTo(map);
+    let startMarker = L.marker(startLocation, { icon: startIcon }).addTo(map);
+    let endMarker = L.marker(endLocation, { icon: finishIcon }).addTo(map);
 
     // polygon line
     let destinationLine = L.polygon([startLocation, endLocation], {
@@ -92,6 +105,11 @@ onMounted(() => {
       fillColor: "#f03",
       fillOpacity: 0.5,
     }).addTo(map);
+
+    map.fitBounds(destinationLine.getBounds(), {
+      padding: [50, 50],
+      duration: 5,
+    });
   } else {
     mapDataError = true;
   }
