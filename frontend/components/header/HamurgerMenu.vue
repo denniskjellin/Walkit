@@ -1,24 +1,14 @@
 <template>
   <!-- Hamburger button and close button for menu -->
   <div class="child hover-accessibility" v-if="!isOpen">
-    <button
-      id="menu-button"
-      @click="isOpen = !isOpen"
-      :aria-expanded="isOpen"
-      :aria-label="isOpen ? 'Stäng meny' : 'Öppna meny'"
-    >
+    <button id="menu-button" @click="isOpen = !isOpen" :aria-expanded="isOpen" :aria-label="isOpen ? 'Stäng meny' : 'Öppna meny'">
       <SvgHambBtnNav class="BtnHeader" />
     </button>
     <p class="menu-text">Meny</p>
   </div>
   <!-- If hamburer nav is open, show the close button -->
   <div class="child" v-else>
-    <button
-      id="menu-button"
-      @click="isOpen = !isOpen"
-      :aria-expanded="isOpen"
-      :aria-label="isOpen ? 'Stäng meny' : 'Öppna meny'"
-    >
+    <button id="menu-button" @click="isOpen = !isOpen" :aria-expanded="isOpen" :aria-label="isOpen ? 'Stäng meny' : 'Öppna meny'">
       <SvgCloseCrossHeader class="BtnHeader" />
     </button>
     <p class="menu-text">Stäng</p>
@@ -28,13 +18,7 @@
   <div v-if="isOpen" class="grey-out"></div>
 
   <!-- Styling for fold-out menu, additional CSS in @HeaderNavComp.css, Pink-svg line @PinkLineComp -->
-  <div
-    ref="main-nav"
-    id="fold-out-menu"
-    class="fold-out-menu"
-    :class="{ hidden: !isOpen, block: !isOpen }"
-    aria-labelledby="menu-label"
-  >
+  <div ref="main-nav" id="fold-out-menu" class="fold-out-menu" :class="{ hidden: !isOpen, block: !isOpen }" aria-labelledby="menu-label">
     <div id="menu-label" class="sr-only">Huvudmeny</div>
     <NuxtLink class="nav-links" aria-label="Min profil" to="/profile">
       Profil
@@ -49,8 +33,19 @@
     <hr class="pink-line" />
 
     <NuxtLink class="nav-links" aria-label="Aktivitetslista" to="/activities">
-      Aktivitetslista</NuxtLink
-    >
+      Aktivitetslista</NuxtLink>
+
+    <hr class="pink-line" />
+
+    <NuxtLink class="nav-links" aria-label="FAQ" to="/faq">
+      FAQ
+    </NuxtLink>
+
+    <hr class="pink-line" />
+
+    <NuxtLink class="nav-links" aria-label="Om Walkit" to="/walkit">
+      Om Walkit
+    </NuxtLink>
 
     <hr class="pink-line" />
     <NuxtLink class="nav-logout" @click="userLogout">Logga ut</NuxtLink>
