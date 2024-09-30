@@ -1,6 +1,6 @@
 <template>
   <WalkitHeroImg />
-  <div class="section-block-start">
+  <div class="section-block-start section-pebble">
     <h1 class="h1-s">Vad är Walkit?</h1>
     <p>
       Walkit är en app framtagen för att främja aktivitet och rörelse bland medarbetare på kontoret. Genom ett intuitivt gränssnitt kan användare
@@ -23,20 +23,21 @@
     </p>
   </div>
   <!-- Rounded image -->
-  <div class="section-block section-sand p-6">
+  <div class="section-block section-sand p-6 flex flex-col justify-center items-center text-center">
     <h2 class="h1-s mb-4">Kontakt</h2>
-    <div class="flex items-center mb-4">
-      <img src="/assets/images/dennis-kjellin.png" alt="Dennis Kjellin" class="w-24 h-24 rounded-full object-cover mr-4" />
+    <div class="flex flex-col items-center mb-4">
+      <img src="/assets/images/dennis-kjellin.png" alt="Dennis Kjellin" class="w-24 h-24 rounded-full object-cover mb-4" />
       <div>
         <p class="font-bold text-lg">Dennis Kjellin</p>
         <p class="text-gray-700">dennis.kjellin@knowit.se</p>
-        <a href="https://www.linkedin.com/in/denniskjellin/" target="_blank" class="text-blue-600 hover:underline flex items-center">
+        <a href="https://www.linkedin.com/in/denniskjellin/" target="_blank" class="text-blue-600 hover:underline flex items-center justify-center">
           <i class="fab fa-linkedin mr-2"></i>
           LinkedIn
         </a>
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
