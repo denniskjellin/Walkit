@@ -11,7 +11,8 @@
   <div class="section-block-start section-mint">
     <h2 class="h1-s">Redigering av steg</h2>
     <p>
-      Om du behöver ändra eller ta bort dina steg kan du göra detta genom att navigera till <strong>Mina steg</strong> i huvudnavigeringen.
+      Om du behöver ändra eller ta bort dina steg kan du göra detta genom att navigera till <strong>Profil</strong> eller <strong>Mina steg</strong> i
+      huvudnavigeringen.
       Där får du en överblick över de steg du har registrerat.
       Du har även möjlighet att redigera varje input för att ändra värdet eller radera det helt.
     </p>
@@ -26,7 +27,7 @@
   <div class="section-block-start section-sand">
     <h2 class="h1-s">Gruppens prestation</h2>
     <p>
-      För att få en överblick över gruppens prestation gentemot det aktuella målet, navigera till <strong>startsidan</strong> för att ta del av hur
+      För att få en överblick över gruppens prestation gentemot det aktuella målet, navigera till <strong>Startsidan</strong> för att ta del av hur
       det går för er att
       ta er till destinationen och hur topplistan ser ut.
     </p>
