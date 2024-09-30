@@ -10,20 +10,17 @@
       <div class="datalist-header-steps">Antal steg</div>
     </div>
     <ul class="datalist-list">
-      <li
-        class="datalist-item"
-        v-for="(item, index) in topList"
-        :key="`toplist-${index}`"
-      >
+      <li class="datalist-item" v-for="(item, index) in topList" :key="`toplist-${index}`">
         <div>
           <span class="datalist-order">{{ index + 1 }}</span>
-          {{ item.full_name }}
+          <span class="datalist-name">{{ item.full_name }}</span> <!-- Added class here -->
         </div>
         {{ numberToSweString(item.steps) }}
       </li>
     </ul>
   </section>
 </template>
+
 
 <script setup>
 // state variables

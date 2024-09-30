@@ -48,7 +48,7 @@
     </NuxtLink>
 
     <hr class="pink-line" />
-    <NuxtLink class="nav-logout" @click="userLogout">Logga ut</NuxtLink>
+    <button class="nav-logout-btn" aria-label="Logga ut" @click="userLogout">Logga ut</button>
     <hr />
   </div>
 </template>
