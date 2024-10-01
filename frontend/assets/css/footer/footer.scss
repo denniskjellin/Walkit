@@ -8,6 +8,10 @@ footer {
   @media screen and (max-width: 768px) {
     height: 10rem;
   }
+
+  a:hover {
+  color: $loli;
+}
 }
 
 .footer-wrapper {
@@ -45,8 +49,3 @@ footer {
   transition: color 0.3s ease-in-out;
 }
 
-.fa-facebook-f:hover,
-.fa-twitter:hover,
-.fa-instagram:hover {
-  color: $loli;
-}
