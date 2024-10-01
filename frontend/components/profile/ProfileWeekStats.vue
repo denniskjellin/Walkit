@@ -7,11 +7,12 @@
       <template v-if="userStepsEntryData">
         <h2 class="h2-s">Alla dina steg</h2>
 
-        <div class="datalist-header">
+        <div v-if="userStepsEntryData?.userStepsEntrys.length > 0" class=" datalist-header">
           <div>Datum</div>
           <div>Antal steg</div>
           <div>Redigera</div>
         </div>
+        <p class="mt-3" v-else>Du har inte lagt till några steg än.</p>
         <ul class="datalist-list">
           <li class="datalist-item" v-for="(entry, index) in userStepsEntryData?.userStepsEntrys" :key="index">
             {{ entry.date }}
