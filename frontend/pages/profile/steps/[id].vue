@@ -104,7 +104,7 @@ const updateSteps = async () => {
     }
     setTimeout(() => {
       successMsg.value = "";
-      router.push({ path: "/profile/steps/" }); // redirect to admin page
+      router.push({ path: "/profile" });
     }, 1000);
   } catch (error) {
     errorMsg.value = "Det gick inte att uppdatera aktiviteten just nu.";
@@ -141,7 +141,7 @@ const deleteSteps = async () => {
     }
     setTimeout(() => {
       successMsg.value = "";
-      router.push({ path: "/profile/steps/" }); // redirect to admin page
+      router.push({ path: "/profile" });
     }, 1000);
   } catch (error) {
     errorMsg.value = "Det gick inte att ta bort stegen just nu.";

@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     "@fortawesome/fontawesome-free/css/all.css",
     "@/assets/css/main.scss",
   ],
+
   modules: ["@nuxtjs/supabase", "@nuxtjs/tailwindcss"],
 
   app: {
@@ -58,4 +59,6 @@ export default defineNuxtConfig({
       ],
     },
   },
+
+  compatibilityDate: "2024-09-27",
 });

@@ -1,50 +1,73 @@
 <template>
-  <section
-    class="section-block section-big-bg-clay"
-    aria-label="Statistik för pågående vecka"
-  >
-    <h2 class="visually-hidden">Vecko statistik</h2>
-    <section
-      class="datalist-wrapper profile-weekly-stats"
-      aria-label="Steg per dag för pågående vecka"
-    >
-      <SvgTopListIco class="datalist-ico" />
-      <template v-if="getUserWeeklyStatsData">
-        <h2 class="h2-s">
-          Dina steg vecka {{ getUserWeeklyStatsData?.currentWeekNumber }}
-        </h2>
-        <div class="datalist-header">
-          <div>Datum</div>
-          <div class="datalist-header-steps">Antal steg</div>
-        </div>
-        <ul class="datalist-list">
-          <li
-            class="datalist-item"
-            v-for="(dailyStepData, index) in getUserWeeklyStatsData?.dailySteps"
-            :key="index"
-          >
-            {{ dailyStepData.date }}
+  <section class="section-block section-big-bg-clay" aria-label="Statistik för pågående vecka">
+    <h2 class="visually-hidden">Redigera vecko statistik</h2>
 
-            <span>{{ numberToSweString(dailyStepData.steps) }}</span>
+    <section class="datalist-wrapper profile-weekly-stats" aria-label="Steg per dag för pågående vecka">
+      <SvgTopListIco class="datalist-ico" />
+      <template v-if="userStepsEntryData">
+        <h2 class="h2-s">Alla dina steg</h2>
+
+        <div v-if="userStepsEntryData?.userStepsEntrys.length > 0" class=" datalist-header">
+          <div>Datum</div>
+          <div>Antal steg</div>
+          <div>Redigera</div>
+        </div>
+        <p class="mt-3" v-else>Du har inte lagt till några steg än.</p>
+        <ul class="datalist-list">
+          <li class="datalist-item" v-for="(entry, index) in userStepsEntryData?.userStepsEntrys" :key="index">
+            {{ entry.date }}
+            <span>{{ numberToSweString(entry?.steps) }}</span>
+            <NuxtLink :to="`/profile/steps/${entry.id}`">
+              Redigera <i class="fas fa-edit"></i>
+            </NuxtLink>
           </li>
         </ul>
+        <template v-if="lastPage > 1">
+          <div class="container-pagination">
+            <button @click="decreecePage">
+              <i class="fas fa-angle-left"></i>
+            </button>
+            <p>{{ page }}</p>
+            <button @click="increesePage">
+              <i class="fas fa-angle-right"></i>
+            </button>
+          </div>
+        </template>
       </template>
       <p v-else>Laddar...</p>
-      <!-- check for error -->
-      <p
-        v-if="getUserWeeklyStatsData?.errorMsg"
-        class="error-box center"
-        aria-live="assertive"
-      >
-        {{ getUserWeeklyStatsData.errorMsg }}
+      <!-- error msg div, aria assertive  -->
+
+      <p role="alert" aria-live="assertive" v-if="userStepsEntryData?.errorMsg" class="error-box">
+        {{ userStepsEntryData.errorMsg }}
       </p>
     </section>
   </section>
 </template>
 
 <script setup>
-let getUserWeeklyStatsData = useState("getUserWeeklyStatsState");
+let userStepsEntryData = useState("userStepsEntryState");
+let lastPage = useState("lastPageState", () => 1);
+let page = useState("pageState", () => 1);
+
+async function increesePage() {
+  if (page.value < lastPage.value) {
+    page.value++;
+
+    userStepsEntryData.value = await getAllUserStepsEntry(page.value);
+  }
+}
+
+async function decreecePage() {
+  if (page.value > 1) {
+    page.value--;
+
+    userStepsEntryData.value = await getAllUserStepsEntry(page.value);
+  }
+}
+
 onMounted(async () => {
-  getUserWeeklyStatsData.value = await getUserWeeklyStats();
+  userStepsEntryData.value = await getAllUserStepsEntry(page.value);
+  const lengthData = await getNumberUserStepsEntry();
+  lastPage.value = lengthData.userNumberStepsEntrys;
 });
 </script>

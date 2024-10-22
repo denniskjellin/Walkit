@@ -156,8 +156,13 @@ export const getUserMonthlySteps = async () => {
   };
 
   const now = new Date(); // current date
-  const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
-  const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+  const firstDay = new Date(Date.UTC(now.getFullYear(), now.getMonth(), 1));
+  const lastDay = new Date(Date.UTC(now.getFullYear(), now.getMonth() + 1, 0));
+
+  // Set time to the start of the first day and the end of the last day in UTC
+  firstDay.setUTCHours(0, 0, 0, 0);  // 00:00:00.000 UTC on the first day
+  lastDay.setUTCHours(23, 59, 59, 999);  // 23:59:59.999 UTC on the last day
+
   const options = { month: "long", locale: "sv" };
   const currentMonth = now.toLocaleString("default", options);
   const capitalizedMonth =
@@ -169,8 +174,8 @@ export const getUserMonthlySteps = async () => {
       .from("steps")
       .select("steps, date")
       .eq("user_id", user_id)
-      .gt("date", firstDay.toISOString().split("T")[0]) // greater than or equal to first day of current month
-      .lte("date", lastDay.toISOString().split("T")[0]); // less than or equal to last day of current month
+      .gte("date", firstDay.toISOString())  // greater than or equal to the first day in UTC
+      .lte("date", lastDay.toISOString());  // less than or equal to the last day in UTC
 
     if (error) throw error;
 
@@ -180,7 +185,7 @@ export const getUserMonthlySteps = async () => {
       0
     );
 
-    // set return values
+    // Set return values
     returnValue.month = capitalizedMonth;
     returnValue.stepsCurrMonthUser = stepsSumUser;
     returnValue.errorMsg = "";

@@ -36,28 +36,43 @@
     }
   }
 
-  .datalist-list {
-    width: 75vw;
-    padding: 2rem 5rem;
-    max-width: 600px;
+.datalist-list {
+  width: 75vw;
+  padding: 2rem 5rem;
+  max-width: 600px;
 
-    @media screen and (max-width: 768px) {
-      width: 100%;
-      padding: 2rem 0rem;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    padding: 2rem 0rem;
+  }
+
+  .datalist-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;
+    padding: 0.5rem 0;
+    align-items: center; /* Aligns the content vertically */
+
+    /* Wrap the name and number in a container */
+    div {
+      display: flex;
+      align-items: center; /* Keep the items vertically centered */
     }
 
-    .datalist-item {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid gray;
-      padding: 0.5rem 0;
+    .datalist-order {
+      margin-right: 1rem;
+      font-weight: 700;
+      width: 1rem; /* Set a fixed width for the order */
+      text-align: right; /* Align the number to the right */
+    }
 
-      .datalist-order {
-        margin-right: 2rem;
-        font-weight: 700;
-      }
+    /* Make sure the name takes available space */
+    .datalist-name {
+      flex-grow: 1; /* Allow the name to take up remaining space */
     }
   }
+}
+
 
   .datalist-ico {
     margin: 1rem 0rem;
