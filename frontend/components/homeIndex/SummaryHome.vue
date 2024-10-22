@@ -130,6 +130,7 @@ function getMinDateFromTotalWalkedData(totalWalkedData) {
   return new Date(minDateFromArrayInMilliseconds);
 }
 
+
 // onMounted hook to fetch data
 onMounted(async () => {
   userDailyStepsData.value = await getUserSteps();
